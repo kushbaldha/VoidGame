@@ -1,4 +1,4 @@
-package orangebattery.voidgame;
+package orangeboat.voidgame;
 
 import org.junit.Test;
 

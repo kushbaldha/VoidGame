@@ -1,4 +1,4 @@
-package orangebattery.voidgame;
+package orangeboat.voidgame;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

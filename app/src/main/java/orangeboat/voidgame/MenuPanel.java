@@ -15,13 +15,15 @@ public class MenuPanel
     private Bitmap play;
     // images for background and play button
     private Rect rectPlay;
+    private int x,y,playX,playY;
     //hitbox for the play button
 
     public MenuPanel(Bitmap res, Bitmap res2)
     {
         background = res;
         play = res2;
-        //rectPlay = new Rect(x,y,x-res2.getWidth(),res2.getHeight());
+        playX = res2.getWidth();
+        playY = res2.getHeight();
     }
     public void update()
     {
@@ -29,11 +31,14 @@ public class MenuPanel
     }
     public void draw(Canvas canvas)
     {
-       // Paint paint = new Paint();
-       // paint.setColor(Color.GREEN);
+        Paint paint = new Paint();
+        paint.setColor(Color.TRANSPARENT);
         canvas.drawBitmap(background,0,0, null);
-        canvas.drawBitmap(play,canvas.getWidth()/2,canvas.getHeight()-300,null);
-        //canvas.drawRect(rectPlay,paint);
+        x=canvas.getWidth()/2;
+        y= canvas.getHeight()-300;
+        canvas.drawBitmap(play,x,y,null);
+        rectPlay = new Rect(x,y,(x+playX),(y+playY));
+        canvas.drawRect(rectPlay,paint);
     }
 }
 

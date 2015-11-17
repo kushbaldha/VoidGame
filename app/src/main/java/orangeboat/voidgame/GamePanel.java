@@ -15,13 +15,17 @@ import android.view.SurfaceView;
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
 {
+    int width, height;
     private MainThread thread;
     private MenuPanel menu;
     Display display;
-    public GamePanel(Context context)
+    public GamePanel(Context context, int width, int height)
     {
 
      super(context);
+
+        this.width = width;
+        this.height = height;
 
         //add callback to surfaceholders to intercepts events like fingerpresses
         getHolder().addCallback(this);

@@ -3,9 +3,6 @@ package orangeboat.voidgame;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -15,7 +12,8 @@ import android.view.SurfaceView;
 public class Display extends SurfaceView implements SurfaceHolder.Callback
 
 {
-    private MainThread thread;
+    private MenuThread firstthread;
+    private MainThread secondthread;
     private MenuPanel menu;
     public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
@@ -27,7 +25,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         //add callback to surfaceholders to intercepts events like fingerpresses
         getHolder().addCallback(this);
 
-        thread = new MainThread(getHolder(), this);
+        firstthread = new MenuThread(getHolder(), this);
+        secondthread = new MainThread(getHolder(), this);
         //getholder() is the surfaceholder or the screen
         //this is the gamePanel
 
@@ -42,10 +41,10 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        menu = new MenuPanel(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton));
+        menu = new MenuPanel(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
         //once surface is created, we can safely start gameloop
-        thread.setRunning(true);
-        thread.start();
+        secondthread.setRunning(true);
+        secondthread.start();
     }
 
     @Override
@@ -54,13 +53,13 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceDestroyed(SurfaceHolder holder) {
         boolean retry = true;
 
-        // it might take several tries to stop thread so this is needed
+        // it might take several tries to stop secondthread so this is needed
         // a try catch loop is created
 
         while (retry) {
             try {
-                thread.setRunning(false);
-                thread.join();
+                secondthread.setRunning(false);
+                secondthread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -34,11 +34,11 @@ public class MenuPanel
         Paint paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
         canvas.drawBitmap(background,0,0, null);
-        x=canvas.getWidth()/2;
-        y= canvas.getHeight()-300;
+        x= (int) (canvas.getWidth()/3.3);
+        y= (int) (canvas.getHeight()/1.3);
         canvas.drawBitmap(play,x,y,null);
         rectPlay = new Rect(x,y,(x+playX),(y+playY));
-        canvas.drawRect(rectPlay,paint);
+        canvas.drawRect(rectPlay, paint);
     }
 }
 

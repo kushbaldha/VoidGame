@@ -15,12 +15,9 @@ import android.view.SurfaceView;
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
 {
-    public static final int WIDTH= 1900;
-    public static final int HEIGHT = 1200;
     private MainThread thread;
-    private Background bg;
-    private static final String DEBUG_TAG = "Gestures";
-    private GestureDetectorCompat mDetector;
+    private MenuPanel menu;
+    Display display;
     public GamePanel(Context context)
     {
 
@@ -44,7 +41,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        bg = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.ideallandscape));
+        menu = new MenuPanel(BitmapFactory.decodeResource(getResources(),R.drawable.titlescreen),BitmapFactory.decodeResource(getResources(),R.drawable.playbutton));
+        display = new Display(getWidth(),getHeight(),menu);
         //once surface is created, we can safely start gameloop
     thread.setRunning(true);
         thread.start();
@@ -70,20 +68,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     }
     public void update()
     {
-    bg.update();
+    menu.update();
     }
     @Override
     public void draw(Canvas canvas)
     {
-       final float scaleFactorX = getWidth()/(WIDTH*1.f);//make sure they are floats
-        final float scaleFactorY = getHeight()/(HEIGHT*1.f);
-        if(canvas!=null) {
-            final int savedState = canvas.save();
-            canvas.scale(scaleFactorX, scaleFactorY);
-            bg.draw(canvas);
-            //return to savedstate. If we didn't have this, it would keep on scaling. So we do this to return it to original state
-            canvas.restoreToCount(savedState);
-        }
+        display.draw(canvas);
     }
 
 }

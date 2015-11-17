@@ -1,42 +1,89 @@
 package orangeboat.voidgame;
 
+import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.MotionEventCompat;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 /**
- * Created by Kush on 11/16/2015.
+ * Created by Kush on 11/6/2015.
  */
-public class Display
+public class Display extends SurfaceView implements SurfaceHolder.Callback
+
 {
-    public static final int WIDTH= 1900;
+    private MainThread thread;
+    private MenuPanel menu;
+    public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
-    int phoneWidth,phoneHeight;
-    public static int CANVASWIDTH;
-    public static int CANVASHEIGHT;
 
+    public Display(Context context) {
 
-    public MenuPanel menu;
-    public Display()
-    {
+        super(context);
+
+        //add callback to surfaceholders to intercepts events like fingerpresses
+        getHolder().addCallback(this);
+
+        thread = new MainThread(getHolder(), this);
+        //getholder() is the surfaceholder or the screen
+        //this is the gamePanel
+
+        //make gamePanel focusable so it can handle events
+        setFocusable(true);
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
     }
-    public Display(int phoneWidth,int phoneHeight, MenuPanel menu)
-    {
-    this.phoneWidth = phoneWidth;
-    this.phoneHeight = phoneHeight;
-    this.menu = menu;
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        menu = new MenuPanel(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton));
+        //once surface is created, we can safely start gameloop
+        thread.setRunning(true);
+        thread.start();
     }
-    public void draw(Canvas canvas)
-    {
-        CANVASWIDTH = canvas.getWidth();
-        CANVASHEIGHT = canvas.getHeight();
-        final float scaleFactorX = phoneWidth/(WIDTH*1.f);//make sure they are floats
-        final float scaleFactorY = phoneHeight/(HEIGHT*1.f);
-        if(canvas!=null) {
+
+    @Override
+
+
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        boolean retry = true;
+
+        // it might take several tries to stop thread so this is needed
+        // a try catch loop is created
+
+        while (retry) {
+            try {
+                thread.setRunning(false);
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            retry = false;
+        }
+    }
+
+    public void update() {
+        menu.update();
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+
+        final float scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
+        final float scaleFactorY = getHeight() / (HEIGHT * 1.f);
+        if (canvas != null) {
             final int savedState = canvas.save();
             canvas.scale(scaleFactorX, scaleFactorY);
             menu.draw(canvas);
             //return to savedstate. If we didn't have this, it would keep on scaling. So we do this to return it to original state
             canvas.restoreToCount(savedState);
         }
+
     }
 }

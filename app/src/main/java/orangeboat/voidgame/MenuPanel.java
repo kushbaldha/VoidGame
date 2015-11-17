@@ -9,15 +9,13 @@ import android.graphics.Rect;
 /**
  * Created by Kush on 11/15/2015.
  */
-public class MenuPanel extends Display
+public class MenuPanel
 {
     private Bitmap background;
     private Bitmap play;
     // images for background and play button
     private Rect rectPlay;
     //hitbox for the play button
-    private int x = CANVASWIDTH/2;
-    private int y = CANVASHEIGHT-300;
 
     public MenuPanel(Bitmap res, Bitmap res2)
     {
@@ -34,7 +32,7 @@ public class MenuPanel extends Display
        // Paint paint = new Paint();
        // paint.setColor(Color.GREEN);
         canvas.drawBitmap(background,0,0, null);
-        canvas.drawBitmap(play,x,y-300,null);
+        canvas.drawBitmap(play,canvas.getWidth()/2,canvas.getHeight()-300,null);
         //canvas.drawRect(rectPlay,paint);
     }
 }

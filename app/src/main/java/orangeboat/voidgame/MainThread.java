@@ -14,15 +14,15 @@ public class MainThread extends Thread
     private int FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
-    private GamePanel gamePanel;
+    private Display display;
     private boolean running;
     public static Canvas canvas;
 
-    public MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel)
+    public MainThread(SurfaceHolder surfaceHolder, Display display)
     {
         super();
         this.surfaceHolder = surfaceHolder;
-        this.gamePanel = gamePanel;
+        this.display = display;
     }
     @Override
     public void run()
@@ -43,8 +43,8 @@ public class MainThread extends Thread
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) // called 30 times a second that will make it flow.
             {
-                this.gamePanel.update(); // update game once
-                this.gamePanel.draw(canvas); // draw game once
+                this.display.update(); // update game once
+                this.display.draw(canvas); // draw game once
             }
             }catch(Exception e){
             }

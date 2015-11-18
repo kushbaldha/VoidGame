@@ -17,6 +17,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MenuPanel menu;
     public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
+    public PhoneSpecs phone = new PhoneSpecs();
+    boolean check =true;
     TouchEvents touch;
 
     public Display(Context context) {
@@ -73,7 +75,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public boolean onTouchEvent(MotionEvent event)
     {
         touch = new TouchEvents(event);
-        touch.check();
+        touch.check(menu);
         return true;
     }
     @Override
@@ -82,6 +84,12 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         final float scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
         final float scaleFactorY = getHeight() / (HEIGHT * 1.f);
         if (canvas != null) {
+            if(check)
+            {
+                phone.setHeight(getHeight());
+                phone.setWidth(getWidth());
+                check=false;
+            }
             final int savedState = canvas.save();
             canvas.scale(scaleFactorX, scaleFactorY);
             menu.draw(canvas);

@@ -3,9 +3,7 @@ package orangeboat.voidgame;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-/**
- * Created by Jay on 11/16/2015.
- */
+
 public class MenuThread extends Thread{
     private int FPS = 30;
     private double averageFPS;
@@ -37,6 +35,7 @@ public class MenuThread extends Thread{
 
             try {
                 canvas = this.surfaceHolder.lockCanvas();
+                int test = canvas.getHeight();
                 synchronized (surfaceHolder) // called 30 times a second that will make it flow.
                 {
                     this.display.update(); // update game once

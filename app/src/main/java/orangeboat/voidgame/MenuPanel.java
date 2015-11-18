@@ -14,7 +14,7 @@ public class MenuPanel
     private Bitmap background;
     private Bitmap play;
     // images for background and play button
-    private Rect rectPlay;
+    public Rect rectPlay;
     private int x,y,playX,playY;
     //hitbox for the play button
 

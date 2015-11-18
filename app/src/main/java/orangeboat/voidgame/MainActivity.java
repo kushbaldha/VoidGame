@@ -8,7 +8,6 @@ import android.view.WindowManager;
 
 public class MainActivity extends Activity
 {
-
     double start = 0;
     double end = 0;
     // Called when the activity is first created.

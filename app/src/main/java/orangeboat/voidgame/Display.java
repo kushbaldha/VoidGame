@@ -3,12 +3,12 @@ package orangeboat.voidgame;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-/**
- * Created by Kush on 11/6/2015.
- */
+
 public class Display extends SurfaceView implements SurfaceHolder.Callback
 
 {
@@ -17,6 +17,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MenuPanel menu;
     public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
+    TouchEvents touch;
 
     public Display(Context context) {
 
@@ -66,11 +67,15 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             retry = false;
         }
     }
-
     public void update() {
         menu.update();
     }
-
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        touch = new TouchEvents(event);
+        touch.check();
+        return true;
+    }
     @Override
     public void draw(Canvas canvas) {
 
@@ -85,4 +90,5 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         }
 
     }
+
 }

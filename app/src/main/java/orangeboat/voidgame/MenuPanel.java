@@ -16,6 +16,8 @@ public class MenuPanel
     // images for background and play button
     public Rect rectPlay;
     private int x,y,playX,playY;
+    x= (int) (PhoneSpecs.width/3.3);
+    y= (int) (PhoneSpecs.height/1.3);
     //hitbox for the play button
 
     public MenuPanel(Bitmap res, Bitmap res2)
@@ -24,7 +26,8 @@ public class MenuPanel
         play = res2;
         playX = res2.getWidth();
         playY = res2.getHeight();
-    }
+        rectPlay = new Rect(x,y,(x+playX),(y+playY));
+}
     public void update()
     {
 
@@ -34,10 +37,7 @@ public class MenuPanel
         Paint paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
         canvas.drawBitmap(background,0,0, null);
-        x= (int) (canvas.getWidth()/3.3);
-        y= (int) (canvas.getHeight()/1.3);
         canvas.drawBitmap(play,x,y,null);
-        rectPlay = new Rect(x,y,(x+playX),(y+playY));
         canvas.drawRect(rectPlay, paint);
     }
 }

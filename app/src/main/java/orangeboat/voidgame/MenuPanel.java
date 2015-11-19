@@ -15,9 +15,9 @@ public class MenuPanel
     private Bitmap play;
     // images for background and play button
     public Rect rectPlay;
-    private int x,y,playX,playY;
-    x= (int) (PhoneSpecs.width/3.3);
-    y= (int) (PhoneSpecs.height/1.3);
+    private int x = (int) (PhoneSpecs.width/3.3);
+    private int y = (int) (PhoneSpecs.height/1.3);
+    private int playX, playY;
     //hitbox for the play button
 
     public MenuPanel(Bitmap res, Bitmap res2)

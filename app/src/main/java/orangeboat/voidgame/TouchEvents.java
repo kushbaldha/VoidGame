@@ -21,7 +21,7 @@ public class TouchEvents
         if(MotionEvent.ACTION_DOWN == action)
         {
             System.out.println("Action down!");
-            if(menu.rectPlay.contains(event.getX(),event.getY())
+            if(menu.rectPlay.contains((int) event.getX(),(int) event.getY()))
             {
                 System.out.println("Play button pressed");
             }

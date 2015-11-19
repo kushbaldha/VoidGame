@@ -88,15 +88,17 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             {
                 phone.setHeight(getHeight());
                 phone.setWidth(getWidth());
+                menu.load();
                 check=false;
             }
-            final int savedState = canvas.save();
-            canvas.scale(scaleFactorX, scaleFactorY);
-            menu.draw(canvas);
-            //return to savedstate. If we didn't have this, it would keep on scaling. So we do this to return it to original state
-            canvas.restoreToCount(savedState);
+            else {
+                final int savedState = canvas.save();
+                canvas.scale(scaleFactorX, scaleFactorY);
+                menu.draw(canvas);
+                //return to savedstate. If we didn't have this, it would keep on scaling. So we do this to return it to original state
+                canvas.restoreToCount(savedState);
+            }
         }
 
     }
-
 }

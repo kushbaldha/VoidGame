@@ -13,6 +13,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 {
     private MenuThread firstthread;
     private MainThread secondthread;
+
+
+
     private MenuPanel menu;
     public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
@@ -85,6 +88,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         touch.check(menu);
         return true;
     }
+
     @Override
     public void draw(Canvas canvas) {
 
@@ -102,13 +106,15 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 final int savedState = canvas.save();
                 canvas.scale(scaleFactorX, scaleFactorY);
                 menu.draw(canvas);
+                if(touch.touched = true){
+                    menu.drawPlay(canvas);
+                }
                 //return to savedstate. If we didn't have this, it would keep on scaling. So we do this to return it to original state
                 canvas.restoreToCount(savedState);
             }
         }
     }
-    public void newThread()
-    {
+    public void newThread() {
         secondthread = new MainThread(contextHolder, this);
     }
 }

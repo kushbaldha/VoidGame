@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 public class TouchEvents
 {
+    boolean touched = false;
     MotionEvent event;
     int x,y;
     public TouchEvents(MotionEvent event)
@@ -28,5 +29,10 @@ public class TouchEvents
             }
             System.out.println(PhoneSpecs.height + " " + PhoneSpecs.width);
         }
+    }
+
+    public void onUserInteraction(){
+        touched = true;
+        System.out.println("PRESSSSSSSS");
     }
 }

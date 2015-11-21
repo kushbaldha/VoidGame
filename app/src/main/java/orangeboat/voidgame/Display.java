@@ -18,7 +18,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
     public PhoneSpecs phone = new PhoneSpecs();
-    boolean check =true;
+    boolean check = true;
+    SurfaceHolder contextHolder;
     TouchEvents touch;
 
     public Display(Context context) {
@@ -27,9 +28,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
         //add callback to surfaceholders to intercepts events like fingerpresses
         getHolder().addCallback(this);
-
-        firstthread = new MenuThread(getHolder(), this);
-        secondthread = new MainThread(getHolder(), this);
+        contextHolder = getHolder();
+        firstthread = new MenuThread(contextHolder, this);
+        secondthread = new MainThread(contextHolder, this);
         //getholder() is the surfaceholder or the screen
         //this is the gamePanel
 
@@ -44,18 +45,23 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        menu = new MenuPanel(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
+        menu = new MenuPanel(20,1900,1200,BitmapFactory.decodeResource(getResources(), R.drawable.menuanimation), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
+        Thread.State state = secondthread.getState();
+        if(state == Thread.State.TERMINATED) {
+            newThread();
+            check = true;
+        }
         //once surface is created, we can safely start gameloop
         secondthread.setRunning(true);
-        secondthread.start();
+        { secondthread.start();}
     }
 
     @Override
 
 
     public void surfaceDestroyed(SurfaceHolder holder) {
+        menu = null;
         boolean retry = true;
-
         // it might take several tries to stop secondthread so this is needed
         // a try catch loop is created
 
@@ -68,7 +74,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             }
             retry = false;
         }
+
     }
+
     public void update() {
         menu.update();
     }
@@ -99,6 +107,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 canvas.restoreToCount(savedState);
             }
         }
-
+    }
+    public void newThread()
+    {
+        secondthread = new MainThread(contextHolder, this);
     }
 }

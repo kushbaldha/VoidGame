@@ -13,21 +13,30 @@ public class MenuPanel
     private Bitmap play;
     // images for background and play button
     public Rect rectPlay;
-    private int x,y,playX,playY;
-
+    private int x,y,playX,playY,height,width;
 
     //hitbox for the play button
-
-    public MenuPanel(Bitmap res, Bitmap res2)
+    private Bitmap spritesheet;
+    private Animation animation = new Animation();
+    public MenuPanel(int numFrames, int w , int h, Bitmap res, Bitmap res2)
     {
-        background = res;
+        Bitmap[] image = new Bitmap[numFrames];
+        spritesheet = res;
+        height = h;
+        width = w;
+        for(int i = 0; i < image.length; i++)
+        {
+            image[i] = Bitmap.createBitmap(spritesheet,i*width,0,width,height);
+        }
+        animation.setFrames(image);
+        animation.setDelay(10);
         play = res2;
         playX = res2.getWidth();
         playY = res2.getHeight();
 }
     public void update()
     {
-
+       animation.update();
     }
     public void load()
     {
@@ -40,7 +49,7 @@ public class MenuPanel
 
         Paint paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
-        canvas.drawBitmap(background,0,0, null);
+        canvas.drawBitmap(animation.getImage(),0,0, null);
         canvas.drawBitmap(play,x,y,null);
         canvas.drawRect(rectPlay, paint);
     }

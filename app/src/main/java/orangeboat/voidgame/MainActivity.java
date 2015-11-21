@@ -21,7 +21,16 @@ public class MainActivity extends Activity
         setContentView(new Display(this));
 
     }
-
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+    }
     @Override
     public boolean onPrepareOptionsMenu (Menu menu) {
         return true;

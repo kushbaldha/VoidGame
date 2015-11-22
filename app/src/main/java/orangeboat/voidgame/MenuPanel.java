@@ -53,6 +53,7 @@ public class MenuPanel
         canvas.drawBitmap(play,x,y,null);
         canvas.drawRect(rectPlay, paint);
     }
+    //random comment
 }
 
 

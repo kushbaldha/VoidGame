@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 public class TouchEvents
 {
     boolean touched = false;
+    boolean menuShow = true;
     MotionEvent event;
     int x,y;
     public TouchEvents(MotionEvent event)
@@ -23,14 +24,17 @@ public class TouchEvents
         {
             System.out.println("Action down!");
             //if(menu.rectPlay.contains(event.getX(),event.getY()))
-            if(menu.rectPlay.contains(x,y))
-            {
-                System.out.println("Play button pressed");
+                if (menu.rectPlay.contains(x, y)) {
+                    System.out.println("Play button pressed");
+                    menuShow = false;
             }
-            System.out.println(PhoneSpecs.height + " " + PhoneSpecs.width);
         }
-    }
 
+    }
+    public boolean  checkMenu()
+    {
+        return menuShow;
+    }
     public void onUserInteraction(){
         touched = true;
         System.out.println("PRESSSSSSSS");

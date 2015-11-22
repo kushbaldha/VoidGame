@@ -117,4 +117,5 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public void newThread() {
         secondthread = new MainThread(contextHolder, this);
     }
+    //random comment
 }

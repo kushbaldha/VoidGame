@@ -9,7 +9,7 @@ import android.graphics.Rect;
 
 public class MenuPanel
 {
-    private Bitmap background;
+    //private Bitmap background;
     private Bitmap play;
     // images for background and play button
     public Rect rectPlay;
@@ -48,8 +48,6 @@ public class MenuPanel
 
         paint.setColor(Color.TRANSPARENT);
         canvas.drawBitmap(animation.getImage(), 0, 0, null);
-    }
-    public void drawPlay(Canvas canvas){
         canvas.drawBitmap(play,x,y,null);
         canvas.drawRect(rectPlay, paint);
     }

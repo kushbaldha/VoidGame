@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 
 public class TouchEvents
 {
-    boolean touched = false;
     boolean menuShow = true;
     MotionEvent event;
     int x,y;
@@ -34,10 +33,6 @@ public class TouchEvents
     public boolean  checkMenu()
     {
         return menuShow;
-    }
-    public void onUserInteraction(){
-        touched = true;
-        System.out.println("PRESSSSSSSS");
     }
     //random comment
 }

@@ -137,10 +137,6 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 // draws Menu is showMenu is true
                 if(showMenu) {
                     menu.draw(canvas);
-                    if (touch.touched) {
-                        menu.drawPlay(canvas);
-                    }
-
                 }
                 // draw Game is showGame is true
                 if(showGame)

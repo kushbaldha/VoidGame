@@ -1,4 +1,4 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.Animation;
 import android.graphics.Bitmap;
 
 public class Animation {

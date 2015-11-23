@@ -1,4 +1,4 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.States.Game;
 
 import android.graphics.Canvas;
 

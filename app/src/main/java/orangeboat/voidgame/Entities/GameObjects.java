@@ -1,10 +1,9 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.view.SurfaceView;
+
+import orangeboat.voidgame.States.Game.GameMenu;
+import orangeboat.voidgame.PhoneSpecs;
 
 
 /**
@@ -12,9 +11,9 @@ import android.view.SurfaceView;
  */
 public class GameObjects {
 
-    Player player;
-    GameMenu gameMenu;
-    Bitmap gameBackground;
+    public Player player;
+    public GameMenu gameMenu;
+    public Bitmap gameBackground;
 
     int phoneHeight,phoneWidth;
     public GameObjects(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton,Bitmap gameBackground) {

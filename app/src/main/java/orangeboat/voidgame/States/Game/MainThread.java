@@ -1,7 +1,9 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.States.Game;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
+
+import orangeboat.voidgame.Display;
 
 /**
  * Created by Kush on 11/6/2015.

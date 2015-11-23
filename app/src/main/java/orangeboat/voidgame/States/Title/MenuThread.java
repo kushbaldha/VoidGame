@@ -1,7 +1,9 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.States.Title;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
+
+import orangeboat.voidgame.Display;
 
 
 public class MenuThread extends Thread{

@@ -1,8 +1,9 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.Input;
 
-import android.graphics.Rect;
 import android.support.v4.view.MotionEventCompat;
 import android.view.MotionEvent;
+
+import orangeboat.voidgame.States.Title.MenuPanel;
 
 
 public class TouchEvents

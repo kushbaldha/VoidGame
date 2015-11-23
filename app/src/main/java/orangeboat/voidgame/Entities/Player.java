@@ -1,10 +1,13 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import orangeboat.voidgame.Animation.Animation;
+import orangeboat.voidgame.PhoneSpecs;
 
 /**
  * Created by Kush on 11/22/2015.

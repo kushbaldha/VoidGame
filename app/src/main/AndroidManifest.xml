@@ -13,7 +13,7 @@
         >
         <activity
             android:screenOrientation="landscape"
-            android:name="orangeboat.voidgame.MainActivity"
+            android:name=".Driver.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>

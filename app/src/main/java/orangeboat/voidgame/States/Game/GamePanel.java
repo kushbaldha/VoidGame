@@ -1,7 +1,8 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.States.Game;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
+
+import orangeboat.voidgame.Entities.GameObjects;
 
 /**
  * Created by Kush on 11/21/2015.

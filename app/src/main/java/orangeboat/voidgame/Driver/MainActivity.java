@@ -1,10 +1,12 @@
-package orangeboat.voidgame;
+package orangeboat.voidgame.Driver;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
+
+import orangeboat.voidgame.Display;
 
 public class MainActivity extends Activity
 {

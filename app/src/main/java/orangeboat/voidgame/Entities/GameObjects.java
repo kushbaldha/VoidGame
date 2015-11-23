@@ -33,6 +33,7 @@ public class GameObjects {
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
         player.load();
+        gameMenu.load();
 
     }
 

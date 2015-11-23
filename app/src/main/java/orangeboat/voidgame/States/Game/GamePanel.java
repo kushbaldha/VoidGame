@@ -20,11 +20,13 @@ public class GamePanel
     }
     public void load()
     {
+
     }
     public void draw(Canvas canvas)
     {
         canvas.drawBitmap(objects.gameBackground,0,0,null);
         objects.player.draw(canvas);
+        objects.gameMenu.draw(canvas);
     }
     public void touch(int x, int y)
     {

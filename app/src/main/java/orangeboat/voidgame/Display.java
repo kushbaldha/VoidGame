@@ -28,7 +28,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap leftButton = BitmapFactory.decodeResource(getResources(), R.drawable.leftarrow);
     Bitmap rightButton = BitmapFactory.decodeResource(getResources(), R.drawable.rightarrow);
     Bitmap menuButton = BitmapFactory.decodeResource(getResources(), R.drawable.menuv2);
-    Bitmap jumpButton =  BitmapFactory.decodeResource(getResources(), R.drawable.bluebutton);
+    Bitmap  jumpButton =  BitmapFactory.decodeResource(getResources(), R.drawable.redbutton);
     Bitmap gameBackground = BitmapFactory.decodeResource(getResources(), R.drawable.primaryback);
     GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,gameBackground);
     GamePanel gamePanel;
@@ -115,9 +115,11 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             // instantiates gamePanel
             gamePanel = new GamePanel(objects);
             // to save memory, deletes menu
-
             menu = null;
-
+        }
+        if(showGame)
+        {
+            touch.gameTouch(gamePanel);
         }
         return true;
     }

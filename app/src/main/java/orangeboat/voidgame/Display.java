@@ -19,7 +19,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MenuPanel menu;
     Bitmap charAnimationLeft = BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev);
     Bitmap charAnimationRight = BitmapFactory.decodeResource(getResources(), R.drawable.walking);
-    Bitmap mainChar = Bitmap.createBitmap(charAnimationRight, 20, 0, 20, 31); // 20 width 31 height
+    Bitmap mainChar = Bitmap.createScaledBitmap(Bitmap.createBitmap(charAnimationRight, 7, 0, 21, 32), 126, 192, true); // 20 width 31 height
     Bitmap leftButton = BitmapFactory.decodeResource(getResources(), R.drawable.leftarrow);
     Bitmap rightButton = BitmapFactory.decodeResource(getResources(), R.drawable.rightarrow);
     Bitmap menuButton = BitmapFactory.decodeResource(getResources(), R.drawable.menuv2);
@@ -28,8 +28,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,gameBackground);
     GamePanel gamePanel;
     boolean showMenu = true, showGame = false, switchMG = false;
-     float scaleFactorX;
-     float scaleFactorY;
+    float scaleFactorX;
+    float scaleFactorY;
     public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
     public PhoneSpecs phone = new PhoneSpecs();

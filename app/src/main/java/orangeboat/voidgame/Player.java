@@ -42,8 +42,8 @@ public class Player
     {
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
-        charX = (int) (phoneWidth/2.2);
-        charY = (int) (phoneHeight/1.2);
+        charX = (int) (phoneWidth/2);
+        charY = (int) (phoneHeight/2);
         rectChar = new Rect(charX,charY,(charX+charImgX),(charY+charImgY));
     }
 }

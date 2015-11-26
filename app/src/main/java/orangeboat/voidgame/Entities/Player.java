@@ -11,7 +11,7 @@ import orangeboat.voidgame.PhoneSpecs;
 
 public class Player
 {
-    int phoneHeight,phoneWidth;
+    public int phoneHeight,phoneWidth;
     int charX,charY,charImgX,charImgY;
     Bitmap mainChar;
     public Animation playerLeft = new Animation();
@@ -22,7 +22,7 @@ public class Player
     Bitmap fullPlayerRightImage;
     Rect rectChar;
     Paint paint;
-    boolean moveLeft = false, moveRight = false,lastMove = true;
+    public boolean moveLeft = false, moveRight = false,lastMove = true;
     public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight)
     {
         fullPlayerLeftImage = charAnimationLeft;
@@ -37,12 +37,12 @@ public class Player
     {
         if(moveLeft)
         {
-            charX = charX-((int)(phoneWidth*0.01));
+            //charX = charX-((int)(phoneWidth*0.01));
             playerLeft.update();
         }
        else if(moveRight)
         {
-            charX = charX+((int)(phoneWidth*0.01));
+            //charX = charX+((int)(phoneWidth*0.01));
             playerRight.update();
         }
         // updates character hitbox

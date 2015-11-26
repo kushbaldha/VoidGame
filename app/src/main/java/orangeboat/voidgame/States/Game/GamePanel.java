@@ -7,13 +7,21 @@ import orangeboat.voidgame.PhoneSpecs;
 
 public class GamePanel {
     public GameObjects objects;
-    float scaleY;
+    int x = 0;
     public GamePanel(GameObjects objects) {
         this.objects = objects;
     }
 
     public void update() {
         objects.player.update();
+
+        if( objects.player.moveLeft){
+            x+=((int)(objects.player.phoneWidth*0.01));
+        }
+        if(objects.player.moveRight){
+            x-=((int)(objects.player.phoneWidth*0.01));
+        }
+
     }
 
     public void load() {
@@ -21,9 +29,8 @@ public class GamePanel {
     }
 
     public void draw(Canvas canvas) {
-        scaleY = PhoneSpecs.height / (1200 * 1.f);
-        canvas.drawBitmap(objects.gameBackgroundSky,0,0,null);
-        canvas.drawBitmap(objects.gameBackgroundFloor, 0, ((int)(scaleY*840)), null);
+        canvas.drawBitmap(objects.gameBackgroundSky,x/2,0,null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, x, 840 , null);
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
     }

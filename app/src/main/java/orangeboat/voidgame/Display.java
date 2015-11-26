@@ -22,9 +22,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MenuThread firstthread;
     private MainThread secondthread;
     private MenuPanel menu;
-    Bitmap charAnimationLeft = BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev);
-    Bitmap charAnimationRight = BitmapFactory.decodeResource(getResources(), R.drawable.walking);
-    Bitmap mainChar = Bitmap.createScaledBitmap(Bitmap.createBitmap(charAnimationRight, 7, 0, 21, 32), 126, 192, true); // 20 width 31 height
+    Bitmap charAnimationLeft = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev)),630,192,true);
+    Bitmap charAnimationRight = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walking)), 888, 192, true);
+    Bitmap mainChar = (Bitmap.createBitmap(charAnimationRight, 0, 0, 126, 192)); // 21 width 31 height. Scale factor is 6
     Bitmap leftButton = BitmapFactory.decodeResource(getResources(), R.drawable.leftarrow);
     Bitmap rightButton = BitmapFactory.decodeResource(getResources(), R.drawable.rightarrow);
     Bitmap menuButton = BitmapFactory.decodeResource(getResources(), R.drawable.menuv2);
@@ -32,7 +32,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap gameBackground = BitmapFactory.decodeResource(getResources(), R.drawable.primaryback);
     GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,gameBackground);
     GamePanel gamePanel;
-    boolean showMenu = true, showGame = false, switchMG = false;
+    boolean showMenu = true, showGame = false;
     float scaleFactorX;
     float scaleFactorY;
     public static final int WIDTH = 1900;

@@ -9,7 +9,7 @@ import orangeboat.voidgame.Entities.GameObjects;
  */
 public class GamePanel
 {
-    GameObjects objects;
+    public GameObjects objects;
     public GamePanel(GameObjects objects)
     {
     this.objects = objects;
@@ -30,6 +30,9 @@ public class GamePanel
     }
     public void touch(int x, int y)
     {
-
+        switch(objects.gameMenu.checkGameButton(x,y)) {
+            case 1:
+                objects.playerLeft.update();
+        }
     }
 }

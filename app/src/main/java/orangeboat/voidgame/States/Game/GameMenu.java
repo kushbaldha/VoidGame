@@ -69,4 +69,14 @@ public class GameMenu
 //        canvas.drawRect(rectJump,paint);
 
     }
+    public int checkGameButton(int x, int y)
+    {
+      if(rectLeft.contains(x,y))
+      {
+          return 1;
+      }
+      else if(rectRight.contains(x,y))
+          return 2;
+        return 0 ;
+    }
 }

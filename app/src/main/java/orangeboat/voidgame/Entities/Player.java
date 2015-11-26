@@ -22,15 +22,13 @@ public class Player
     Rect rectChar;
     Paint paint;
     Animation animation = new Animation();
-    public Player(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight)
+    public Player(Bitmap mainChar)
     {
         paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
         this.mainChar = mainChar;
         charImgX = mainChar.getWidth();
         charImgY = mainChar.getHeight();
-        this.charAnimationLeft = charAnimationLeft;
-        this.charAnimationRight = charAnimationRight;
     }
     public void update()
     {

@@ -3,9 +3,11 @@ package orangeboat.voidgame.States.Game;
 import android.graphics.Canvas;
 
 import orangeboat.voidgame.Entities.GameObjects;
+import orangeboat.voidgame.PhoneSpecs;
+
 public class GamePanel {
     public GameObjects objects;
-
+    float scaleY;
     public GamePanel(GameObjects objects) {
         this.objects = objects;
     }
@@ -19,7 +21,9 @@ public class GamePanel {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(objects.gameBackground, 0, 0, null);
+        scaleY = PhoneSpecs.height / (1200 * 1.f);
+        canvas.drawBitmap(objects.gameBackgroundSky,0,0,null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, 0, ((int)(scaleY*840)), null);
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
     }

@@ -14,14 +14,14 @@ public class GameObjects
 {
     public Player player;
     public GameMenu gameMenu;
-    public Bitmap gameBackground;
-
+    public Bitmap gameBackgroundFloor,gameBackgroundSky;
     int phoneHeight,phoneWidth;
-    public GameObjects(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton,Bitmap gameBackground)
+    public GameObjects(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton,Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky)
     {
        player = new Player(mainChar,charAnimationLeft,charAnimationRight);
        gameMenu = new GameMenu(leftButton,rightButton,menuButton,jumpButton);
-        this.gameBackground = gameBackground;
+        this.gameBackgroundFloor = gameBackgroundFloor;
+        this.gameBackgroundSky = gameBackgroundSky;
     }
     public void update()
     {

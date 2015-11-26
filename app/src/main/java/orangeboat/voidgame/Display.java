@@ -23,8 +23,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MainThread secondthread;
     private MenuPanel menu;
     Bitmap charAnimationLeft = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev)),630,192,true);
-    Bitmap charAnimationRight = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walking)), 888, 192, true);
-    Bitmap mainChar = (Bitmap.createBitmap(charAnimationRight, 0, 0, 126, 192)); // 21 width 31 height. Scale factor is 6
+    Bitmap charAnimationRight = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walking)), 630, 192, true);
+    Bitmap mainChar = (Bitmap.createBitmap(charAnimationRight, 0, 0, 120, 192)); // 21 width 31 height. Scale factor is 6
     Bitmap leftButton = BitmapFactory.decodeResource(getResources(), R.drawable.leftarrow);
     Bitmap rightButton = BitmapFactory.decodeResource(getResources(), R.drawable.rightarrow);
     Bitmap menuButton = BitmapFactory.decodeResource(getResources(), R.drawable.menuv2);
@@ -100,6 +100,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public void update() {
         if(showMenu)
         menu.update();
+        if(showGame)
+        gamePanel.update();
     }
     public boolean onTouchEvent(MotionEvent event)
     {

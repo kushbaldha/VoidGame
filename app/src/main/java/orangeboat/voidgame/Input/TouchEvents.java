@@ -36,8 +36,13 @@ public class TouchEvents
     }
     public void gameTouch(GamePanel gamePanel) {
         int action = MotionEventCompat.getActionMasked(event);
+        if(MotionEvent.ACTION_UP == action)
+        {
+            System.out.println("Action Up");
+            gamePanel.upTouch(x,y);
+        }
         if (MotionEvent.ACTION_DOWN == action) {
-            gamePanel.touch(x,y);
+            gamePanel.downTouch(x,y);
             System.out.println("Action down!");
             System.out.println(PhoneSpecs.width + " " + PhoneSpecs.height );
             System.out.println(x + " " + y);

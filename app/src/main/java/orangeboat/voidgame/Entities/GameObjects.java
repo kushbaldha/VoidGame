@@ -13,20 +13,13 @@ import orangeboat.voidgame.PhoneSpecs;
 public class GameObjects
 {
     public Player player;
-    public Animation playerLeft = new Animation();
-    public Animation playerRight = new Animation();
-    Bitmap [] playerLeftImage = new Bitmap[4];
-    Bitmap fullPlayerLeftImage;
-    Bitmap fullPlayerRightImage;
     public GameMenu gameMenu;
     public Bitmap gameBackground;
 
     int phoneHeight,phoneWidth;
     public GameObjects(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton,Bitmap gameBackground)
     {
-        fullPlayerLeftImage = charAnimationLeft;
-        fullPlayerRightImage = charAnimationRight;
-       player = new Player(mainChar);
+       player = new Player(mainChar,charAnimationLeft,charAnimationRight);
        gameMenu = new GameMenu(leftButton,rightButton,menuButton,jumpButton);
         this.gameBackground = gameBackground;
     }
@@ -35,14 +28,6 @@ public class GameObjects
 
     }
     public void load() {
-        int height = 192;
-        int width =  126;
-        for (int i = 0; i < playerLeftImage.length; i++)
-        {
-            playerLeftImage[i] = Bitmap.createBitmap(fullPlayerLeftImage,i * width, 0 , width ,height);
-        }
-        playerLeft.setFrames(playerLeftImage);
-        playerLeft.setDelay(30);
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
         player.load();

@@ -8,9 +8,6 @@ import android.graphics.Rect;
 
 import orangeboat.voidgame.PhoneSpecs;
 
-/**
- * Created by Kush on 11/22/2015.
- */
 public class GameMenu
 {
     Bitmap leftButton;
@@ -61,6 +58,12 @@ public class GameMenu
     {
         canvas.drawBitmap(leftButton,leftX,leftY,null);
        canvas.drawBitmap(rightButton,rightX,rightY,null);
+      //  Paint paint = new Paint();
+        // USE THE PAINT OBJECT TO CHECK WHERE THE HITBOXES ARE
+        //paint.setColor(Color.GREEN);
+        //canvas.drawRect(rectRight,paint);
+       // paint.setColor(Color.RED);
+       // canvas.drawRect(rectLeft,paint);
 //        canvas.drawBitmap(menuButton,menuX,menuY,null);
         canvas.drawBitmap(jumpButton,jumpX,jumpY,null);
 //        canvas.drawRect(rectLeft, paint);
@@ -71,12 +74,13 @@ public class GameMenu
     }
     public int checkGameButton(int x, int y)
     {
+        // returns which button was pressed
       if(rectLeft.contains(x,y))
       {
           return 1;
       }
       else if(rectRight.contains(x,y))
-          return 2;
+      {return 2;}
         return 0 ;
     }
 }

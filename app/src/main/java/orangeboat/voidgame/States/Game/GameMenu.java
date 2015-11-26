@@ -48,13 +48,13 @@ public class GameMenu
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
         leftX = 0;
-        leftY = (phoneHeight-140);
+        leftY = (int) (phoneHeight/1.15);
         rectLeft = new Rect(leftX,leftY, (leftX+leftImgX),(leftY+leftImgY));
         rightX = 250;
-        rightY =(phoneHeight-140);
+        rightY =(int) (phoneHeight/1.15);
         rectRight = new Rect(rightX,rightY,(rightX+rightImgX),(rightY + rightImgY));
-        jumpX = phoneWidth-140;
-        jumpY = (phoneHeight-140);
+        jumpX = phoneWidth- (int)(jumpButton.getWidth()*1.1);
+        jumpY = (int) (phoneHeight/1.15);
         rectJump = new Rect(jumpX,jumpY,(jumpX + jumpImgX),(jumpY + jumpImgY));
     }
     public void draw(Canvas canvas)

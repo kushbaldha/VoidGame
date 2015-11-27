@@ -44,19 +44,17 @@ public class Player
                         jumpDown = false;
                         moveJump = false;
                     }
-                } else if (max < (dy * 10)) {
+                } else if (max < (dy * 6)) {
                     max += dy;
                     charY -= dy;
-                    if (max == (dy * 10))
+                    if (max == (dy * 6))
                         jumpDown = true;
                 }
             }
             if (moveLeft) {
-                charX -= ((int) (phoneWidth * 0.01));
                 playerLeft.update();
             }
             if (moveRight) {
-                charX += ((int) (phoneWidth * 0.01));
                 playerRight.update();
             }
             // updates character hitbox
@@ -152,6 +150,6 @@ public class Player
         charX = (phoneWidth/2);
         charY = (int) (phoneHeight/1.49);
         rectChar = new Rect(charX,charY,(charX+charImgX),(charY+charImgY));
-        dy = (int) (phoneHeight*0.03);
+        dy = (int) (phoneHeight*0.017);
     }
 }

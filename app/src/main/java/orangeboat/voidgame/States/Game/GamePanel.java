@@ -3,7 +3,6 @@ package orangeboat.voidgame.States.Game;
 import android.graphics.Canvas;
 
 import orangeboat.voidgame.Entities.GameObjects;
-import orangeboat.voidgame.PhoneSpecs;
 
 public class GamePanel {
     public GameObjects objects;
@@ -58,12 +57,12 @@ public class GamePanel {
         }
         if (check == 4)
         {
-        objects.gameMenu.showNoInteract(true);
+        objects.gameMenu.showNoneInteract(true);
             objects.player.allMovement(false);
         }
-        else if(objects.gameMenu.showNoInteract)
+        else if(objects.gameMenu.showNoneInteract)
         {
-            objects.gameMenu.showNoInteract(false);
+            objects.gameMenu.showNoneInteract(false);
             objects.player.allMovement(true);
         }
     }
@@ -97,7 +96,7 @@ public class GamePanel {
         }
         if (objects.gameMenu.checkGameButton(x, y) == 4)
         {
-            objects.gameMenu.showNoInteract(true);
+            objects.gameMenu.showNoneInteract(true);
             objects.player.allMovement(false);
         }
     }

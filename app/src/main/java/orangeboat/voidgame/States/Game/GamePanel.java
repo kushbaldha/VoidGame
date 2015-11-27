@@ -14,11 +14,10 @@ public class GamePanel {
 
     public void update() {
         objects.player.update();
-
-        if( objects.player.moveLeft){
-            x+=((int)(objects.player.phoneWidth*0.01));
+        if( objects.player.moveLeft && x < 0) {
+            x += ((int) (objects.player.phoneWidth * 0.01));
         }
-        if(objects.player.moveRight){
+        if(objects.player.moveRight && x > -1*(objects.gameBackgroundSky.getWidth())){
             x-=((int)(objects.player.phoneWidth*0.01));
         }
 

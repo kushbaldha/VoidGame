@@ -37,24 +37,30 @@ public class Player
     public void update() {
         if (allMovement) {
             if (moveJump) {
-                if (jumpDown) {
+                if (jumpDown)
+                {
                     max -= dy;
                     charY += dy;
-                    if (max == 0) {
+                    if (max == 0)
+                    {
                         jumpDown = false;
                         moveJump = false;
                     }
-                } else if (max < (dy * 6)) {
+                }
+                else if (max < (dy * 6))
+                {
                     max += dy;
                     charY -= dy;
                     if (max == (dy * 6))
                         jumpDown = true;
                 }
             }
-            if (moveLeft) {
+            if (moveLeft)
+            {
                 playerLeft.update();
             }
-            if (moveRight) {
+            if (moveRight)
+            {
                 playerRight.update();
             }
             // updates character hitbox
@@ -99,6 +105,13 @@ public class Player
     public void allMovement(boolean b)
     {
         allMovement = b;
+    }
+    public boolean checkIfMoving()
+    {
+        if(moveLeft || moveRight)
+            return true;
+        else
+            return false;
     }
     public void draw(Canvas canvas)
     {

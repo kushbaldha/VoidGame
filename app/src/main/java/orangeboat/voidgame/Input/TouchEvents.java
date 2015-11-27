@@ -16,8 +16,8 @@ public class TouchEvents
     public TouchEvents(MotionEvent event)
     {
         this.event = event;
-        x = (int) event.getX();
-        y = (int) event.getY();
+        x= (int)event.getX(event.getPointerId(event.getActionIndex()));
+        y = (int)event.getY(event.getPointerId(event.getActionIndex()));
     }
     public void check(MenuPanel menu)
     {
@@ -50,9 +50,7 @@ public class TouchEvents
         }
         if(MotionEvent.ACTION_POINTER_DOWN == action)
         {
-            x= (int)event.getX(event.getPointerId(event.getActionIndex()));
-            y = (int)event.getY(event.getPointerId(event.getActionIndex()));
-            gamePanel.multiTouch(x,y);
+            gamePanel.downTouch(x,y);
             System.out.println("Action Pointer down!");
             System.out.println(PhoneSpecs.width + " " + PhoneSpecs.height );
             System.out.println(x + " " + y);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -19,6 +20,7 @@ import orangeboat.voidgame.States.Title.MenuThread;
 public class Display extends SurfaceView implements SurfaceHolder.Callback
 
 {
+    MediaPlayer j;
     private MenuThread firstthread;
     private MainThread secondthread;
     private MenuPanel menu;
@@ -47,6 +49,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public Display(Context context) {
 
         super(context);
+        j = MediaPlayer.create(context, R.raw.voidost);
+        j.start();
 
         //add callback to surfaceholders to intercepts events like fingerpresses
         getHolder().addCallback(this);
@@ -104,6 +108,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         menu.update();
         if(showGame)
         gamePanel.update();
+        j.start();
     }
     public boolean onTouchEvent(MotionEvent event)
     {

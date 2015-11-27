@@ -52,6 +52,10 @@ public class GamePanel {
             objects.player.moveRight();
 
         }
+        if(check == 3)
+        {
+            objects.player.moveJump();
+        }
     }
 
     public void upTouch(int x, int y) {
@@ -60,14 +64,27 @@ public class GamePanel {
                 objects.player.moveStop();
             case 2:*/
         int check = objects.gameMenu.checkGameButton(x, y);
-        if(check == 1)
+        if(check == 0)
         {
-            objects.player.moveStop();
-        }
-        if(check == 2)
-        {
-            objects.player.moveStop();
-        }
 
+        }
+        if (check == 1) {
+            objects.player.moveStop();
+        }
+        if (check == 2) {
+            objects.player.moveStop();
+        }
+        if (check == 3)
+        {
+
+        }
     }
-}
+    public void multiTouch(int x, int y)
+    {
+        if(objects.gameMenu.checkGameButton(x, y) == 3)
+        {
+            objects.player.moveJump();
+        }
+    }
+    }
+

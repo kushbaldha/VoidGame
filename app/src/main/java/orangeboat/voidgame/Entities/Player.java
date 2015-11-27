@@ -13,6 +13,7 @@ public class Player
 {
     public int phoneHeight,phoneWidth;
     int charX,charY,charImgX,charImgY;
+    int dy,max = 0;
     Bitmap mainChar;
     public Animation playerLeft = new Animation();
     public Animation playerRight = new Animation();
@@ -22,7 +23,7 @@ public class Player
     Bitmap fullPlayerRightImage;
     Rect rectChar;
     Paint paint;
-    public boolean moveLeft = false, moveRight = false,lastMove = true;
+    public boolean moveLeft = false, moveRight = false,lastMove = true, moveJump = false,jumpDown = false;
     public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight)
     {
         fullPlayerLeftImage = charAnimationLeft;
@@ -35,14 +36,32 @@ public class Player
     }
     public void update()
     {
+        if(moveJump)
+        {
+            if(jumpDown)
+            {
+                max-=dy;
+                charY+=dy;
+                if(max == 0)
+                { jumpDown = false;
+                moveJump = false;}
+            }
+            else if(max<(dy*10))
+            {
+                max+=dy;
+                charY-= dy;
+                if(max == (dy*10))
+                    jumpDown = true;
+            }
+        }
         if(moveLeft)
         {
-            //charX = charX-((int)(phoneWidth*0.01));
+            charX -=((int)(phoneWidth*0.01));
             playerLeft.update();
         }
-       else if(moveRight)
+        if(moveRight)
         {
-            //charX = charX+((int)(phoneWidth*0.01));
+            charX +=((int)(phoneWidth*0.01));
             playerRight.update();
         }
         // updates character hitbox
@@ -71,6 +90,10 @@ public class Player
         }
         moveLeft = false;
         moveRight = false;
+    }
+    public void moveJump()
+    {
+     moveJump = true;
     }
     public void setLastMove(boolean b)
     {
@@ -128,5 +151,6 @@ public class Player
         charX = (phoneWidth/2);
         charY = (int) (phoneHeight/1.49);
         rectChar = new Rect(charX,charY,(charX+charImgX),(charY+charImgY));
+        dy = (int) (phoneHeight*0.03);
     }
 }

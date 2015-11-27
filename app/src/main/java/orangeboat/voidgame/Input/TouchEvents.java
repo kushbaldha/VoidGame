@@ -39,7 +39,7 @@ public class TouchEvents
         if(MotionEvent.ACTION_UP == action)
         {
             System.out.println("Action Up");
-            gamePanel.upTouch(x,y);
+            gamePanel.upTouch(x, y);
         }
         if (MotionEvent.ACTION_DOWN == action) {
             gamePanel.downTouch(x,y);
@@ -47,6 +47,19 @@ public class TouchEvents
             System.out.println(PhoneSpecs.width + " " + PhoneSpecs.height );
             System.out.println(x + " " + y);
             //if(menu.rectPlay.contains(event.getX(),event.getY()))
+        }
+        if(MotionEvent.ACTION_POINTER_DOWN == action)
+        {
+            x= (int)event.getX(event.getPointerId(event.getActionIndex()));
+            y = (int)event.getY(event.getPointerId(event.getActionIndex()));
+            gamePanel.multiTouch(x,y);
+            System.out.println("Action Pointer down!");
+            System.out.println(PhoneSpecs.width + " " + PhoneSpecs.height );
+            System.out.println(x + " " + y);
+        }
+        if(MotionEvent.ACTION_POINTER_UP == action) {
+            System.out.println("Action Pointer Up");
+            //gamePanel.upTouch(x,y);
         }
     }
     public boolean  checkMenu()

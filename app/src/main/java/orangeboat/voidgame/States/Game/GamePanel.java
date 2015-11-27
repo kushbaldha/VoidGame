@@ -56,6 +56,16 @@ public class GamePanel {
         {
             objects.player.moveJump();
         }
+        if (check == 4)
+        {
+        objects.gameMenu.showNoInteract(true);
+            objects.player.allMovement(false);
+        }
+        else if(objects.gameMenu.showNoInteract)
+        {
+            objects.gameMenu.showNoInteract(false);
+            objects.player.allMovement(true);
+        }
     }
 
     public void upTouch(int x, int y) {
@@ -84,6 +94,11 @@ public class GamePanel {
         if(objects.gameMenu.checkGameButton(x, y) == 3)
         {
             objects.player.moveJump();
+        }
+        if (objects.gameMenu.checkGameButton(x, y) == 4)
+        {
+            objects.gameMenu.showNoInteract(true);
+            objects.player.allMovement(false);
         }
     }
     }

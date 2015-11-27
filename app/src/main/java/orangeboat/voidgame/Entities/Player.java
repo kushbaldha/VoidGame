@@ -23,7 +23,7 @@ public class Player
     Bitmap fullPlayerRightImage;
     Rect rectChar;
     Paint paint;
-    public boolean moveLeft = false, moveRight = false,lastMove = true, moveJump = false,jumpDown = false;
+    public boolean moveLeft = false, moveRight = false,lastMove = true, moveJump = false,jumpDown = false,allMovement = true;
     public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight)
     {
         fullPlayerLeftImage = charAnimationLeft;
@@ -34,38 +34,35 @@ public class Player
         charImgX = mainChar.getWidth();
         charImgY = mainChar.getHeight();
     }
-    public void update()
-    {
-        if(moveJump)
-        {
-            if(jumpDown)
-            {
-                max-=dy;
-                charY+=dy;
-                if(max == 0)
-                { jumpDown = false;
-                moveJump = false;}
+    public void update() {
+        if (allMovement) {
+            if (moveJump) {
+                if (jumpDown) {
+                    max -= dy;
+                    charY += dy;
+                    if (max == 0) {
+                        jumpDown = false;
+                        moveJump = false;
+                    }
+                } else if (max < (dy * 10)) {
+                    max += dy;
+                    charY -= dy;
+                    if (max == (dy * 10))
+                        jumpDown = true;
+                }
             }
-            else if(max<(dy*10))
-            {
-                max+=dy;
-                charY-= dy;
-                if(max == (dy*10))
-                    jumpDown = true;
+            if (moveLeft) {
+                charX -= ((int) (phoneWidth * 0.01));
+                playerLeft.update();
             }
+            if (moveRight) {
+                charX += ((int) (phoneWidth * 0.01));
+                playerRight.update();
+            }
+            // updates character hitbox
         }
-        if(moveLeft)
-        {
-            charX -=((int)(phoneWidth*0.01));
-            playerLeft.update();
-        }
-        if(moveRight)
-        {
-            charX +=((int)(phoneWidth*0.01));
-            playerRight.update();
-        }
-        // updates character hitbox
-        rectChar = new Rect(charX,charY,(charX+charImgX),(charY+charImgY));
+        rectChar = new Rect(charX, charY, (charX + charImgX), (charY + charImgY));
+
     }
     public void moveLeft()
     {
@@ -100,6 +97,10 @@ public class Player
         lastMove = b;
         // true is left
         // false is right
+    }
+    public void allMovement(boolean b)
+    {
+        allMovement = b;
     }
     public void draw(Canvas canvas)
     {

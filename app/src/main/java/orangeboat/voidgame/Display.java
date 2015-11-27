@@ -34,7 +34,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap okButton = BitmapFactory.decodeResource(getResources(), R.drawable.bluebutton);
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.background1);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.background2);
-    GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,okButton,gameBackgroundFloor,gameBackgroundSky);
+    Bitmap noInteract = BitmapFactory.decodeResource(getResources(), R.drawable.nointeract);
+    GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,okButton,gameBackgroundFloor,gameBackgroundSky,noInteract);
     GamePanel gamePanel;
     boolean showMenu = true, showGame = false;
     float scaleFactorX;

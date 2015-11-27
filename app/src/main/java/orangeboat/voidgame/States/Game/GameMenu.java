@@ -9,18 +9,15 @@ import android.graphics.Rect;
 import orangeboat.voidgame.PhoneSpecs;
 
 public class GameMenu {
-    Bitmap leftButton;
-    Bitmap rightButton;
-    Bitmap menuButton;
-    Bitmap jumpButton;
-    Bitmap okButton;
+    Bitmap leftButton, rightButton, menuButton, jumpButton, okButton, noInteract;
     int phoneHeight, phoneWidth;
-    int leftImgX, leftImgY, rightImgX, rightImgY, menuImgX, menuImgY, jumpImgX, jumpImgY, okImgX, okImgY;
-    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY;
-    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk;
+    int leftImgX, leftImgY, rightImgX, rightImgY, menuImgX, menuImgY, jumpImgX, jumpImgY, okImgX, okImgY,noInteractImgX,noInteractImgY;
+    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY,noInteractX,noInteractY;
+    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk,rectNoInteract;
+    boolean showNoInteract = false;
     Paint paint;
 
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton) {
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap noInteract) {
         paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
         this.leftButton = leftButton;
@@ -38,6 +35,9 @@ public class GameMenu {
         this.okButton = okButton;
         okImgX = okButton.getWidth();
         okImgY = okButton.getHeight();
+        this.noInteract = noInteract;
+        noInteractImgX = noInteract.getWidth();
+        noInteractImgY = noInteract.getHeight();
     }
 
     public void update() {
@@ -56,12 +56,15 @@ public class GameMenu {
         menuX = 0;
         menuY = 0;
         rectMenu = new Rect(menuX, menuY, (menuX + menuImgX), (menuY + menuImgY));
-        jumpX = phoneWidth - (int) (jumpButton.getWidth() * 1.1);
+        jumpX = phoneWidth - (int) (jumpImgX * 1.1);
         jumpY = (int) (phoneHeight / 1.15);
         rectJump = new Rect(jumpX, jumpY, (jumpX + jumpImgX), (jumpY + jumpImgY));
-        okX = phoneWidth - (int) (2 * jumpButton.getWidth() * 1.1);
+        okX = phoneWidth - (int) (2 * jumpImgX * 1.1);
         okY = (int) (phoneHeight / 1.15);
         rectOk = new Rect(okX, okY, (okX + okImgX), (okY + okImgY));
+        noInteractX = phoneWidth-(phoneWidth/3);
+        noInteractY = phoneHeight-( phoneHeight/3);
+        rectNoInteract = new Rect(noInteractX,noInteractY,(noInteractX+noInteractImgX),(noInteractY+noInteractImgY));
     }
 
     public void draw(Canvas canvas) {
@@ -81,6 +84,10 @@ public class GameMenu {
         // canvas.drawRect(rectOk,paint);
         canvas.drawBitmap(menuButton, menuX, menuY, null);
         canvas.drawBitmap(okButton, okX, okY, null);
+        if(showNoInteract)
+        {
+            canvas.drawBitmap(noInteract,0,0,null);
+        }
 //        canvas.drawRect(rectLeft, paint);
 //        canvas.drawRect(rectRight,paint);
 //        canvas.drawRect(rectMenu,paint);
@@ -97,7 +104,15 @@ public class GameMenu {
         } else if (rectJump.contains(x, y)) {
             return 3;
         }
+        else if(rectOk.contains(x,y))
+        {
+            return 4;
+        }
         return 0;
+    }
+    public void showNoInteract(boolean b)
+    {
+        showNoInteract = b;
     }
 }
 

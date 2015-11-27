@@ -14,12 +14,13 @@ public class GameMenu
     Bitmap rightButton;
     Bitmap menuButton;
     Bitmap jumpButton;
+    Bitmap okButton;
     int phoneHeight,phoneWidth;
-    int leftImgX,leftImgY,rightImgX,rightImgY,menuImgX,menuImgY,jumpImgX,jumpImgY;
-    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY;
-    Rect rectLeft, rectRight, rectMenu, rectJump;
+    int leftImgX,leftImgY,rightImgX,rightImgY,menuImgX,menuImgY,jumpImgX,jumpImgY, okImgX, okImgY;
+    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY;
+    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk;
     Paint paint;
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton)
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton)
     {
         paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
@@ -35,6 +36,9 @@ public class GameMenu
         this.jumpButton = jumpButton;
         jumpImgX = jumpButton.getWidth();
         jumpImgY  = jumpButton.getHeight();
+        this.okButton = okButton;
+        okImgX = okButton.getWidth();
+        okImgY = okButton.getHeight();
     }
     public void update()
     {
@@ -50,9 +54,15 @@ public class GameMenu
         rightX = 250;
         rightY =(int) (phoneHeight/1.15);
         rectRight = new Rect(rightX,rightY,(rightX+rightImgX),(rightY + rightImgY));
+        menuX = 0;
+        menuY = 0;
+        rectMenu = new Rect(menuX,menuY,(menuX + menuImgX),(menuY + menuImgY));
         jumpX = phoneWidth- (int)(jumpButton.getWidth()*1.1);
         jumpY = (int) (phoneHeight/1.15);
         rectJump = new Rect(jumpX,jumpY,(jumpX + jumpImgX),(jumpY + jumpImgY));
+        okX = phoneWidth - (int)(2*jumpButton.getWidth()*1.1);
+        okY = (int) (phoneHeight/1.15);
+        rectOk = new Rect(okX,okY,(okX + okImgX),(okY + okImgY));
     }
     public void draw(Canvas canvas)
     {
@@ -66,6 +76,8 @@ public class GameMenu
        // canvas.drawRect(rectLeft,paint);
 //        canvas.drawBitmap(menuButton,menuX,menuY,null);
         canvas.drawBitmap(jumpButton,jumpX,jumpY,null);
+        canvas.drawBitmap(menuButton, menuX, menuY, null);
+        canvas.drawBitmap(okButton, okX, okY, null);
 //        canvas.drawRect(rectLeft, paint);
 //        canvas.drawRect(rectRight,paint);
 //        canvas.drawRect(rectMenu,paint);

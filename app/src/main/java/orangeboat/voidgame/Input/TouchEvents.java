@@ -69,7 +69,12 @@ public class TouchEvents
         if(MotionEvent.ACTION_POINTER_UP == action) {
             System.out.println("Action Pointer Up");
             System.out.println(event.getPointerId(event.getActionIndex()));
-            gamePanel.upTouch(x,y,event.getPointerId(event.getActionIndex()));
+            gamePanel.upTouch(x, y, event.getPointerId(event.getActionIndex()));
+        }
+        if(MotionEvent.ACTION_MOVE == action)
+        {
+            gamePanel.downTouch(x,y,event.getPointerId(event.getActionIndex()));
+            System.out.println("Action Move!");
         }
     }
     public boolean  checkMenu()

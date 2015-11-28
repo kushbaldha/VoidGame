@@ -17,13 +17,13 @@ public class Player
     Bitmap mainChar;
     public Animation playerLeft = new Animation();
     public Animation playerRight = new Animation();
-    Bitmap [] playerLeftImage = new Bitmap[4];
-    Bitmap [] playerRightImage = new Bitmap[4];
+    Bitmap [] playerLeftImage = new Bitmap[5];
+    Bitmap [] playerRightImage = new Bitmap[5];
     Bitmap fullPlayerLeftImage;
     Bitmap fullPlayerRightImage;
     Rect rectChar;
     Paint paint;
-    public boolean moveLeft = false, moveRight = false,lastMove = true, moveJump = false,jumpDown = false,allMovement = true;
+    public boolean moveLeft = false, moveRight = false,lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true;
     public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight)
     {
         fullPlayerLeftImage = charAnimationLeft;
@@ -44,7 +44,10 @@ public class Player
                     if (max == 0)
                     {
                         jumpDown = false;
-                        moveJump = false;
+                        if(stoppingMoveJump) {
+                            moveJump = false;
+                            stoppingMoveJump = false;
+                        }
                     }
                 }
                 else if (max < (dy * 8))
@@ -72,23 +75,17 @@ public class Player
     {
         moveLeft = true;
         moveRight = false;
+        setLastMove(true);
     }
     public void moveRight()
     {
         moveRight = true;
         moveLeft = false;
+        setLastMove(false);
     }
     public void moveStop()
     {
         //sets which way the character was facing last
-        if(moveLeft)
-        {
-            setLastMove(true);
-        }
-        if(moveRight)
-        {
-            setLastMove(false);
-        }
         moveLeft = false;
         moveRight = false;
     }
@@ -101,6 +98,10 @@ public class Player
         lastMove = b;
         // true is left
         // false is right
+    }
+    public void stopJump()
+    {
+        stoppingMoveJump = true;
     }
     public void allMovement(boolean b)
     {
@@ -115,6 +116,19 @@ public class Player
     }
     public void draw(Canvas canvas)
     {
+        /*if(moveJump)
+        {
+            if(lastMove)
+            {
+                canvas.drawBitmap(playerLeftImage[5], charX, charY, null);
+
+            }
+            else
+            {
+                canvas.drawBitmap(playerRightImage[5], charX, charY, null);
+
+            }
+        }*/
         //if moving left. keep on changing frames
         if(moveLeft)
         canvas.drawBitmap(playerLeft.getImage(),charX,charY,null);

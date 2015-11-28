@@ -6,6 +6,7 @@ import orangeboat.voidgame.Entities.GameObjects;
 
 public class GamePanel {
     int moving = 0;
+    int jumping = 0;
     public GameObjects objects;
     int floorx = 0;
     int skyx = 0;
@@ -58,6 +59,7 @@ public class GamePanel {
         }
         if (check == 3) {
             objects.player.moveJump();
+            jumping = pointerNumber;
         }
         if (check == 4) {
             objects.gameMenu.showNoneInteract(true);
@@ -72,6 +74,10 @@ public class GamePanel {
     public void upTouch(int x, int y,int pointerNumber) {
         if (objects.player.checkIfMoving() && moving == pointerNumber)
             objects.player.moveStop();
+        if(jumping == pointerNumber)
+        {
+            objects.player.stopJump();
+        }
        /* switch (objects.gameMenu.checkGameButton(x, y)) {
             case 1:
                 objects.player.moveStop();

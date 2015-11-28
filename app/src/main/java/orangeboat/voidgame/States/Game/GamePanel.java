@@ -5,21 +5,25 @@ import android.graphics.Canvas;
 import orangeboat.voidgame.Entities.GameObjects;
 
 public class GamePanel {
-    public GameObjects objects;
     int moving = 0;
-    int x = 0;
-
+    public GameObjects objects;
+    int floorx = 0;
+    int skyx = 0;
+    int dx;
     public GamePanel(GameObjects objects) {
         this.objects = objects;
+        dx = ((int) (objects.player.phoneWidth * 0.01));
     }
 
     public void update() {
         objects.player.update();
-        if (objects.player.moveLeft && x < 0) {
-            x += ((int) (objects.player.phoneWidth * 0.01));
+        if (objects.player.moveLeft && skyx < 0) {
+            floorx += dx;
+            skyx += dx/2;
         }
-        if (objects.player.moveRight && x > -1 * (objects.gameBackgroundSky.getWidth())) {
-            x -= ((int) (objects.player.phoneWidth * 0.01));
+        if (objects.player.moveRight && skyx > -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth) {
+            floorx -= dx;
+            skyx -= dx/2;
         }
 
     }
@@ -29,11 +33,12 @@ public class GamePanel {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(objects.gameBackgroundSky, x / 2, 0, null);
-        canvas.drawBitmap(objects.gameBackgroundFloor, x, 840, null);
+        canvas.drawBitmap(objects.gameBackgroundSky, skyx , 0, null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
     }
+
 
     public void  downTouch(int x, int y , int pointerNumber) {
         /*switch (objects.gameMenu.checkGameButton(x, y)) {

@@ -47,11 +47,11 @@ public class Player
                         moveJump = false;
                     }
                 }
-                else if (max < (dy * 6))
+                else if (max < (dy * 8))
                 {
                     max += dy;
                     charY -= dy;
-                    if (max == (dy * 6))
+                    if (max == (dy * 8))
                         jumpDown = true;
                 }
             }

@@ -42,12 +42,6 @@ public class GamePanel {
 
 
     public void  downTouch(int x, int y , int pointerNumber) {
-        /*switch (objects.gameMenu.checkGameButton(x, y)) {
-            case 1:
-                objects.player.moveLeft();
-            case 2:
-                objects.player.moveRight();
-        }*/
         int check = objects.gameMenu.checkGameButton(x, y);
         if (check == 1) {
             objects.player.moveLeft();
@@ -78,12 +72,14 @@ public class GamePanel {
         {
             objects.player.stopJump();
         }
-       /* switch (objects.gameMenu.checkGameButton(x, y)) {
-            case 1:
-                objects.player.moveStop();
-            case 2:*/
-        //int check = objects.gameMenu.checkGameButton(x, y);
-
+    }
+    public int getMoving()
+    {
+        return moving;
+    }
+    public int getJumping()
+    {
+        return jumping;
     }
 }
 

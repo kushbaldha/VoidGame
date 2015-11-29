@@ -73,10 +73,16 @@ public class TouchEvents
         }
         if(MotionEvent.ACTION_MOVE == action)
         {
-            gamePanel.downTouch(x,y,event.getPointerId(event.getActionIndex()));
+            int pointerCount = event.getPointerCount();
+            for(int i = 0; i < pointerCount; ++i) {
+
+                x = (int)event.getX(i);
+                y = (int)event.getY(i);
+                gamePanel.downTouch(x,y,event.getPointerId(i));
+            }
+            }
             System.out.println("Action Move!");
         }
-    }
     public boolean  checkMenu()
     {
         return menuShow;

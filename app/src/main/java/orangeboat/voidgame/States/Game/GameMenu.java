@@ -103,9 +103,7 @@ public class GameMenu {
             return 2;
         } else if (rectJump.contains(x, y)) {
             return 3;
-        }
-        else if(rectOk.contains(x,y))
-        {
+        } else if(rectOk.contains(x,y)) {
             return 4;
         }
         return 0;

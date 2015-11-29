@@ -116,21 +116,21 @@ public class Player
     }
     public void draw(Canvas canvas)
     {
-        /*if(moveJump)
+        if(moveJump)
         {
             if(lastMove)
             {
-                canvas.drawBitmap(playerLeftImage[5], charX, charY, null);
+                canvas.drawBitmap(playerLeftImage[4], charX, charY, null);
 
             }
             else
             {
-                canvas.drawBitmap(playerRightImage[5], charX, charY, null);
+                canvas.drawBitmap(playerRightImage[4], charX, charY, null);
 
             }
-        }*/
+        }
         //if moving left. keep on changing frames
-        if(moveLeft)
+        else if(moveLeft)
         canvas.drawBitmap(playerLeft.getImage(),charX,charY,null);
         // if moving right, keep on changing frames
         else if(moveRight)

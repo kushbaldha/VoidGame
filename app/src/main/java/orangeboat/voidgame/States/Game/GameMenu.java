@@ -17,7 +17,7 @@ public class GameMenu {
     boolean showNoneInteract = false;
     Paint paint;
 
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap noneInteract) {
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap slash) {
         paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
         this.leftButton = leftButton;
@@ -35,9 +35,9 @@ public class GameMenu {
         this.okButton = okButton;
         okImgX = okButton.getWidth();
         okImgY = okButton.getHeight();
-        this.noneInteract = noneInteract;
-        noInteractImgX = noneInteract.getWidth();
-        noInteractImgY = noneInteract.getHeight();
+        this.noneInteract = slash;
+        noInteractImgX = slash.getWidth();
+        noInteractImgY = slash.getHeight();
     }
 
     public void update() {

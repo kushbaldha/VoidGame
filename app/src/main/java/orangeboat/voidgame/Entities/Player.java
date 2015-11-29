@@ -24,7 +24,7 @@ public class Player
     Rect rectChar;
     Paint paint;
     public boolean moveLeft = false, moveRight = false,lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true;
-    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight)
+    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap slash)
     {
         fullPlayerLeftImage = charAnimationLeft;
         fullPlayerRightImage = charAnimationRight;

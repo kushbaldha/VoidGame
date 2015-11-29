@@ -6,16 +6,27 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import orangeboat.voidgame.Animation.Animation;
 import orangeboat.voidgame.PhoneSpecs;
 
-public class GameMenu {
-    Bitmap leftButton, rightButton, menuButton, jumpButton, okButton, noneInteract;
+public class GameMenu{
+
+    Bitmap leftButton, rightButton, menuButton, jumpButton, okButton, slash;
     int phoneHeight, phoneWidth;
-    int leftImgX, leftImgY, rightImgX, rightImgY, menuImgX, menuImgY, jumpImgX, jumpImgY, okImgX, okImgY,noInteractImgX,noInteractImgY;
-    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY, noneInteractX, noneInteractY;
-    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk,rectNoInteract;
-    boolean showNoneInteract = false;
+    int leftImgX, leftImgY, rightImgX, rightImgY, menuImgX, menuImgY, jumpImgX, jumpImgY, okImgX, okImgY, slashImgX, slashImgY;
+    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY, slashX, slashY;
+    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectslash;
+    boolean showslash = false;
     Paint paint;
+
+    public Animation slash1 = new Animation();
+    Bitmap [] slashes1 = new Bitmap[4];
+    public Animation slash2 = new Animation();
+    public Animation slash3 = new Animation();
+    public Animation slash4 = new Animation();
+    Bitmap [] slashes2 = new Bitmap[4];
+    Bitmap [] slashes3 = new Bitmap[4];
+    Bitmap [] slashes4 = new Bitmap[4];
 
     public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap slash) {
         paint = new Paint();
@@ -35,13 +46,19 @@ public class GameMenu {
         this.okButton = okButton;
         okImgX = okButton.getWidth();
         okImgY = okButton.getHeight();
-        this.noneInteract = slash;
-        noInteractImgX = slash.getWidth();
-        noInteractImgY = slash.getHeight();
+        this.slash = slash;
+        slashImgX = slash.getWidth()/16;
+        slashImgY = slash.getHeight();
     }
 
     public void update() {
-
+        if(slash1.playedOnce()) {
+            showslash(false);
+        }
+        slash1.update();
+        slash2.update();
+        slash3.update();
+        slash4.update();
     }
 
     public void load() {
@@ -62,9 +79,36 @@ public class GameMenu {
         okX = phoneWidth - (int) (2 * jumpImgX * 1.1);
         okY = (int) (phoneHeight / 1.15);
         rectOk = new Rect(okX, okY, (okX + okImgX), (okY + okImgY));
-        noneInteractX = phoneWidth-( phoneWidth/3);
-        noneInteractY = 0;
-        rectNoInteract = new Rect(noneInteractX, noneInteractY,(noneInteractX +noInteractImgX),(noneInteractY +noInteractImgY));
+
+        int d = 100;
+        for (int i = 0; i < slashes1.length; i++)
+        {
+            slashes1[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
+        }
+        for (int i = 4; i < 4+slashes2.length; i++)
+        {
+            slashes2[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
+        }
+        for (int i = 8; i < 8+slashes3.length; i++)
+        {
+            slashes3[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
+        }
+        for (int i = 12; i < 12+slashes4.length; i++)
+        {
+            slashes4[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
+        }
+        //loading up the animation classes
+        slash1.setFrames(slashes1);
+        slash1.setDelay(30);
+        slash2.setFrames(slashes2);
+        slash2.setDelay(30);
+        slash3.setFrames(slashes3);
+        slash3.setDelay(30);
+        slash4.setFrames(slashes4);
+        slash4.setDelay(30);
+        slashX = slashImgX + (phoneWidth/2);
+        slashY = (int) (phoneHeight/1.49);
+        rectslash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));
     }
 
     public void draw(Canvas canvas) {
@@ -84,9 +128,12 @@ public class GameMenu {
         // canvas.drawRect(rectOk,paint);
         canvas.drawBitmap(menuButton, menuX, menuY, null);
         canvas.drawBitmap(okButton, okX, okY, null);
-        if(showNoneInteract)
+        if(showslash)
         {
-            canvas.drawBitmap(noneInteract,noneInteractX,noneInteractY,null);
+            //if(moveLeft)
+            canvas.drawBitmap(slash1.getImage(),slashX,slashY,null);
+            //else if(moveRight)
+           // canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
         }
 //        canvas.drawRect(rectLeft, paint);
 //        canvas.drawRect(rectRight,paint);
@@ -108,9 +155,9 @@ public class GameMenu {
         }
         return 0;
     }
-    public void showNoneInteract(boolean b)
+    public void showslash(boolean b)
     {
-        showNoneInteract = b;
+        showslash = b;
     }
 }
 

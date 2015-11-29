@@ -26,7 +26,7 @@ public class GamePanel {
             floorx -= dx;
             skyx -= dx/2;
         }
-
+        objects.gameMenu.update();
     }
 
     public void load() {
@@ -34,7 +34,7 @@ public class GamePanel {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(objects.gameBackgroundSky, skyx , 0, null);
+        canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
         canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
@@ -56,11 +56,11 @@ public class GamePanel {
             jumping = pointerNumber;
         }
         if (check == 4) {
-            objects.gameMenu.showNoneInteract(true);
-            objects.player.allMovement(false);
-            objects.player.moveStop();
-        } else if (objects.gameMenu.showNoneInteract) {
-            objects.gameMenu.showNoneInteract(false);
+            objects.gameMenu.showslash(true);
+            //objects.player.allMovement(false);
+            //objects.player.moveStop();
+        } else if (objects.gameMenu.showslash) {
+            //objects.gameMenu.showslash(false);
             objects.player.allMovement(true);
         }
     }

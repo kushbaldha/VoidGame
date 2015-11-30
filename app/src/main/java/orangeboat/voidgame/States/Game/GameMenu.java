@@ -18,12 +18,11 @@ public class GameMenu{
     Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectslash;
     boolean showslash = false;
     Paint paint;
-
     public Animation slash1 = new Animation();
-    Bitmap [] slashes1 = new Bitmap[4];
     public Animation slash2 = new Animation();
     public Animation slash3 = new Animation();
     public Animation slash4 = new Animation();
+    Bitmap [] slashes1 = new Bitmap[4];
     Bitmap [] slashes2 = new Bitmap[4];
     Bitmap [] slashes3 = new Bitmap[4];
     Bitmap [] slashes4 = new Bitmap[4];
@@ -56,9 +55,9 @@ public class GameMenu{
             showslash(false);
         }
         slash1.update();
-        slash2.update();
-        slash3.update();
-        slash4.update();
+       // slash2.update();
+        //slash3.update();
+        //slash4.update();
     }
 
     public void load() {
@@ -85,7 +84,7 @@ public class GameMenu{
         {
             slashes1[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
         }
-        for (int i = 4; i < 4+slashes2.length; i++)
+        /*for (int i = 4; i < 4+slashes2.length; i++)
         {
             slashes2[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
         }
@@ -96,16 +95,16 @@ public class GameMenu{
         for (int i = 12; i < 12+slashes4.length; i++)
         {
             slashes4[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
-        }
+        }*/
         //loading up the animation classes
         slash1.setFrames(slashes1);
         slash1.setDelay(30);
-        slash2.setFrames(slashes2);
+        /*slash2.setFrames(slashes2);
         slash2.setDelay(30);
         slash3.setFrames(slashes3);
         slash3.setDelay(30);
         slash4.setFrames(slashes4);
-        slash4.setDelay(30);
+        slash4.setDelay(30);*/
         slashX = slashImgX + (phoneWidth/2);
         slashY = (int) (phoneHeight/1.49);
         rectslash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));

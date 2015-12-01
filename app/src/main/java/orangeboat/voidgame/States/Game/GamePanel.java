@@ -40,6 +40,7 @@ public class GamePanel {
         canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
+        objects.enemyPanel.draw(canvas);
     }
 
 

@@ -21,7 +21,6 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
 {
     MediaPlayer j;
-    private MenuThread firstthread;
     private MainThread secondthread;
     private MenuPanel menu;
     Bitmap landie = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.tempenemy)),942,192,true); // 26 x 32 or 156 x 192
@@ -34,11 +33,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap  jumpButton =  BitmapFactory.decodeResource(getResources(), R.drawable.redbutton);
     Bitmap okButton = BitmapFactory.decodeResource(getResources(), R.drawable.bluebutton);
     Bitmap slash = BitmapFactory.decodeResource(getResources(), R.drawable.slash);
-    //Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.background1);
-    //Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.background2);
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
-    //Bitmap noneInteract = BitmapFactory.decodeResource(getResources(), R.drawable.noneinteract);
     GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,okButton,gameBackgroundFloor,gameBackgroundSky, slash, landie);
     GamePanel gamePanel;
     boolean showMenu = true, showGame = false;
@@ -60,7 +56,6 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         //add callback to surfaceholders to intercepts events like fingerpresses
         getHolder().addCallback(this);
         contextHolder = getHolder();
-        firstthread = new MenuThread(contextHolder, this);
         secondthread = new MainThread(contextHolder, this);
         //getholder() is the surfaceholder or the screen
         //this is the gamePanel

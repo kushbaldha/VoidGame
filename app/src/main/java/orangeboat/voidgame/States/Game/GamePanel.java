@@ -27,9 +27,11 @@ public class GamePanel {
             skyx -= dx/2;
         }
         objects.gameMenu.update();
+        objects.enemyPanel.update();
     }
 
-    public void load() {
+    public void load()
+    {
 
     }
 

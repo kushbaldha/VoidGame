@@ -24,6 +24,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MenuThread firstthread;
     private MainThread secondthread;
     private MenuPanel menu;
+    Bitmap landie = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.tempenemy)),942,192,true); // 26 x 32 or 156 x 192
     Bitmap charAnimationLeft = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev)),630,192,true);
     Bitmap charAnimationRight = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walking)), 630, 192, true);
     Bitmap mainChar = (Bitmap.createBitmap(charAnimationRight, 0, 0, 120, 192)); // 21 width 31 height. Scale factor is 6
@@ -38,7 +39,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
     //Bitmap noneInteract = BitmapFactory.decodeResource(getResources(), R.drawable.noneinteract);
-    GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,okButton,gameBackgroundFloor,gameBackgroundSky, slash);
+    GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,okButton,gameBackgroundFloor,gameBackgroundSky, slash, landie);
     GamePanel gamePanel;
     boolean showMenu = true, showGame = false;
     float scaleFactorX;

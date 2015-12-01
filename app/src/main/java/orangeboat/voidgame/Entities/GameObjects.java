@@ -14,12 +14,14 @@ public class GameObjects
 {
     public Player player;
     public GameMenu gameMenu;
+    public EnemyPanel enemyPanel;
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
     int phoneHeight,phoneWidth;
-    public GameObjects(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky, Bitmap slash)
+    public GameObjects(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky, Bitmap slash, Bitmap landie)
     {
        player = new Player(mainChar,charAnimationLeft,charAnimationRight);
        gameMenu = new GameMenu(leftButton,rightButton,menuButton,jumpButton, okButton, slash);
+       enemyPanel = new EnemyPanel(landie);
         this.gameBackgroundFloor = gameBackgroundFloor;
         this.gameBackgroundSky = gameBackgroundSky;
     }
@@ -32,6 +34,7 @@ public class GameObjects
         phoneHeight=  (PhoneSpecs.height);
         player.load();
         gameMenu.load();
+        enemyPanel.load();
     }
 
 

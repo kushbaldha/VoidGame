@@ -1,6 +1,7 @@
 package orangeboat.voidgame;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,6 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import orangeboat.voidgame.Entities.GameObjects;
+import orangeboat.voidgame.Input.ImageLoader;
 import orangeboat.voidgame.Input.TouchEvents;
 import orangeboat.voidgame.States.Game.GamePanel;
 import orangeboat.voidgame.States.Title.MenuPanel;
@@ -23,7 +25,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     MediaPlayer j;
     private MainThread secondthread;
     private MenuPanel menu;
-    Bitmap landie = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.tempenemy)),942,192,true); // 26 x 32 or 156 x 192
+    Resources resources = getResources();
+   /* Bitmap landie = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.tempenemy)),942,192,true); // 26 x 32 or 156 x 192
     Bitmap charAnimationLeft = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev)),630,192,true);
     Bitmap charAnimationRight = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walking)), 630, 192, true);
     Bitmap mainChar = (Bitmap.createBitmap(charAnimationRight, 0, 0, 120, 192)); // 21 width 31 height. Scale factor is 6
@@ -32,12 +35,14 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap menuButton = BitmapFactory.decodeResource(getResources(), R.drawable.menuv2);
     Bitmap  jumpButton =  BitmapFactory.decodeResource(getResources(), R.drawable.redbutton);
     Bitmap okButton = BitmapFactory.decodeResource(getResources(), R.drawable.bluebutton);
-    Bitmap slash = BitmapFactory.decodeResource(getResources(), R.drawable.slash);
+    Bitmap slash = BitmapFactory.decodeResource(getResources(), R.drawable.slash);*/
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
-    GameObjects objects = new GameObjects (mainChar, charAnimationLeft,charAnimationRight,leftButton,rightButton,menuButton,jumpButton,okButton,gameBackgroundFloor,gameBackgroundSky, slash, landie);
+    GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky);
+    ImageLoader tempLoader = new ImageLoader(objects,resources);
     GamePanel gamePanel;
-    boolean showMenu = true, showGame = false;
+    boolean showMenu = true;
+    boolean showGame = false;
     float scaleFactorX;
     float scaleFactorY;
     public static final int WIDTH = 1900;
@@ -52,6 +57,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         super(context);
         j = MediaPlayer.create(context, R.raw.voidost);
         j.start();
+        tempLoader = null;
 
         //add callback to surfaceholders to intercepts events like fingerpresses
         getHolder().addCallback(this);
@@ -138,14 +144,14 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
             scaleFactorY = getHeight() / (HEIGHT * 1.f);
         if (canvas != null) {
-            if(check)
-                // this is to load the phoneSpecs. We need to iterate once before allowing everything to start drawing.
+            // this is to load the phoneSpecs. We need to iterate once before allowing everything to start drawing.
+            if (check)
             {
                 phone.setHeight(getHeight());
                 phone.setWidth(getWidth());
                 menu.load();
+                check = false;
                 objects.load();
-                check=false;
             }
             else {
                 final int savedState = canvas.save();

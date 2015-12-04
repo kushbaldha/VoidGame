@@ -1,10 +1,18 @@
 package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import orangeboat.voidgame.R;
 
 import orangeboat.voidgame.Animation.Animation;
 import orangeboat.voidgame.States.Game.GameMenu;
 import orangeboat.voidgame.PhoneSpecs;
+import orangeboat.voidgame.R;
+import orangeboat.voidgame.R;
 
 
 /**
@@ -13,15 +21,13 @@ import orangeboat.voidgame.PhoneSpecs;
 public class GameObjects
 {
     public Player player;
+    ArrayList<Bitmap> loader = new <Bitmap> ArrayList();
     public GameMenu gameMenu;
     public EnemyPanel enemyPanel;
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
     int phoneHeight,phoneWidth;
-    public GameObjects(Bitmap mainChar, Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky, Bitmap slash, Bitmap landie)
+    public GameObjects( Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky)
     {
-       player = new Player(mainChar,charAnimationLeft,charAnimationRight);
-       gameMenu = new GameMenu(leftButton,rightButton,menuButton,jumpButton, okButton, slash);
-       enemyPanel = new EnemyPanel(landie);
         this.gameBackgroundFloor = gameBackgroundFloor;
         this.gameBackgroundSky = gameBackgroundSky;
     }
@@ -37,6 +43,23 @@ public class GameObjects
         enemyPanel.load();
     }
 
-
-
+    public void imgLoad(Bitmap image)
+    {
+        loader.add(image);
+    }
+    public void playerLoad()
+    {
+        player = new Player(loader.get(0),loader.get(1),loader.get(2));
+        loader.clear();
+    }
+    public void gameMenuLoad()
+    {
+        gameMenu = new GameMenu(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5));
+        loader.clear();
+    }
+    public void enemyPanelLoad()
+    {
+        enemyPanel = new EnemyPanel(loader.get(0));
+        loader.clear();
+    }
 }

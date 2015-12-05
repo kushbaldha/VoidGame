@@ -28,7 +28,7 @@ public class GamePanel {
         }
         //objects.gameMenu.update();
         objects.weapons.update();
-        objects.enemyPanel.update();
+        objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
     }
 
     public void load()

@@ -26,7 +26,7 @@ public class EnemyPanel
         this.fullLandieImage = landie;
         singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
     }
-    public void update()
+    public void update(int skyx, int levellength)
     {
         if(numEnemies<=0) {
             Landie temp = new Landie(landieAnimation,singleLandieImage);
@@ -37,7 +37,7 @@ public class EnemyPanel
         }
         for(int i = 0; i < allLandies.size();i++)
         {
-            allLandies.get(i).update(moveLeft,moveRight);
+            allLandies.get(i).update(moveLeft,moveRight, skyx, levellength);
         }
        // if(score == somenumber)
         // spawn an enemy. create a landie object with passing animation in.

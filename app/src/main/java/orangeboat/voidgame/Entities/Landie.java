@@ -30,15 +30,15 @@ public class Landie
         landieImgX = landieImage.getWidth();
         landieImgY = landieImage.getHeight();
     }
-    public void update(boolean moveLeft, boolean moveRight)
+    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
     {
-        if(moveLeft)
+        if(moveLeft && skyx < 0)
         {
             landieX -= dx;
         }
-        if(moveRight)
+        else if(moveRight && skyx > levellength)
         {
-            landieX+=dx;
+            landieX += dx;
         }
         landieAnimation.update();
         rectLandie = new Rect(landieX,landieY,(landieX+landieImgX),(landieY+landieImgY));

@@ -50,10 +50,12 @@ public class GamePanel {
         int check = objects.gameMenu.checkGameButton(x, y);
         if (check == 1) {
             objects.player.moveLeft();
+            objects.enemyPanel.moveRight();
             moving = pointerNumber;
         }
         if (check == 2) {
             objects.player.moveRight();
+            objects.enemyPanel.moveLeft();;
             moving = pointerNumber;
         }
         if (check == 3) {
@@ -62,14 +64,17 @@ public class GamePanel {
         }
         if (check == 4) {
             objects.weapons.setShowSlash(true);
+            objects.enemyPanel.killEnemy(objects.weapons.rectSlash);
             //objects.player.allMovement(false);
             //objects.player.moveStop();
         }
     }
 
     public void upTouch(int x, int y,int pointerNumber) {
-        if (objects.player.checkIfMoving() && moving == pointerNumber)
+        if (objects.player.checkIfMoving() && moving == pointerNumber) {
             objects.player.moveStop();
+            objects.enemyPanel.moveStop();
+        }
         if(jumping == pointerNumber)
         {
             objects.player.stopJump();

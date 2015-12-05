@@ -20,25 +20,36 @@ public class Landie
     Paint paint;
     Rect rectLandie;
     int phoneWidth,phoneHeight;
+    int dx;
     public Landie(Animation landieAnimation, Bitmap landieImage)
     {
         this.landieAnimation = landieAnimation;
         this.landieImage = landieImage;
         paint = new Paint();
-        paint.setColor(Color.TRANSPARENT);
+        paint.setColor(Color.BLUE);
         landieImgX = landieImage.getWidth();
         landieImgY = landieImage.getHeight();
     }
-    public void update()
+    public void update(boolean moveLeft, boolean moveRight)
     {
+        if(moveLeft)
+        {
+            landieX -= dx;
+        }
+        if(moveRight)
+        {
+            landieX+=dx;
+        }
         landieAnimation.update();
+        rectLandie = new Rect(landieX,landieY,(landieX+landieImgX),(landieY+landieImgY));
     }
     public void load()
     {
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
-        landieX = phoneWidth/3;
-        landieY = phoneWidth/2;
+        dx = ((int) (phoneWidth * 0.01));
+        landieX = (int) (phoneWidth/1.5);
+        landieY = (int)(phoneWidth/2.5);
         rectLandie = new Rect(landieX,landieY,(landieX+landieImgX),(landieY+landieImgY));
     }
     public void draw(Canvas canvas)

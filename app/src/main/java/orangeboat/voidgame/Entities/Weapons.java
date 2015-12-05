@@ -2,6 +2,8 @@ package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import orangeboat.voidgame.Animation.Animation;
@@ -13,7 +15,7 @@ import orangeboat.voidgame.PhoneSpecs;
 public class Weapons {
     int slashX, slashY, slashImgX, slashImgY;
     int phoneWidth,phoneHeight;
-    Rect rectSlash;
+    public Rect rectSlash;
     public boolean showSlash;
     public Animation slash1 = new Animation();
     public Animation slash2 = new Animation();
@@ -24,12 +26,15 @@ public class Weapons {
     Bitmap[] slashes2 = new Bitmap[4];
     Bitmap[] slashes3 = new Bitmap[4];
     Bitmap[] slashes4 = new Bitmap[4];
+    Paint paint;
 
     public Weapons(Bitmap slash)
     {
         slashImgX = slash.getWidth() / 16;
         slashImgY = slash.getHeight();
         this.slash = slash;
+         paint = new Paint();
+        paint.setColor(Color.GREEN);
     }
     public void load()
     {
@@ -82,7 +87,9 @@ public class Weapons {
         if(showSlash)
         {
             //if(moveLeft)
-            canvas.drawBitmap(slash1.getImage(),slashX,slashY,null);
+            canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
+            canvas.drawRect(rectSlash,paint);
+            //canvas.drawRect(rectSlash,paint);
             //else if(moveRight)
             // canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
         }

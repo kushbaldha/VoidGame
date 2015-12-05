@@ -17,16 +17,23 @@ public class EnemyPanel
     public ArrayList <Landie> allLandies = new ArrayList<Landie>();
     Bitmap fullLandieImage;
     Bitmap [] landieImage = new Bitmap[6];
-    Animation landieAnimation;
+    Animation landieAnimation = new Animation();
     public EnemyPanel(Bitmap landie)
     {
         this.fullLandieImage = landie;
     }
     public void update()
     {
-        if(numEnemies<=0) {
-            allLandies.add(new Landie(landieAnimation,fullLandieImage));
+        if(numEnemies<=2) {
+            Landie temp = new Landie(landieAnimation,fullLandieImage);
+            temp.load();
+            allLandies.add(temp);
+            temp = null;
             numEnemies++;
+        }
+        for(int i = 0; i < allLandies.size();i++)
+        {
+            allLandies.get(i).update();
         }
        // if(score == somenumber)
         // spawn an enemy. create a landie object with passing animation in.
@@ -41,17 +48,17 @@ public class EnemyPanel
             landieImage[i] = Bitmap.createBitmap(fullLandieImage,i * width, 0 , width ,height);
         }
         landieAnimation.setFrames(landieImage);
-        landieAnimation.setDelay(30);
+        landieAnimation.setDelay(120);
     }
     public void killEnemy()
     {
         score++;
     }
-    public void draw(Canvas canvas)
-    {
+    public void draw(Canvas canvas) {
         for(int i = 0; i < allLandies.size();i++)
         {
-            allLandies.get(i).draw(canvas);
+
+           allLandies.get(i).draw(canvas);
         }
     }
 }

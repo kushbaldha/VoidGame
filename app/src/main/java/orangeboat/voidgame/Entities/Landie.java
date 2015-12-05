@@ -32,11 +32,11 @@ public class Landie
     }
     public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
     {
-        if(moveLeft && skyx < 0)
+        if(moveLeft && skyx > levellength)
         {
             landieX -= dx;
         }
-        else if(moveRight && skyx > levellength)
+        else if(moveRight && skyx < 0)
         {
             landieX += dx;
         }

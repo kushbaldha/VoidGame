@@ -2,6 +2,7 @@ package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ public class EnemyPanel
 {
     int score = 0;
     int numEnemies = 0;
-    public ArrayList <Landie> allLandies = new ArrayList<Landie>();
+    public ArrayList <Landie> allLandies = new ArrayList<>();
     Bitmap fullLandieImage;
     Bitmap [] landieImage = new Bitmap[6];
     Animation landieAnimation = new Animation();
@@ -50,8 +51,17 @@ public class EnemyPanel
         landieAnimation.setFrames(landieImage);
         landieAnimation.setDelay(120);
     }
-    public void killEnemy()
+    public void killEnemy(Rect weaponHitbox)
     {
+        for(int i = 0; i < allLandies.size();i++)
+    {
+
+        if(weaponHitbox.contains(allLandies.get(i).getRectLandie()))
+        {
+            allLandies.remove(i);
+            break;
+        }
+    }
         score++;
     }
     public void draw(Canvas canvas) {

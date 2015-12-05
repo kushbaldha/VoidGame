@@ -21,7 +21,8 @@ import orangeboat.voidgame.R;
 public class GameObjects
 {
     public Player player;
-    ArrayList<Bitmap> loader = new <Bitmap> ArrayList();
+    ArrayList <Bitmap> loader = new ArrayList<>();
+    public Weapons weapons;
     public GameMenu gameMenu;
     public EnemyPanel enemyPanel;
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
@@ -41,6 +42,7 @@ public class GameObjects
         player.load();
         gameMenu.load();
         enemyPanel.load();
+        weapons.load();
     }
 
     public void imgLoad(Bitmap image)
@@ -54,7 +56,12 @@ public class GameObjects
     }
     public void gameMenuLoad()
     {
-        gameMenu = new GameMenu(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5));
+        gameMenu = new GameMenu(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4));
+        loader.clear();
+    }
+    public void weaponsLoad()
+    {
+        weapons = new Weapons(loader.get(0));
         loader.clear();
     }
     public void enemyPanelLoad()

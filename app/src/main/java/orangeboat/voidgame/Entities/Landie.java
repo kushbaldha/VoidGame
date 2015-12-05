@@ -46,4 +46,8 @@ public class Landie
         canvas.drawRect(rectLandie,paint);
         canvas.drawBitmap(landieAnimation.getImage(),landieX, landieY,null);
     }
+    public Rect getRectLandie()
+    {
+        return rectLandie;
+    }
 }

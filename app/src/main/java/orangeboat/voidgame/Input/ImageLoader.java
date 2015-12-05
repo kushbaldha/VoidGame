@@ -45,9 +45,12 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = BitmapFactory.decodeResource(resources, R.drawable.bluebutton);
         objects.imgLoad(temp);
+        objects.gameMenuLoad();
+
+        //WEAPONS LOAD
         temp = BitmapFactory.decodeResource(resources, R.drawable.slash);
         objects.imgLoad(temp);
-        objects.gameMenuLoad();
+        objects.weaponsLoad();
 
         //ENEMYPANEL LOAD
         temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.tempenemy)),942,192,true);

@@ -26,7 +26,8 @@ public class GamePanel {
             floorx -= dx;
             skyx -= dx/2;
         }
-        objects.gameMenu.update();
+        //objects.gameMenu.update();
+        objects.weapons.update();
         objects.enemyPanel.update();
     }
 
@@ -41,6 +42,7 @@ public class GamePanel {
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
         objects.enemyPanel.draw(canvas);
+        objects.weapons.draw(canvas);
     }
 
 
@@ -59,12 +61,9 @@ public class GamePanel {
             jumping = pointerNumber;
         }
         if (check == 4) {
-            objects.gameMenu.showslash(true);
+            objects.weapons.setShowSlash(true);
             //objects.player.allMovement(false);
             //objects.player.moveStop();
-        } else if (objects.gameMenu.showslash) {
-            //objects.gameMenu.showslash(false);
-            objects.player.allMovement(true);
         }
     }
 

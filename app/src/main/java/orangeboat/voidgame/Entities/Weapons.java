@@ -70,12 +70,17 @@ public class Weapons {
             slashes1[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
         }
     }
-    public void update()
+    public void update(int charY, boolean lastMove)
     {
-
-        if(slash1.playedOnce()) {
-            setShowSlash(false);
+        slashY = charY;
+        if(lastMove) {
+            slashX = slashImgX + (int)(phoneWidth / 2.5);
         }
+        else
+        {
+            slashX = slashImgX + (phoneWidth / 2);
+        }
+        rectSlash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));
         slash1.update();
         //slash2.update();
         //slash3.update();
@@ -88,7 +93,7 @@ public class Weapons {
         {
             //if(moveLeft)
             canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
-            canvas.drawRect(rectSlash,paint);
+            //canvas.drawRect(rectSlash,paint);
             //canvas.drawRect(rectSlash,paint);
             //else if(moveRight)
             // canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
@@ -98,5 +103,8 @@ public class Weapons {
     {
         showSlash = b;
     }
-
+    public boolean getShowSlash()
+    {
+        return showSlash;
+    }
 }

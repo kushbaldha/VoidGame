@@ -7,6 +7,7 @@ import orangeboat.voidgame.Entities.GameObjects;
 public class GamePanel {
     int moving = 0;
     int jumping = 0;
+    int weapon = 0;
     public GameObjects objects;
     int floorx = 0;
     int skyx = 0;
@@ -17,7 +18,7 @@ public class GamePanel {
     }
 
     public void update() {
-        objects.player.update();
+        objects.player.update(objects.weapons.showSlash);
         if (objects.player.moveLeft && skyx < 0) {
             floorx += dx;
             skyx += dx/2;
@@ -27,7 +28,7 @@ public class GamePanel {
             skyx -= dx/2;
         }
         //objects.gameMenu.update();
-        objects.weapons.update();
+        objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove());
         objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
     }
 
@@ -63,7 +64,9 @@ public class GamePanel {
             jumping = pointerNumber;
         }
         if (check == 4) {
+            weapon = pointerNumber;
             objects.weapons.setShowSlash(true);
+            objects.player.setShowSlashing(true);// actual slash animation
             objects.enemyPanel.killEnemy(objects.weapons.rectSlash);
             //objects.player.allMovement(false);
             //objects.player.moveStop();
@@ -78,6 +81,10 @@ public class GamePanel {
         if(jumping == pointerNumber)
         {
             objects.player.stopJump();
+        }
+        if(weapon == pointerNumber)
+        {
+            objects.weapons.setShowSlash(false);
         }
     }
     public int getMoving()

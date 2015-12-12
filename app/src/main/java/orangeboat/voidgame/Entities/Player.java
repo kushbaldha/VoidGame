@@ -17,24 +17,33 @@ public class Player
     Bitmap mainChar;
     public Animation playerLeft = new Animation();
     public Animation playerRight = new Animation();
+    public Animation playerSlashingLeft = new Animation();
+    public Animation playerSlashingRight = new Animation();
+
     Bitmap [] playerLeftImage = new Bitmap[5];
     Bitmap [] playerRightImage = new Bitmap[5];
+    Bitmap [] playerSlashingLeftImage = new Bitmap[5];
+    Bitmap [] playerSlashingRightImage = new Bitmap[5];
     Bitmap fullPlayerLeftImage;
     Bitmap fullPlayerRightImage;
+    Bitmap fullPlayerSlashingLeftImage;
+    Bitmap fullPlayerSlashingRightImage;
     Rect rectChar;
     Paint paint;
-    public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true;
-    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight)
+    public boolean stopSlash = false,moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true, showSlashing = false;
+    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap slashing, Bitmap slashingRev)
     {
         fullPlayerLeftImage = charAnimationLeft;
         fullPlayerRightImage = charAnimationRight;
+        fullPlayerSlashingLeftImage = slashingRev;
+        fullPlayerSlashingRightImage = slashing;
         paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
         this.mainChar = mainChar;
         charImgX = mainChar.getWidth();
         charImgY = mainChar.getHeight();
     }
-    public void update() {
+    public void update(boolean slashing) {
         if (allMovement) {
             if (moveJump) {
                 if (jumpDown)
@@ -58,13 +67,26 @@ public class Player
                         jumpDown = true;
                 }
             }
-            if (moveLeft)
+            if(!slashing)
             {
-                playerLeft.update();
+                showSlashing = false;
             }
-            if (moveRight)
+            if(slashing)
             {
-                playerRight.update();
+                showSlashing = true;
+                    if (lastMove)
+                        playerSlashingLeft.update();
+                    else
+                        playerSlashingRight.update();
+
+            }
+            else {
+                if (moveLeft) {
+                    playerLeft.update();
+                }
+                if (moveRight) {
+                    playerRight.update();
+                }
             }
             // updates character hitbox
         }
@@ -107,6 +129,10 @@ public class Player
     {
         allMovement = b;
     }
+    public boolean getLastMove()
+    {
+        return lastMove;
+    }
     public boolean checkIfMoving()
     {
         if(moveLeft || moveRight)
@@ -129,7 +155,21 @@ public class Player
 
             }
         }
+        else if(showSlashing)
+        {
+            if(lastMove)
+            {
+                canvas.drawBitmap(playerSlashingLeft.getImage(), charX, charY, null);
+
+            }
+            else
+            {
+                canvas.drawBitmap(playerSlashingRight.getImage(), charX, charY, null);
+
+            }
+        }
         //if moving left. keep on changing frames
+
         else if(moveLeft)
         canvas.drawBitmap(playerLeft.getImage(),charX,charY,null);
         // if moving right, keep on changing frames
@@ -151,6 +191,14 @@ public class Player
         }
         canvas.drawRect(rectChar,paint);
     }
+    public int getCharY()
+    {
+        return charY;
+    }
+    public void setShowSlashing(boolean b)
+    {
+        showSlashing = b;
+    }
     public void load()
     {
         // height and width for each frame in the spritesheet
@@ -166,14 +214,27 @@ public class Player
             playerRightImage[i] = Bitmap.createBitmap(fullPlayerRightImage,i * width, 0 , width ,height);
 
         }
+        for(int i = 0; i < playerSlashingRightImage.length;i++)
+        {
+            playerSlashingRightImage[i] = Bitmap.createBitmap(fullPlayerSlashingRightImage,i * width, 0 , width ,height);
+
+        }
+        for(int i = 0; i < playerSlashingLeftImage.length;i++)
+        {
+            playerSlashingLeftImage[i] = Bitmap.createBitmap(fullPlayerSlashingLeftImage,i * width, 0 , width ,height);
+        }
         //loading up the animation classes
         playerLeft.setFrames(playerLeftImage);
         playerLeft.setDelay(30);
         playerRight.setFrames(playerRightImage);
         playerRight.setDelay(30);
+        playerSlashingRight.setFrames(playerSlashingRightImage);
+        playerSlashingRight.setDelay(30);
+        playerSlashingLeft.setFrames(playerSlashingLeftImage);
+        playerSlashingLeft.setDelay(30);
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
-        //starting position of the cahracter
+        //starting position of the character
         charX = (phoneWidth/2);
         charY = (int) (phoneHeight/1.49);
         rectChar = new Rect(charX,charY,(charX+charImgX),(charY+charImgY));

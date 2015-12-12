@@ -32,6 +32,10 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.walking)), 630, 192, true); // charAnimationright
         objects.imgLoad(temp);
+        temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.slashing)), 630, 192, true);
+        objects.imgLoad(temp);
+        temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.slashingrev)), 630, 192, true);
+        objects.imgLoad(temp);
         objects.playerLoad();
 
         // GAMEMENU LOAD

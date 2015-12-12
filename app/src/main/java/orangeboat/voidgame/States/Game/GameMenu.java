@@ -97,6 +97,9 @@ public class GameMenu{
         } else if(rectOk.contains(x,y)) {
             return 4;
         }
+        else if(rectMenu.contains(x,y)) {
+            return 5;
+        }
         return 0;
     }
 }

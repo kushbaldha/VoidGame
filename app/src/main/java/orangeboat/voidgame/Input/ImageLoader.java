@@ -36,6 +36,10 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.slashingrev)), 630, 192, true);
         objects.imgLoad(temp);
+        temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.gunwalk)), 630, 192, true);
+        objects.imgLoad(temp);
+        temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.gunwalkrev)), 630, 192, true);
+        objects.imgLoad(temp);
         objects.playerLoad();
 
         // GAMEMENU LOAD
@@ -53,6 +57,8 @@ public class ImageLoader
 
         //WEAPONS LOAD
         temp = BitmapFactory.decodeResource(resources, R.drawable.slash);
+        objects.imgLoad(temp);
+        temp = BitmapFactory.decodeResource(resources, R.drawable.shoot); //22 x 2
         objects.imgLoad(temp);
         objects.weaponsLoad();
 

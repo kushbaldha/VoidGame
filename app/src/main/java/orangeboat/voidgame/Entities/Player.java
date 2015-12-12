@@ -15,28 +15,46 @@ public class Player
     int charX,charY,charImgX,charImgY;
     int dy,max = 0;
     Bitmap mainChar;
+
+
+    Bitmap fullPlayerSwordLeftImage;
+    Bitmap [] playerSwordLeftImage = new Bitmap[5];
     public Animation playerLeft = new Animation();
+
+    Bitmap fullPlayerSwordRightImage;
+    Bitmap [] playerSwordRightImage = new Bitmap[5];
     public Animation playerRight = new Animation();
+
+    Bitmap fullPlayerSlashingLeftImage;
+    Bitmap [] playerSlashingLeftImage = new Bitmap[5];
     public Animation playerSlashingLeft = new Animation();
+
+    Bitmap fullPlayerSlashingRightImage;
+    Bitmap [] playerSlashingRightImage = new Bitmap[5];
     public Animation playerSlashingRight = new Animation();
 
-    Bitmap [] playerLeftImage = new Bitmap[5];
-    Bitmap [] playerRightImage = new Bitmap[5];
-    Bitmap [] playerSlashingLeftImage = new Bitmap[5];
-    Bitmap [] playerSlashingRightImage = new Bitmap[5];
-    Bitmap fullPlayerLeftImage;
-    Bitmap fullPlayerRightImage;
-    Bitmap fullPlayerSlashingLeftImage;
-    Bitmap fullPlayerSlashingRightImage;
+    Bitmap fullPlayerGunLeftImage;
+    Bitmap [] playerGunLeftImage = new Bitmap [5];
+    public Animation playerGunLeft = new Animation();
+
+    Bitmap fullPlayerGunRightImage;
+    Bitmap [] playerGunRightImage = new Bitmap [5];
+    public Animation playerGunRight = new Animation();
+
+
     Rect rectChar;
     Paint paint;
-    public boolean stopSlash = false,moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true, showSlashing = false;
-    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap slashing, Bitmap slashingRev)
+    public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true, showSlashing = false;
+    public boolean state = false;
+    // false is sword and true is gun
+    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap slashing, Bitmap slashingRev, Bitmap gunWalking, Bitmap gunWalkingRev)
     {
-        fullPlayerLeftImage = charAnimationLeft;
-        fullPlayerRightImage = charAnimationRight;
+        fullPlayerSwordLeftImage = charAnimationLeft;
+        fullPlayerSwordRightImage = charAnimationRight;
         fullPlayerSlashingLeftImage = slashingRev;
         fullPlayerSlashingRightImage = slashing;
+        fullPlayerGunLeftImage = gunWalkingRev;
+        fullPlayerGunRightImage = gunWalking;
         paint = new Paint();
         paint.setColor(Color.TRANSPARENT);
         this.mainChar = mainChar;
@@ -67,25 +85,34 @@ public class Player
                         jumpDown = true;
                 }
             }
-            if(!slashing)
+            if(!state)  // false is sword
             {
-                showSlashing = false;
-            }
-            if(slashing)
-            {
-                showSlashing = true;
+                if (!slashing) {
+                    showSlashing = false;
+                }
+                if (slashing) {
+                    showSlashing = true;
                     if (lastMove)
                         playerSlashingLeft.update();
                     else
                         playerSlashingRight.update();
 
+                } else {
+                    if (moveLeft) {
+                        playerLeft.update();
+                    }
+                    if (moveRight) {
+                        playerRight.update();
+                    }
+                }
             }
-            else {
+            if(state)
+            {
                 if (moveLeft) {
-                    playerLeft.update();
+                    playerGunLeft.update();
                 }
                 if (moveRight) {
-                    playerRight.update();
+                    playerGunRight.update();
                 }
             }
             // updates character hitbox
@@ -142,51 +169,67 @@ public class Player
     }
     public void draw(Canvas canvas)
     {
-        if(moveJump)
-        {
-            if(lastMove)
-            {
-                canvas.drawBitmap(playerLeftImage[4], charX, charY, null);
+        if(!state) {
+            if (showSlashing) {
+                if (lastMove) {
+                    canvas.drawBitmap(playerSlashingLeft.getImage(), charX, charY, null);
 
+                } else {
+                    canvas.drawBitmap(playerSlashingRight.getImage(), charX, charY, null);
+
+                }
+            } else if (moveJump) {
+                if (lastMove) {
+                    canvas.drawBitmap(playerSwordLeftImage[4], charX, charY, null);
+
+                } else {
+                    canvas.drawBitmap(playerSwordRightImage[4], charX, charY, null);
+
+                }
             }
-            else
-            {
-                canvas.drawBitmap(playerRightImage[4], charX, charY, null);
+            //if moving left. keep on changing frames
+            else if (moveLeft)
+                canvas.drawBitmap(playerLeft.getImage(), charX, charY, null);
+                // if moving right, keep on changing frames
+            else if (moveRight)
+                canvas.drawBitmap(playerRight.getImage(), charX, charY, null);
+            else {
+                //checks which way character was facing last.
+                if (lastMove) {
+                    canvas.drawBitmap(playerSwordLeftImage[0], charX, charY, null);
 
+                } else {
+                    canvas.drawBitmap(playerSwordRightImage[0], charX, charY, null);
+
+                }
             }
         }
-        else if(showSlashing)
+        if(state)
         {
-            if(lastMove)
-            {
-                canvas.drawBitmap(playerSlashingLeft.getImage(), charX, charY, null);
+             if (moveJump) {
+                if (lastMove) {
+                    canvas.drawBitmap(playerGunLeftImage[4], charX, charY, null);
 
+                } else {
+                    canvas.drawBitmap(playerGunRightImage[4], charX, charY, null);
+
+                }
             }
-            else
-            {
-                canvas.drawBitmap(playerSlashingRight.getImage(), charX, charY, null);
+            //if moving left. keep on changing frames
+            else if (moveLeft)
+                canvas.drawBitmap(playerGunLeft.getImage(), charX, charY, null);
+                // if moving right, keep on changing frames
+            else if (moveRight)
+                canvas.drawBitmap(playerGunRight.getImage(), charX, charY, null);
+            else {
+                //checks which way character was facing last.
+                if (lastMove) {
+                    canvas.drawBitmap(playerGunLeftImage[0], charX, charY, null);
 
-            }
-        }
-        //if moving left. keep on changing frames
+                } else {
+                    canvas.drawBitmap(playerGunRightImage[0], charX, charY, null);
 
-        else if(moveLeft)
-        canvas.drawBitmap(playerLeft.getImage(),charX,charY,null);
-        // if moving right, keep on changing frames
-        else if(moveRight)
-        canvas.drawBitmap(playerRight.getImage(), charX, charY, null);
-        else
-        {
-            //checks which way character was facing last.
-            if(lastMove)
-            {
-                canvas.drawBitmap(playerLeftImage[0], charX, charY, null);
-
-            }
-            else
-            {
-                canvas.drawBitmap(playerRightImage[0], charX, charY, null);
-
+                }
             }
         }
         canvas.drawRect(rectChar,paint);
@@ -205,13 +248,13 @@ public class Player
         int height = 192;
         int width =  126;
         //loading up the images
-        for (int i = 0; i < playerLeftImage.length; i++)
+        for (int i = 0; i < playerSwordLeftImage.length; i++)
         {
-            playerLeftImage[i] = Bitmap.createBitmap(fullPlayerLeftImage,i * width, 0 , width ,height);
+            playerSwordLeftImage[i] = Bitmap.createBitmap(fullPlayerSwordLeftImage,i * width, 0 , width ,height);
         }
-        for(int i = 0; i < playerRightImage.length;i++)
+        for(int i = 0; i < playerSwordRightImage.length;i++)
         {
-            playerRightImage[i] = Bitmap.createBitmap(fullPlayerRightImage,i * width, 0 , width ,height);
+            playerSwordRightImage[i] = Bitmap.createBitmap(fullPlayerSwordRightImage,i * width, 0 , width ,height);
 
         }
         for(int i = 0; i < playerSlashingRightImage.length;i++)
@@ -223,15 +266,28 @@ public class Player
         {
             playerSlashingLeftImage[i] = Bitmap.createBitmap(fullPlayerSlashingLeftImage,i * width, 0 , width ,height);
         }
+        for(int i = 0; i < playerGunLeftImage.length;i++)
+        {
+            playerGunLeftImage[i] = Bitmap.createBitmap(fullPlayerGunLeftImage,i * width, 0 , width ,height);
+        }
+        for(int i = 0; i < playerGunRightImage.length;i++)
+        {
+            playerGunRightImage[i] = Bitmap.createBitmap(fullPlayerGunRightImage,i * width, 0 , width ,height);
+        }
+
         //loading up the animation classes
-        playerLeft.setFrames(playerLeftImage);
+        playerLeft.setFrames(playerSwordLeftImage);
         playerLeft.setDelay(30);
-        playerRight.setFrames(playerRightImage);
+        playerRight.setFrames(playerSwordRightImage);
         playerRight.setDelay(30);
         playerSlashingRight.setFrames(playerSlashingRightImage);
         playerSlashingRight.setDelay(30);
         playerSlashingLeft.setFrames(playerSlashingLeftImage);
         playerSlashingLeft.setDelay(30);
+        playerGunLeft.setFrames(playerGunLeftImage);
+        playerGunLeft.setDelay(30);
+        playerGunRight.setFrames(playerGunRightImage);
+        playerGunRight.setDelay(30);
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
         //starting position of the character
@@ -239,5 +295,10 @@ public class Player
         charY = (int) (phoneHeight/1.49);
         rectChar = new Rect(charX,charY,(charX+charImgX),(charY+charImgY));
         dy = (int) (phoneHeight*0.017);
+    }
+    public void switchStates()
+    {
+        state = !state;
+        // false is sword and true is gun
     }
 }

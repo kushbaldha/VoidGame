@@ -54,6 +54,17 @@ public class MenuPanel
         canvas.drawBitmap(play,x,y,null);
         canvas.drawRect(rectPlay, paint);
     }
-    //random comment
-}
+    public void remove()
+    {
+        paint = null;
+        animation = null;
+        rectPlay = null;
+        play = null;
+        // images for background and play button
+        //hitbox for the play button
+        spritesheet = null;
+
+    }
+    }
+
 

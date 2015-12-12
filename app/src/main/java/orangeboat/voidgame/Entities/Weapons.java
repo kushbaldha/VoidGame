@@ -14,6 +14,7 @@ import orangeboat.voidgame.PhoneSpecs;
  */
 public class Weapons {
     int slashX, slashY, slashImgX, slashImgY;
+    int shootX, shootY, shootImgX, shootImgY;
     int phoneWidth,phoneHeight;
     public Rect rectSlash;
     public boolean showSlash;
@@ -26,10 +27,18 @@ public class Weapons {
     Bitmap[] slashes2 = new Bitmap[4];
     Bitmap[] slashes3 = new Bitmap[4];
     Bitmap[] slashes4 = new Bitmap[4];
+
+    Bitmap fullShoot;
+    Bitmap [] shootImage = new Bitmap [2];
+    public Animation shoot = new Animation();
+
     Paint paint;
 
-    public Weapons(Bitmap slash)
+    public Weapons(Bitmap slash, Bitmap shoot)
     {
+        fullShoot = shoot;
+        shootImgX = shoot.getWidth();
+        shootImgY = shoot.getHeight();
         slashImgX = slash.getWidth() / 16;
         slashImgY = slash.getHeight();
         this.slash = slash;
@@ -69,6 +78,12 @@ public class Weapons {
         {
             slashes1[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
         }
+        for(int i = 0; i < shootImage.length;i++)
+        {
+            shootImage[i] = Bitmap.createBitmap(fullShoot,i * 22, 0 , 22 ,2);
+        }
+        shoot.setFrames(shootImage);
+        shoot.setDelay(30);
     }
     public void update(int charY, boolean lastMove)
     {

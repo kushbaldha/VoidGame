@@ -16,7 +16,10 @@ public class GamePanel {
         this.objects = objects;
         dx = ((int) (objects.player.phoneWidth * 0.01));
     }
+    public void load()
+    {
 
+    }
     public void update() {
         objects.player.update(objects.weapons.showSlash);
         if (objects.player.moveLeft && skyx < 0) {
@@ -30,11 +33,6 @@ public class GamePanel {
         //objects.gameMenu.update();
         objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove());
         objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
-    }
-
-    public void load()
-    {
-
     }
 
     public void draw(Canvas canvas) {
@@ -70,6 +68,10 @@ public class GamePanel {
             objects.enemyPanel.killEnemy(objects.weapons.rectSlash);
             //objects.player.allMovement(false);
             //objects.player.moveStop();
+        }
+        if(check == 5)
+        {
+            objects.player.switchStates();
         }
     }
 

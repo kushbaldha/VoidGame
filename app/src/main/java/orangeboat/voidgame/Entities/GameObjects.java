@@ -26,6 +26,10 @@ public class GameObjects
     public GameMenu gameMenu;
     public EnemyPanel enemyPanel;
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
+
+    //temp
+    public Bitmap flat = loader.get(0);
+
     int phoneHeight,phoneWidth;
     public GameObjects( Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky)
     {

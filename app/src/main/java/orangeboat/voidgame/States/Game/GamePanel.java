@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import orangeboat.voidgame.Entities.GameObjects;
 
 public class GamePanel {
+    PlatformMap map = new PlatformMap("res/lvls/text.txt");
     int moving = 0;
     int jumping = 0;
     int weapon = 0;
@@ -38,6 +39,7 @@ public class GamePanel {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
         canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
+        map.draw(canvas);
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
         objects.enemyPanel.draw(canvas);

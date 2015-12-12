@@ -44,7 +44,7 @@ public class Player
 
     Rect rectChar;
     Paint paint;
-    public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true, showSlashing = false;
+    public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true, showWeapon = false;
     public boolean state = false;
     // false is sword and true is gun
     public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap slashing, Bitmap slashingRev, Bitmap gunWalking, Bitmap gunWalkingRev)
@@ -61,7 +61,7 @@ public class Player
         charImgX = mainChar.getWidth();
         charImgY = mainChar.getHeight();
     }
-    public void update(boolean slashing) {
+    public void update(boolean weapon) {
         if (allMovement) {
             if (moveJump) {
                 if (jumpDown)
@@ -87,17 +87,18 @@ public class Player
             }
             if(!state)  // false is sword
             {
-                if (!slashing) {
-                    showSlashing = false;
+                if (!weapon) {
+                    showWeapon = false;
                 }
-                if (slashing) {
-                    showSlashing = true;
+                if (weapon) {
+                    showWeapon = true;
                     if (lastMove)
                         playerSlashingLeft.update();
                     else
                         playerSlashingRight.update();
 
-                } else {
+                }
+                else {
                     if (moveLeft) {
                         playerLeft.update();
                     }
@@ -170,7 +171,7 @@ public class Player
     public void draw(Canvas canvas)
     {
         if(!state) {
-            if (showSlashing) {
+            if (showWeapon) {
                 if (lastMove) {
                     canvas.drawBitmap(playerSlashingLeft.getImage(), charX, charY, null);
 
@@ -206,7 +207,7 @@ public class Player
         }
         if(state)
         {
-             if (moveJump) {
+            if (moveJump) {
                 if (lastMove) {
                     canvas.drawBitmap(playerGunLeftImage[4], charX, charY, null);
 
@@ -237,10 +238,6 @@ public class Player
     public int getCharY()
     {
         return charY;
-    }
-    public void setShowSlashing(boolean b)
-    {
-        showSlashing = b;
     }
     public void load()
     {
@@ -298,7 +295,14 @@ public class Player
     }
     public void switchStates()
     {
-        state = !state;
+        if(state)
+            state = false;
+        else
+        state = true;
         // false is sword and true is gun
+    }
+    public boolean getState()
+    {
+        return state;
     }
 }

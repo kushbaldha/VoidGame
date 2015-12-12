@@ -21,7 +21,7 @@ public class GamePanel {
 
     }
     public void update() {
-        objects.player.update(objects.weapons.showSlash);
+        objects.player.update(objects.weapons.getWeapon());
         if (objects.player.moveLeft && skyx < 0) {
             floorx += dx;
             skyx += dx/2;
@@ -31,7 +31,7 @@ public class GamePanel {
             skyx -= dx/2;
         }
         //objects.gameMenu.update();
-        objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove());
+        objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove(),objects.player.getState());
         objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
     }
 
@@ -63,9 +63,11 @@ public class GamePanel {
         }
         if (check == 4) {
             weapon = pointerNumber;
-            objects.weapons.setShowSlash(true);
-            objects.player.setShowSlashing(true);// actual slash animation
-            objects.enemyPanel.killEnemy(objects.weapons.rectSlash);
+            if(objects.player.getState())
+                objects.weapons.setShowGun(true); //actual gun animation
+            else
+                objects.weapons.setShowSlash(true); // actual slash animation
+            //objects.enemyPanel.killEnemy(objects.weapons.rectSlash);
             //objects.player.allMovement(false);
             //objects.player.moveStop();
         }
@@ -86,7 +88,8 @@ public class GamePanel {
         }
         if(weapon == pointerNumber)
         {
-            objects.weapons.setShowSlash(false);
+            objects.weapons.setShowGun(false); // gun animation
+            objects.weapons.setShowSlash(false); // slash animation
         }
     }
     public int getMoving()

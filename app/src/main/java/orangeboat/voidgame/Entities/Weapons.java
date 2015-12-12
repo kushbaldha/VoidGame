@@ -16,8 +16,8 @@ public class Weapons {
     int slashX, slashY, slashImgX, slashImgY;
     int shootX, shootY, shootImgX, shootImgY;
     int phoneWidth,phoneHeight;
-    public Rect rectSlash;
-    public boolean showSlash;
+    public Rect rectSlash, rectShoot;
+    public boolean showSlash = false, showGun = false;
     public Animation slash1 = new Animation();
     public Animation slash2 = new Animation();
     public Animation slash3 = new Animation();
@@ -42,7 +42,7 @@ public class Weapons {
         slashImgX = slash.getWidth() / 16;
         slashImgY = slash.getHeight();
         this.slash = slash;
-         paint = new Paint();
+        paint = new Paint();
         paint.setColor(Color.GREEN);
     }
     public void load()
@@ -73,6 +73,7 @@ public class Weapons {
         slashX = slashImgX + (phoneWidth/2);
         slashY = (int) (phoneHeight/1.49);
         rectSlash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));
+        rectShoot = new Rect(shootX, shootY ,(shootX + shootImgX),(shootY + shootImgY));
         int d = 100;
         for (int i = 0; i < slashes1.length; i++)
         {
@@ -80,23 +81,39 @@ public class Weapons {
         }
         for(int i = 0; i < shootImage.length;i++)
         {
-            shootImage[i] = Bitmap.createBitmap(fullShoot,i * 22, 0 , 22 ,2);
+            shootImage[i] = Bitmap.createBitmap(fullShoot,i * 11, 0 , 11 ,2);
         }
         shoot.setFrames(shootImage);
         shoot.setDelay(30);
     }
-    public void update(int charY, boolean lastMove)
+    public void update(int charY, boolean lastMove, boolean state)
     {
-        slashY = charY;
-        if(lastMove) {
-            slashX = slashImgX + (int)(phoneWidth / 2.5);
-        }
-        else
+        if(state) //gun state
         {
-            slashX = slashImgX + (phoneWidth / 2);
+            shootY = charY;
+            if(lastMove) {
+                shootX = shootImgX + (int)(phoneWidth / 2.5);
+            }
+            else
+            {
+                shootX = shootImgX + (phoneWidth / 2);
+            }
+            rectShoot = new Rect(shootX, shootY ,(shootX + shootImgX),(shootY + shootImgY));
+            shoot.update();
         }
-        rectSlash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));
-        slash1.update();
+        if(!state) // sword state
+        {
+            slashY = charY;
+            if(lastMove) {
+                slashX = slashImgX + (int)(phoneWidth / 2.5);
+            }
+            else
+            {
+                slashX = slashImgX + (phoneWidth / 2);
+            }
+            rectSlash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));
+            slash1.update();
+        }
         //slash2.update();
         //slash3.update();
         //slash4.update();
@@ -113,13 +130,24 @@ public class Weapons {
             //else if(moveRight)
             // canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
         }
+        if(showGun)
+        {
+            canvas.drawBitmap(shoot.getImage(), slashX, slashY, null);
+            canvas.drawRect(rectShoot,paint);
+
+        }
     }
     public void setShowSlash(boolean b)
     {
         showSlash = b;
     }
-    public boolean getShowSlash()
+
+    public void setShowGun(boolean b)
     {
-        return showSlash;
+        showGun = b;
+    }
+    public boolean getWeapon()
+    {
+        return (showGun || showSlash); // returns if Gun or Slash animation is being shown
     }
 }

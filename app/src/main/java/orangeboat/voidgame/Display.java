@@ -129,7 +129,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             // allows the draw method to start drawing Game
             showGame = true;
             // instantiates gamePanel
-            gamePanel = new GamePanel(objects);
+            gamePanel = new GamePanel(objects, resources);
             // to save memory, deletes menu
             menu.remove();
             menu = null;

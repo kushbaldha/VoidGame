@@ -17,8 +17,9 @@ public class TextLoader {
     public static String loadFile(String path, Resources resources){ //txt file loading method
         StringBuilder build = new StringBuilder();
         try{
-            InputStream iS = AssetManager.open(path);
-            //InputStream iS = this.getResources().openRawResource(path);
+            //InputStream iS = AssetManager.open(path);
+            AssetManager am = resources.getAssets();
+            InputStream iS= am.open(path);
             BufferedReader reader = new BufferedReader(new InputStreamReader(iS));
            // BufferedReader br = new BufferedReader(new FileReader(path));
             String l;

@@ -65,11 +65,11 @@ public class PlatformMap {
      */
     public Platform getTile(int x, int y){
        // Platform t = new Platform.tiles[layout[x][y]];
-        if(x<0||y<0||x>=width||y>=height){
+      if(x<0||y<0||x>=width||y>=height){
             if(layout[x][y] == 1) {
                 return Platform.flat;
             }
-        }
+      }
         //if (layout[x][y] == 0)
         return null;
     }

@@ -42,11 +42,12 @@ public class GamePanel {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
         canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
-        map.draw(canvas);
+
         objects.player.draw(canvas);
         objects.gameMenu.draw(canvas);
         objects.enemyPanel.draw(canvas);
         objects.weapons.draw(canvas);
+        map.draw(canvas);
     }
 
 

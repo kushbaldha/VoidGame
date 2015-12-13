@@ -20,6 +20,7 @@ public class TextLoader {
             //InputStream iS = AssetManager.open(path);
             AssetManager am = resources.getAssets();
             InputStream iS= am.open(path);
+            //InputStream iS = resources.getAssets.open(path);
             BufferedReader reader = new BufferedReader(new InputStreamReader(iS));
            // BufferedReader br = new BufferedReader(new FileReader(path));
             String l;

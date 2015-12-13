@@ -64,13 +64,13 @@ public class PlatformMap {
      * @return tile	tile object
      */
     public Platform getTile(int x, int y){
-        Platform t = Platform.tiles[layout[x][y]];
+       // Platform t = new Platform.tiles[layout[x][y]];
         if(x<0||y<0||x>=width||y>=height){
-            return Platform.flat;
+            if(layout[x][y] == 1) {
+                return Platform.flat;
+            }
         }
-        if (t == null){
-            return null;
-        }
-        return t;
+        //if (layout[x][y] == 0)
+        return null;
     }
 }

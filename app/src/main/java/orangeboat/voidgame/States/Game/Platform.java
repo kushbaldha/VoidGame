@@ -11,7 +11,7 @@ import orangeboat.voidgame.Entities.GameObjects;
  */
 public class Platform {
     static GameObjects objects;
-    public static Platform[] tiles = new Platform[2];
+    public static Platform[] tiles = new Platform[1];
     /**
      * image of tile
      */

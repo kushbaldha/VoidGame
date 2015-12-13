@@ -48,7 +48,7 @@ public class GamePanel {
         objects.gameMenu.draw(canvas);
         objects.enemyPanel.draw(canvas);
         objects.weapons.draw(canvas);
-        map.draw(canvas);
+        map.draw(canvas, floorx);
     }
 
 

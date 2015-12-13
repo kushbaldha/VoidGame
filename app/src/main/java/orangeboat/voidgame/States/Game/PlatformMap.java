@@ -55,11 +55,11 @@ public class PlatformMap {
             }
         }
     }
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas, int offset){
         for(int y = 0; y< height; y++){
             for(int x = 0; x < width; x++) {
                 if(getTile(x, y) != null) {
-                    canvas.drawBitmap(getTile(x, y).img, (int) (x * Platform.TW), (int) (y * Platform.TH), null);
+                    canvas.drawBitmap(getTile(x, y).img, (int) (x * Platform.TW) + offset, (int) (y * Platform.TH), null);
                 }
             }
         }

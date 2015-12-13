@@ -1,5 +1,6 @@
 package orangeboat.voidgame.States.Game;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 
 import orangeboat.voidgame.Input.TextLoader;
@@ -20,19 +21,21 @@ public class PlatformMap {
      * initial location of the player
      */
     public int spawnX, spawnY;
+    public Resources resources;
     /**
      * creates map
      * @param path
      */
-    public PlatformMap(String path){
+    public PlatformMap(String path, Resources resources){
         loadMap(path);
+        this.resources = resources;
     }
     /**
      * creates map 2d array for render purposes
      * @param path file path
      */
     private void loadMap(String path){
-        String file = TextLoader.loadFile(path);
+        String file = TextLoader.loadFile(path ,resources);
         String[] items = file.split("\\s+");
         width = TextLoader.parseInt(items[0]);
         height = TextLoader.parseInt(items[1]);

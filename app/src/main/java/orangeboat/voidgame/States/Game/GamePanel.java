@@ -1,5 +1,6 @@
 package orangeboat.voidgame.States.Game;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 
 import orangeboat.voidgame.Entities.GameObjects;
@@ -13,10 +14,10 @@ public class GamePanel {
     int floorx = 0;
     int skyx = 0;
     int dx;
-    public GamePanel(GameObjects objects) {
+    public GamePanel(GameObjects objects , Resources resources) {
         this.objects = objects;
         dx = ((int) (objects.player.phoneWidth * 0.01));
-        map = new PlatformMap("/lvls/text.txt");
+        map = new PlatformMap("/lvls/text.txt", resources);
 
     }
     public void load()

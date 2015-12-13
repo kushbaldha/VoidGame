@@ -14,7 +14,7 @@ import android.content.res.Resources;
  * Created by Jay on 12/12/2015.
  */
 public class TextLoader {
-    public static String loadFile(String path){ //txt file loading method
+    public static String loadFile(String path, Resources resources){ //txt file loading method
         StringBuilder build = new StringBuilder();
         try{
             InputStream iS = AssetManager.open(path);

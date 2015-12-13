@@ -36,8 +36,15 @@ public class GamePanel {
         }
         //objects.gameMenu.update();
         //map.update();
+
         objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove(),objects.player.getState());
         objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
+        if(objects.weapons.showSlash)
+        objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
+        int num =objects.enemyPanel.killEnemyBullet(objects.weapons.bullets);
+        if(num>=0)
+            objects.weapons.deleteBullet(num);
+
     }
 
     public void draw(Canvas canvas) {
@@ -70,13 +77,14 @@ public class GamePanel {
         }
         if (check == 4) {
             weapon = pointerNumber;
-            if(objects.player.getState())
-                objects.weapons.setShowGun(true); //actual gun animation
+            if(objects.player.getState()) {
+                objects.weapons.setShowGun(true);
+            }//actual gun animation
             else
                 objects.weapons.setShowSlash(true); // actual slash animation
-            //objects.enemyPanel.killEnemy(objects.weapons.rectSlash);
             //objects.player.allMovement(false);
             //objects.player.moveStop();
+
         }
         if(check == 5)
         {

@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import orangeboat.voidgame.Entities.GameObjects;
 
 public class GamePanel {
-    PlatformMap map = new PlatformMap("res/lvls/text.txt");
+    PlatformMap map;
     int moving = 0;
     int jumping = 0;
     int weapon = 0;
@@ -16,6 +16,7 @@ public class GamePanel {
     public GamePanel(GameObjects objects) {
         this.objects = objects;
         dx = ((int) (objects.player.phoneWidth * 0.01));
+        map = new PlatformMap("/lvls/text.txt");
     }
     public void load()
     {

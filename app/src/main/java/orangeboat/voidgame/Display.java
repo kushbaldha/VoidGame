@@ -26,6 +26,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MainThread secondthread;
     private MenuPanel menu;
     Resources resources = getResources();
+    public Bitmap flat = BitmapFactory.decodeResource(getResources(), R.drawable.leftarrow);
    /* Bitmap landie = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.tempenemy)),942,192,true); // 26 x 32 or 156 x 192
     Bitmap charAnimationLeft = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev)),630,192,true);
     Bitmap charAnimationRight = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walking)), 630, 192, true);
@@ -38,7 +39,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap slash = BitmapFactory.decodeResource(getResources(), R.drawable.slash);*/
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
-    GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky);
+    GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat);
     ImageLoader tempLoader = new ImageLoader(objects,resources);
     GamePanel gamePanel;
     boolean showMenu = true;

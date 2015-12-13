@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import orangeboat.voidgame.Display;
 import orangeboat.voidgame.R;
 
 import orangeboat.voidgame.Animation.Animation;
@@ -28,13 +29,14 @@ public class GameObjects
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
 
     //temp
-    public Bitmap flat = loader.get(0);
+    public Bitmap flat;
 
     int phoneHeight,phoneWidth;
-    public GameObjects( Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky)
+    public GameObjects( Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky, Bitmap flat)
     {
         this.gameBackgroundFloor = gameBackgroundFloor;
         this.gameBackgroundSky = gameBackgroundSky;
+        this.flat = flat;
     }
     public void update()
     {

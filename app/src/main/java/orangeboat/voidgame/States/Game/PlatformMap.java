@@ -2,8 +2,6 @@ package orangeboat.voidgame.States.Game;
 
 import android.graphics.Canvas;
 
-import org.w3c.dom.Text;
-
 import orangeboat.voidgame.Input.TextLoader;
 
 /**
@@ -17,7 +15,7 @@ public class PlatformMap {
     /**
      * map array
      */
-    public static int[][] map;
+    public static int[][] layout;
     /**
      * initial location of the player
      */
@@ -38,17 +36,14 @@ public class PlatformMap {
         String[] items = file.split("\\s+");
         width = TextLoader.parseInt(items[0]);
         height = TextLoader.parseInt(items[1]);
-        map = new int[width][height];
+        layout = new int[width][height];
         for(int y = 0; y< height; y++){
             for( int x = 0; x<width;x++){
-                map[x][y]= TextLoader.parseInt(items[(x+y*width)+2]);
+                layout[x][y]= TextLoader.parseInt(items[(x+y*width)+2]);
             }
 
         }
     }
-    /**
-     * updates
-     */
     public void draw(Canvas canvas){
         for(int y = 0; y< height; y++){
             for(int x = 0; x < width; x++) {
@@ -66,10 +61,10 @@ public class PlatformMap {
      * @return tile	tile object
      */
     public Platform getTile(int x, int y){
+        Platform t = Platform.tiles[layout[x][y]];
         if(x<0||y<0||x>=width||y>=height){
             return Platform.flat;
         }
-        Platform t = Platform.tiles[map[x][y]];
         if (t == null){
             return null;
         }

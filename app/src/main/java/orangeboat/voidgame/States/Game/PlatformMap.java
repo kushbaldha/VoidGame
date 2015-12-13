@@ -27,8 +27,8 @@ public class PlatformMap {
      * @param path
      */
     public PlatformMap(String path, Resources resources){
-        loadMap(path);
         this.resources = resources;
+        loadMap(path);
     }
     /**
      * creates map 2d array for render purposes

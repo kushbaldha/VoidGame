@@ -17,7 +17,7 @@ public class GamePanel {
     public GamePanel(GameObjects objects , Resources resources) {
         this.objects = objects;
         dx = ((int) (objects.player.phoneWidth * 0.01));
-        map = new PlatformMap("/lvls/text.txt", resources);
+        map = new PlatformMap("lvls/text.txt", resources);
 
     }
     public void load()

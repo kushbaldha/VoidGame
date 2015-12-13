@@ -3,6 +3,12 @@ package orangeboat.voidgame.Input;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import orangeboat.voidgame.R;
+
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 
 /**
  * Created by Jay on 12/12/2015.
@@ -11,12 +17,15 @@ public class TextLoader {
     public static String loadFile(String path){ //txt file loading method
         StringBuilder build = new StringBuilder();
         try{
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            InputStream iS = AssetManager.open(path);
+            //InputStream iS = this.getResources().openRawResource(path);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(iS));
+           // BufferedReader br = new BufferedReader(new FileReader(path));
             String l;
-            while((l = br.readLine()) != null)
+            while((l = reader.readLine()) != null)
                 build.append(l+ "\n");
 
-            br.close();
+            reader.close();
         }catch(IOException e){
             e.printStackTrace();
         }

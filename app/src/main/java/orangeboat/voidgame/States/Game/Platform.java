@@ -10,8 +10,6 @@ import orangeboat.voidgame.Entities.GameObjects;
  * Created by Jay on 12/12/2015.
  */
 public class Platform {
-    static GameObjects objects;
-    public static Platform[] tiles = new Platform[1];
     /**
      * image of tile
      */
@@ -37,20 +35,14 @@ public class Platform {
      */
     public static Rect hitbox;
     /**
-     * grass tile with id of 0
-     */
-    public static Platform flat = new Flat(objects.flat, 1);
-    /**
      *
      * @param img
      * @param id
-     * Sets up tile with specific id and adds to tile array
-     */
+    */
     public Platform(Bitmap img, int id){
         this.img = img;
         this.id= id;
 
-        tiles[id] = this;
     }
     /**
      *

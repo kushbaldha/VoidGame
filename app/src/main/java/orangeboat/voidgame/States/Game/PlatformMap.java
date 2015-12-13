@@ -3,12 +3,16 @@ package orangeboat.voidgame.States.Game;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 
+import orangeboat.voidgame.Entities.GameObjects;
 import orangeboat.voidgame.Input.TextLoader;
+
 
 /**
  * Created by Jay on 12/12/2015.
  */
 public class PlatformMap {
+    static GameObjects objects;
+    public static Platform flat = new Flat(objects.flat, 1);
     /**
      * size of the map
      */
@@ -17,10 +21,6 @@ public class PlatformMap {
      * map array
      */
     public static int[][] layout;
-    /**
-     * initial location of the player
-     */
-    public int spawnX, spawnY;
     public Resources resources;
     /**
      * creates map
@@ -40,17 +40,25 @@ public class PlatformMap {
         width = TextLoader.parseInt(items[0]);
         height = TextLoader.parseInt(items[1]);
         layout = new int[width][height];
-        for(int y = 0; y< height; y++){
-            for( int x = 0; x<width;x++){
+        for(int y = 0; y < height; y++){
+            for( int x = 0; x < width;x++){
                 layout[x][y]= TextLoader.parseInt(items[(x+y*width)+2]);
             }
-
+        }
+    }
+    public void update(){
+        for(int y = 0; y< height; y++){
+            for(int x = 0; x < width; x++) {
+                if(getTile(x, y).img != null) {
+                    getTile(x, y).update();
+                }
+            }
         }
     }
     public void draw(Canvas canvas){
         for(int y = 0; y< height; y++){
             for(int x = 0; x < width; x++) {
-                if(getTile(x, y).img != null) {
+                if(getTile(x, y) != null) {
                     canvas.drawBitmap(getTile(x, y).img, (int) (x * Platform.TW), (int) (y * Platform.TH), null);
                 }
             }
@@ -64,13 +72,13 @@ public class PlatformMap {
      * @return tile	tile object
      */
     public Platform getTile(int x, int y){
-       // Platform t = new Platform.tiles[layout[x][y]];
-      if(x<0||y<0||x>=width||y>=height){
+        //Platform t = Platform.tiles[layout[x][y]];
             if(layout[x][y] == 1) {
-                return Platform.flat;
+                return flat;
             }
-      }
         //if (layout[x][y] == 0)
+      //  return flat;
         return null;
+
     }
 }

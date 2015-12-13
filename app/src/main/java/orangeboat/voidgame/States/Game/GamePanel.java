@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import orangeboat.voidgame.Entities.GameObjects;
 
 public class GamePanel {
-    PlatformMap map;
+    static PlatformMap map;
     int moving = 0;
     int jumping = 0;
     int weapon = 0;
@@ -35,6 +35,7 @@ public class GamePanel {
             skyx -= dx/2;
         }
         //objects.gameMenu.update();
+        //map.update();
         objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove(),objects.player.getState());
         objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
     }

@@ -29,7 +29,7 @@ public class GameObjects
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
 
     //temp
-    public Bitmap flat;
+    public static Bitmap flat;
 
     int phoneHeight,phoneWidth;
     public GameObjects( Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky, Bitmap flat)

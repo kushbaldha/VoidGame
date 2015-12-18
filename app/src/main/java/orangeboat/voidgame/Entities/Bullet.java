@@ -41,7 +41,7 @@ public class Bullet
     public void load()
     {
         bulletX = bulletImgX + (PhoneSpecs.width/2);
-        bulletY = (int) (PhoneSpecs.height/2);
+        bulletY = (PhoneSpecs.height/2);
         rectBullet = new Rect(bulletX,bulletY,(bulletX + bulletImgX),(bulletY + bulletImgY));
         dx = ((int) (PhoneSpecs.width * 0.05));
         dy = ((int)(PhoneSpecs.height/8.5));

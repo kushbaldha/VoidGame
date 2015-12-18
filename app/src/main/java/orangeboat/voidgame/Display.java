@@ -27,16 +27,6 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MenuPanel menu;
     Resources resources = getResources();
     public Bitmap flat = BitmapFactory.decodeResource(getResources(), R.drawable.leftarrow);
-   /* Bitmap landie = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.tempenemy)),942,192,true); // 26 x 32 or 156 x 192
-    Bitmap charAnimationLeft = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walkingrev)),630,192,true);
-    Bitmap charAnimationRight = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(getResources(), R.drawable.walking)), 630, 192, true);
-    Bitmap mainChar = (Bitmap.createBitmap(charAnimationRight, 0, 0, 120, 192)); // 21 width 31 height. Scale factor is 6
-    Bitmap leftButton = BitmapFactory.decodeResource(getResources(), R.drawable.leftarrow);
-    Bitmap rightButton = BitmapFactory.decodeResource(getResources(), R.drawable.rightarrow);
-    Bitmap menuButton = BitmapFactory.decodeResource(getResources(), R.drawable.menuv2);
-    Bitmap  jumpButton =  BitmapFactory.decodeResource(getResources(), R.drawable.redbutton);
-    Bitmap okButton = BitmapFactory.decodeResource(getResources(), R.drawable.bluebutton);
-    Bitmap slash = BitmapFactory.decodeResource(getResources(), R.drawable.slash);*/
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
     GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat);

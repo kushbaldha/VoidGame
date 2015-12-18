@@ -77,11 +77,13 @@ public class EnemyPanel
                     Rect rectTemp = bulletList.get(p).getRect();
                     boolean temp = allLandies.get(i).getRectLandie().intersect(rectTemp);
                     if (temp) {
-                        allLandies.remove(i);
-                        numEnemies--;
-                        System.out.println("Killed a bogey");
-                        score++;
-                        return p;
+                        int temp1 = allLandies.get(i).hit();
+                        if(temp1 == 0)
+                        {allLandies.remove(i);
+                            numEnemies--;
+                            System.out.println("Killed a bogey bullet");
+                            score++;
+                            return p;}
                     }
                 }
             }

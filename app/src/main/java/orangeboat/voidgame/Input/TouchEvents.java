@@ -44,31 +44,33 @@ public class TouchEvents
         int action = MotionEventCompat.getActionMasked(event);
         // FIRST TOUCH
         if (MotionEvent.ACTION_DOWN == action) {
-           gamePanel.downTouch(x,y,event.getPointerId(event.getActionIndex()));
-            System.out.println("Action down!");
+           gamePanel.singleDownTouch(x,y,event.getPointerId(event.getActionIndex()));
+           /* System.out.println("Action down!");
             System.out.println(PhoneSpecs.width + " " + PhoneSpecs.height );
             System.out.println(x + " " + y);
             System.out.println(event.getPointerId(event.getActionIndex()));
-            //if(menu.rectPlay.contains(event.getX(),event.getY()))
+            //if(menu.rectPlay.contains(event.getX(),event.getY()))*/
         }
         if(MotionEvent.ACTION_UP == action)
         {
+/*
             System.out.println("Action Up");
+*/
             gamePanel.upTouch(x, y, event.getPointerId(event.getActionIndex()));
-            System.out.println(event.getPointerId(event.getActionIndex()));
+          /*  System.out.println(event.getPointerId(event.getActionIndex()));*/
         }
         // SECOND TOUCH
         if(MotionEvent.ACTION_POINTER_DOWN == action)
         {
-            gamePanel.downTouch(x,y,event.getPointerId(event.getActionIndex()));
-            System.out.println("Action Pointer down!");
+            gamePanel.singleDownTouch(x,y,event.getPointerId(event.getActionIndex()));
+            /*System.out.println("Action Pointer down!");
             System.out.println(PhoneSpecs.width + " " + PhoneSpecs.height );
             System.out.println(x + " " + y);
-            System.out.println(event.getPointerId(event.getActionIndex()));
+            System.out.println(event.getPointerId(event.getActionIndex()));*/
         }
         if(MotionEvent.ACTION_POINTER_UP == action) {
-            System.out.println("Action Pointer Up");
-            System.out.println(event.getPointerId(event.getActionIndex()));
+           /* System.out.println("Action Pointer Up");
+            System.out.println(event.getPointerId(event.getActionIndex()));*/
             gamePanel.upTouch(x, y, event.getPointerId(event.getActionIndex()));
         }
         if(MotionEvent.ACTION_MOVE == action)
@@ -81,7 +83,9 @@ public class TouchEvents
                 gamePanel.downTouch(x,y,event.getPointerId(i));
             }
             }
+/*
             System.out.println("Action Move!");
+*/
         }
     public boolean  checkMenu()
     {

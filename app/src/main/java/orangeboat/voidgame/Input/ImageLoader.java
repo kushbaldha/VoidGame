@@ -58,7 +58,7 @@ public class ImageLoader
         //WEAPONS LOAD
         temp = BitmapFactory.decodeResource(resources, R.drawable.slash);
         objects.imgLoad(temp);
-        temp = BitmapFactory.decodeResource(resources, R.drawable.shoot); //22 x 2
+        temp = BitmapFactory.decodeResource(resources, R.drawable.bullet); //60 x 10
         objects.imgLoad(temp);
         objects.weaponsLoad();
 

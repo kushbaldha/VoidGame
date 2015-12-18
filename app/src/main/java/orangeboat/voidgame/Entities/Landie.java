@@ -19,6 +19,7 @@ public class Landie
     Bitmap landieImage;
     Paint paint;
     Rect rectLandie;
+    int health;
     int phoneWidth,phoneHeight;
     int dx;
     public Landie(Animation landieAnimation, Bitmap landieImage)
@@ -29,6 +30,7 @@ public class Landie
         paint.setColor(Color.BLUE);
         landieImgX = landieImage.getWidth();
         landieImgY = landieImage.getHeight();
+        health = 10;
     }
     public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
     {
@@ -60,5 +62,10 @@ public class Landie
     public Rect getRectLandie()
     {
         return rectLandie;
+    }
+    public int hit()
+    {
+        health--;
+        return health;
     }
 }

@@ -65,7 +65,7 @@ public class GameMenu{
     public void draw(Canvas canvas) {
         canvas.drawBitmap(leftButton, leftX, leftY, null);
         canvas.drawBitmap(rightButton, rightX, rightY, null);
-        Paint paint = new Paint();
+        //Paint paint = new Paint();
         // USE THE PAINT OBJECT TO CHECK WHERE THE HITBOXES ARE
         //paint.setColor(Color.GREEN);
         //canvas.drawRect(rectRight,paint);

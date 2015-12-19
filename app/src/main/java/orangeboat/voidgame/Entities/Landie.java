@@ -22,9 +22,10 @@ public class Landie extends Enemy
     int health;
     int phoneWidth,phoneHeight;
     int dx;
-    public Landie(Animation landieAnimation, Bitmap landieImage , int id )
+    public static final int id = 2;
+    public Landie(Animation landieAnimation, Bitmap landieImage)
     {
-        super(landieImage,landieAnimation,id);
+        super(landieImage,landieAnimation);
         this.landieAnimation = landieAnimation;
         this.landieImage = landieImage;
         paint = new Paint();

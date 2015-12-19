@@ -14,7 +14,6 @@ import orangeboat.voidgame.Input.TextLoader;
 public class PlatformMap {
     static GameObjects objects;
     public static Platform flat = new Flat(objects.flat, 1);
-    public static Landie landie = new Landie(objects.enemyPanel.landieAnimation,objects.enemyPanel.singleLandieImage , 2);
     /**
      * size of the map
      */
@@ -45,9 +44,6 @@ public class PlatformMap {
         for(int y = 0; y < height; y++){
             for( int x = 0; x < width;x++){
                 layout[x][y]= TextLoader.parseInt(items[(x+y*width)+2]);
-                if(getEnemy(x, y).img != null) {
-
-                }
             }
         }
     }
@@ -65,6 +61,9 @@ public class PlatformMap {
             for(int x = 0; x < width; x++) {
                 if(getTile(x, y) != null) {
                     canvas.drawBitmap(getTile(x, y).img, (int) (x * Platform.TW) + offset, (int) (y * Platform.TH), null);
+                }
+                if(getEnemy(x, y) != null){
+                    canvas.drawBitmap(getEnemy(x, y).img, (int) (x * Platform.TW) + offset, (int) (y * Platform.TH), null);
                 }
             }
         }
@@ -88,8 +87,10 @@ public class PlatformMap {
     }
     public Landie getEnemy(int x , int y)
     {
-        if(layout[x][y] == 2)
-            return landie;
+        if(layout[x][y] == Landie.id){
+            return objects.enemyPanel.allLandies.get(0);
+        }
+
         return null;
     }
 }

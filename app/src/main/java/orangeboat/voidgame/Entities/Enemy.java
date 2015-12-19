@@ -19,10 +19,6 @@ public class Enemy
      */
     protected Animation animation;
     /**
-     * num id of enemy
-     */
-    protected final int id;
-    /**
      * x location of tile
      */
     public int x;
@@ -39,10 +35,9 @@ public class Enemy
      */
     public static Rect hitbox;
 
-    public Enemy(Bitmap img, Animation animation,int id){
+    public Enemy(Bitmap img, Animation animation){
         this.img = img;
         this.animation = animation;
-        this.id= id;
         TW = img.getWidth();
         TH = img.getHeight();
     }

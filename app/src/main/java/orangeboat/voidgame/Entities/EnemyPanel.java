@@ -15,7 +15,7 @@ public class EnemyPanel
 {
     int score = 0;
     int numEnemies = 0;
-    public ArrayList <Landie> allLandies = new ArrayList<>();
+    public ArrayList <Landie> allLandies;
     Bitmap fullLandieImage;
     public Bitmap singleLandieImage;
     Bitmap [] landieImage = new Bitmap[6];
@@ -25,6 +25,7 @@ public class EnemyPanel
     {
         this.fullLandieImage = landie;
         singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
+        allLandies = new ArrayList<>();
     }
     public void update(int skyx, int levellength)
     {
@@ -46,6 +47,7 @@ public class EnemyPanel
         }
         landieAnimation.setFrames(landieImage);
         landieAnimation.setDelay(120);
+        allLandies.add(0, new Landie(landieAnimation, singleLandieImage));
     }
     public void killEnemySword(Rect weaponHitbox)
     {
@@ -98,10 +100,12 @@ public class EnemyPanel
         moveRight = false;
     }
     public void draw(Canvas canvas) {
+        /*
         for(int i = 0; i < allLandies.size();i++)
         {
 
            allLandies.get(i).draw(canvas);
         }
+        */
     }
 }

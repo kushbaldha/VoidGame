@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 
 import orangeboat.voidgame.Entities.GameObjects;
+import orangeboat.voidgame.Entities.Landie;
 import orangeboat.voidgame.Input.TextLoader;
 
 
@@ -13,6 +14,7 @@ import orangeboat.voidgame.Input.TextLoader;
 public class PlatformMap {
     static GameObjects objects;
     public static Platform flat = new Flat(objects.flat, 1);
+    public static Landie landie = new Landie(objects.enemyPanel.landieAnimation,objects.enemyPanel.singleLandieImage , 2);
     /**
      * size of the map
      */
@@ -43,6 +45,9 @@ public class PlatformMap {
         for(int y = 0; y < height; y++){
             for( int x = 0; x < width;x++){
                 layout[x][y]= TextLoader.parseInt(items[(x+y*width)+2]);
+                if(getEnemy(x, y).img != null) {
+
+                }
             }
         }
     }
@@ -80,5 +85,11 @@ public class PlatformMap {
       //  return flat;
         return null;
 
+    }
+    public Landie getEnemy(int x , int y)
+    {
+        if(layout[x][y] == 2)
+            return landie;
+        return null;
     }
 }

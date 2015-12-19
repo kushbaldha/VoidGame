@@ -17,7 +17,8 @@ import orangeboat.voidgame.PhoneSpecs;
 public class Weapons {
     int slashX, slashY, slashImgX, slashImgY;
     int shootX, shootY, shootImgX, shootImgY;
-    int phoneWidth,phoneHeight;
+    int phoneWidth, phoneHeight;
+    int gunWait = 0;
     public Rect rectSlash, rectShoot;
     public boolean showSlash = false, showGun = false;
 
@@ -37,8 +38,7 @@ public class Weapons {
 
     Paint paint;
 
-    public Weapons(Bitmap slash, Bitmap shoot)
-    {
+    public Weapons(Bitmap slash, Bitmap shoot) {
         fullShoot = shoot;
         shootImgX = shoot.getWidth();
         shootImgY = shoot.getHeight();
@@ -48,47 +48,49 @@ public class Weapons {
         paint = new Paint();
         paint.setColor(Color.GREEN);
     }
-    public void load()
-    {
-        phoneWidth=  (PhoneSpecs.width);
-        phoneHeight=  (PhoneSpecs.height);
+
+    public void load() {
+        phoneWidth = (PhoneSpecs.width);
+        phoneHeight = (PhoneSpecs.height);
         slash1.setFrames(slashes1);
         slash1.setDelay(30);
 
-        slashX = slashImgX + (phoneWidth/2);
-        slashY = (int) (phoneHeight/1.49);
-        rectSlash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));
-        rectShoot = new Rect(shootX, shootY ,(shootX + shootImgX),(shootY + shootImgY));
+        slashX = slashImgX + (phoneWidth / 2);
+        slashY = (int) (phoneHeight / 1.49);
+        rectSlash = new Rect(slashX, slashY, (slashX + slashImgX), (slashY + slashImgY));
+        rectShoot = new Rect(shootX, shootY, (shootX + shootImgX), (shootY + shootImgY));
         int d = 100;
-        for (int i = 0; i < slashes1.length; i++)
-        {
-            slashes1[i] = Bitmap.createBitmap(slash,i * d, 0 ,d,d);
+        for (int i = 0; i < slashes1.length; i++) {
+            slashes1[i] = Bitmap.createBitmap(slash, i * d, 0, d, d);
         }
     }
-    public void update(int charY, boolean lastMove, boolean state)
-    {
-        if(state) //gun state
+
+    public void update(int charY, boolean lastMove, boolean state) {
+        if (state) //gun state
         {
             shootY = charY;
-            if(showGun)
-                shootBullet(lastMove);
-                for (int i = 0; i < bullets.size(); i++) {
-                    bullets.get(i).update(charY);
+            if (showGun) {
+                gunWait++;
+                if (gunWait == 10) {
+                    shootBullet(lastMove);
+                    gunWait = 0;
                 }
+            }
+            for (int i = 0; i < bullets.size(); i++) {
+                bullets.get(i).update(charY);
+            }
 
-            rectShoot = new Rect(shootX, shootY ,(shootX + shootImgX),(shootY + shootImgY));
+            rectShoot = new Rect(shootX, shootY, (shootX + shootImgX), (shootY + shootImgY));
         }
-        if(!state) // sword state
+        if (!state) // sword state
         {
             slashY = charY;
-            if(lastMove) {
-                slashX = slashImgX + (int)(phoneWidth / 2.5);
-            }
-            else
-            {
+            if (lastMove) {
+                slashX = slashImgX + (int) (phoneWidth / 2.5);
+            } else {
                 slashX = slashImgX + (phoneWidth / 2);
             }
-            rectSlash = new Rect(slashX, slashY,(slashX + slashImgX),(slashY + slashImgY));
+            rectSlash = new Rect(slashX, slashY, (slashX + slashImgX), (slashY + slashImgY));
             slash1.update();
         }
         deleteBullet(-1);
@@ -97,10 +99,9 @@ public class Weapons {
         //slash4.update();
 
     }
-    public void draw(Canvas canvas)
-    {
-        if(showSlash)
-        {
+
+    public void draw(Canvas canvas) {
+        if (showSlash) {
             //if(moveLeft)
             canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
             //canvas.drawRect(rectSlash,paint);
@@ -108,33 +109,31 @@ public class Weapons {
             //else if(moveRight)
             // canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
         }
-        for(int i = 0; i < bullets.size();i++)
-        {
+        for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw(canvas);
         }
     }
-    public void setShowSlash(boolean b)
-    {
+
+    public void setShowSlash(boolean b) {
         showSlash = b;
     }
 
-    public void setShowGun(boolean b)
-    {
+    public void setShowGun(boolean b) {
         showGun = b;
     }
-    public boolean getWeapon()
-    {
+
+    public boolean getWeapon() {
         return (showGun || showSlash); // returns if Gun or Slash animation is being shown
     }
-    public void shootBullet(boolean lastMove)
-    {
-        Bullet temp = new Bullet(fullShoot,lastMove);
+
+    public void shootBullet(boolean lastMove) {
+        Bullet temp = new Bullet(fullShoot, lastMove);
         temp.load();
         bullets.add(temp);
     }
-    public void deleteBullet(int num)
-    {
-        if(num>=0)
+
+    public void deleteBullet(int num) {
+        if (num >= 0)
             bullets.remove(num);
         else {
 

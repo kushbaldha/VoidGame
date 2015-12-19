@@ -17,9 +17,9 @@ public class EnemyPanel
     int numEnemies = 0;
     public ArrayList <Landie> allLandies = new ArrayList<>();
     Bitmap fullLandieImage;
-    Bitmap singleLandieImage;
+    public Bitmap singleLandieImage;
     Bitmap [] landieImage = new Bitmap[6];
-    Animation landieAnimation = new Animation();
+    public Animation landieAnimation = new Animation();
     boolean moveLeft = false, moveRight;
     public EnemyPanel(Bitmap landie)
     {
@@ -28,13 +28,6 @@ public class EnemyPanel
     }
     public void update(int skyx, int levellength)
     {
-        if(numEnemies<=0) {
-            Landie temp = new Landie(landieAnimation,singleLandieImage);
-            temp.load();
-            allLandies.add(temp);
-            temp = null;
-            numEnemies++;
-        }
         for(int i = 0; i < allLandies.size();i++)
         {
             allLandies.get(i).update(moveLeft,moveRight, skyx, levellength);

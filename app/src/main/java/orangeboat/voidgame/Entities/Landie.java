@@ -12,7 +12,7 @@ import orangeboat.voidgame.PhoneSpecs;
 /**
  * Created by Kush on 11/30/2015.
  */
-public class Landie
+public class Landie extends Enemy
 {
     int landieX,landieY,landieImgX,landieImgY;
     Animation landieAnimation;
@@ -22,15 +22,16 @@ public class Landie
     int health;
     int phoneWidth,phoneHeight;
     int dx;
-    public Landie(Animation landieAnimation, Bitmap landieImage)
+    public Landie(Animation landieAnimation, Bitmap landieImage , int id )
     {
+        super(landieImage,landieAnimation,id);
         this.landieAnimation = landieAnimation;
         this.landieImage = landieImage;
         paint = new Paint();
         paint.setColor(Color.BLUE);
         landieImgX = landieImage.getWidth();
         landieImgY = landieImage.getHeight();
-        health = 10;
+        health = 10; // takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
     }
     public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
     {

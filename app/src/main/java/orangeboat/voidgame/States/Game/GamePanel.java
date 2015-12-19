@@ -22,7 +22,7 @@ public class GamePanel {
     }
     public void load()
     {
-
+        map.loadMap(objects, floorx);
     }
     public void update() {
         objects.player.update(objects.weapons.getWeapon());

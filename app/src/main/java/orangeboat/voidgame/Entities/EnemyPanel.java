@@ -15,7 +15,7 @@ public class EnemyPanel
 {
     int score = 0;
     int numEnemies = 0;
-    public ArrayList <Landie> allLandies;
+    public ArrayList <Enemy> allLandies;
     Bitmap fullLandieImage;
     public Bitmap singleLandieImage;
     Bitmap [] landieImage = new Bitmap[6];
@@ -31,7 +31,7 @@ public class EnemyPanel
     {
         for(int i = 0; i < allLandies.size();i++)
         {
-            allLandies.get(i).update(moveLeft,moveRight, skyx, levellength);
+            ((Landie)(allLandies.get(i))).update(moveLeft, moveRight, skyx, levellength);
         }
        // if(score == somenumber)
         // spawn an enemy. create a landie object with passing animation in.
@@ -49,11 +49,15 @@ public class EnemyPanel
         landieAnimation.setDelay(120);
         allLandies.add(0, new Landie(landieAnimation, singleLandieImage));
     }
+    public void loadList(ArrayList<Enemy> landieArrayList)
+    {
+        allLandies = landieArrayList;
+    }
     public void killEnemySword(Rect weaponHitbox)
     {
             for(int i = 0; i < allLandies.size();i++)
             {
-                boolean temp = allLandies.get(i).getRectLandie().intersect(weaponHitbox);
+                boolean temp = ((Landie)(allLandies.get(i))).getRectLandie().intersect(weaponHitbox);
                 if(temp)
                 {
                     allLandies.remove(i);
@@ -70,9 +74,9 @@ public class EnemyPanel
             for (int i = 0; i < allLandies.size(); i++) {
                 for (int p = 0; p < bulletList.size(); p++) {
                     Rect rectTemp = bulletList.get(p).getRect();
-                    boolean temp = allLandies.get(i).getRectLandie().intersect(rectTemp);
+                    boolean temp = ((Landie)(allLandies.get(i))).getRectLandie().intersect(rectTemp);
                     if (temp) {
-                        int temp1 = allLandies.get(i).hit();
+                        int temp1 = ((Landie)(allLandies.get(i))).hit();
                         if(temp1 == 0)
                         {allLandies.remove(i);
                             numEnemies--;
@@ -100,12 +104,12 @@ public class EnemyPanel
         moveRight = false;
     }
     public void draw(Canvas canvas) {
-        /*
+
         for(int i = 0; i < allLandies.size();i++)
         {
 
-           allLandies.get(i).draw(canvas);
+            ((Landie)(allLandies.get(i))).draw(canvas);
         }
-        */
+
     }
 }

@@ -14,7 +14,7 @@ import orangeboat.voidgame.PhoneSpecs;
  */
 public class Landie extends Enemy
 {
-    int landieX,landieY,landieImgX,landieImgY;
+    int landieX,landieY;
     Animation landieAnimation;
     Bitmap landieImage;
     Paint paint;
@@ -30,8 +30,6 @@ public class Landie extends Enemy
         this.landieImage = landieImage;
         paint = new Paint();
         paint.setColor(Color.BLUE);
-        landieImgX = landieImage.getWidth();
-        landieImgY = landieImage.getHeight();
         health = 10; // takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
     }
     public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
@@ -45,16 +43,16 @@ public class Landie extends Enemy
             landieX += dx;
         }
         landieAnimation.update();
-        rectLandie = new Rect(landieX,landieY,(landieX+landieImgX),(landieY+landieImgY));
+        rectLandie = new Rect(landieX,landieY,(landieX+TH),(landieY+TH));
     }
-    public void load()
+    public void load(int landieX, int landieY, int offset)
     {
         phoneWidth=  (PhoneSpecs.width);
         phoneHeight=  (PhoneSpecs.height);
         dx = ((int) (phoneWidth * 0.01));
-        landieX = (int) (phoneWidth/1.5);
-        landieY = (int)(phoneWidth/2.5);
-        rectLandie = new Rect(landieX,landieY,(landieX+landieImgX),(landieY+landieImgY));
+        this.landieX = landieX + offset;
+        this.landieY = landieY;
+        rectLandie = new Rect(landieX,landieY,(landieX+TW),(landieY+TH));
     }
     public void draw(Canvas canvas)
     {

@@ -3,6 +3,9 @@ package orangeboat.voidgame.States.Game;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 
+import java.util.ArrayList;
+
+import orangeboat.voidgame.Entities.Enemy;
 import orangeboat.voidgame.Entities.GameObjects;
 import orangeboat.voidgame.Entities.Landie;
 import orangeboat.voidgame.Input.TextLoader;
@@ -13,7 +16,11 @@ import orangeboat.voidgame.Input.TextLoader;
  */
 public class PlatformMap {
     static GameObjects objects;
+    int offset;
     public static Platform flat = new Flat(objects.flat, 1);
+    public static Landie landie;
+    String path;
+    public ArrayList<Enemy> allLandies = new ArrayList<>();
     /**
      * size of the map
      */
@@ -29,13 +36,14 @@ public class PlatformMap {
      */
     public PlatformMap(String path, Resources resources){
         this.resources = resources;
-        loadMap(path);
+        this.path = path;
     }
     /**
      * creates map 2d array for render purposes
-     * @param path file path
      */
-    private void loadMap(String path){
+    public void loadMap(GameObjects objects , int offset){
+        this.offset = offset;
+        landie = new Landie(objects.enemyPanel.landieAnimation,objects.enemyPanel.singleLandieImage);
         String file = TextLoader.loadFile(path ,resources);
         String[] items = file.split("\\s+");
         width = TextLoader.parseInt(items[0]);
@@ -44,8 +52,13 @@ public class PlatformMap {
         for(int y = 0; y < height; y++){
             for( int x = 0; x < width;x++){
                 layout[x][y]= TextLoader.parseInt(items[(x+y*width)+2]);
+                if(getEnemy(x, y) != null){
+                    allLandies.add(getEnemy(x,y));
+                }
             }
+            objects.enemyPanel.loadList(allLandies);
         }
+        allLandies = null;
     }
     public void update(){
         for(int y = 0; y< height; y++){
@@ -61,9 +74,6 @@ public class PlatformMap {
             for(int x = 0; x < width; x++) {
                 if(getTile(x, y) != null) {
                     canvas.drawBitmap(getTile(x, y).img, (int) (x * Platform.TW) + offset, (int) (y * Platform.TH), null);
-                }
-                if(getEnemy(x, y) != null){
-                    canvas.drawBitmap(getEnemy(x, y).img, (int) (x * Platform.TW) + offset, (int) (y * Platform.TH), null);
                 }
             }
         }
@@ -85,10 +95,13 @@ public class PlatformMap {
         return null;
 
     }
-    public Landie getEnemy(int x , int y)
+    public Enemy getEnemy(int x , int y)
     {
         if(layout[x][y] == Landie.id){
-            return objects.enemyPanel.allLandies.get(0);
+            int landieX = (x * Platform.TW);
+            int landieY =  (y * Platform.TH);
+            landie.load(landieX,landieY,offset);
+            return landie;
         }
 
         return null;

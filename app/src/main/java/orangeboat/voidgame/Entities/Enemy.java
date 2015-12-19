@@ -1,6 +1,9 @@
 package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import orangeboat.voidgame.Animation.Animation;
@@ -27,22 +30,37 @@ public class Enemy
      */
     public int y;
     /**
-     * size of enemy
+     * health of enemy
      */
+    public int health;
     public static int TW,TH;
     /**
      * hitbox of enemy
      */
     public static Rect hitbox;
-
-    public Enemy(Bitmap img, Animation animation){
+    Paint paint = new Paint();
+    public Enemy(Bitmap img, Animation animation , int health){
         this.img = img;
         this.animation = animation;
         TW = img.getWidth();
         TH = img.getHeight();
+        this.health = health;
+        paint.setColor(Color.BLUE);
     }
     public void update(){
-        hitbox = new Rect(x, y, TW, TH);
+        hitbox = new Rect(x, y, x + TW, y + TH);
     }
-
+    public int hit()
+    {
+        health--;
+        return health;
+    }
+    public Rect getHitbox()
+    {
+        return hitbox;
+    }
+    public void draw(Canvas canvas)
+    {
+        canvas.drawRect(hitbox,paint);
+    }
 }

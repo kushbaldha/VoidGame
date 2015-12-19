@@ -34,28 +34,30 @@ public class GamePanel {
             floorx -= dx;
             skyx -= dx/2;
         }
-        //objects.gameMenu.update();
-        //map.update();
-
         objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove(),objects.player.getState());
         objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
+
         if(objects.weapons.showSlash)
         objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
+
         int num =objects.enemyPanel.killEnemyBullet(objects.weapons.bullets);
         if(num>=0)
             objects.weapons.deleteBullet(num);
-
+        if(objects.enemyPanel.checkEnemyKill(objects.player.rectChar))
+        {
+            objects.player.allMovement(false);
+        }
     }
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
         canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
-
         objects.player.draw(canvas);
-        objects.gameMenu.draw(canvas);
         objects.enemyPanel.draw(canvas);
         objects.weapons.draw(canvas);
         map.draw(canvas, floorx);
+        objects.gameMenu.draw(canvas);
+
     }
 
 
@@ -112,11 +114,15 @@ public class GamePanel {
                 objects.weapons.setShowSlash(true); // actual slash animation
             //objects.player.allMovement(false);
             //objects.player.moveStop();
-
         }
         if(check == 5)
         {
+            objects.player.allMovement(false);
+        }
+        if(check == 6)
+        {
             objects.player.switchStates();
+            objects.gameMenu.switchStates();
         }
     }
     public void upTouch(int x, int y,int pointerNumber) {

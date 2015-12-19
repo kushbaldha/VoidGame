@@ -14,58 +14,45 @@ import orangeboat.voidgame.PhoneSpecs;
  */
 public class Landie extends Enemy
 {
-    int landieX,landieY;
     Animation landieAnimation;
     Bitmap landieImage;
-    Paint paint;
-    Rect rectLandie;
-    int health;
-    int phoneWidth,phoneHeight;
+    int phoneWidth;
     int dx;
     public static final int id = 2;
-    public Landie(Animation landieAnimation, Bitmap landieImage)
+    public Landie(Animation landieAnimation, Bitmap landieImage , int health)
     {
-        super(landieImage,landieAnimation);
+        super(landieImage,landieAnimation , health);// takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
         this.landieAnimation = landieAnimation;
         this.landieImage = landieImage;
-        paint = new Paint();
-        paint.setColor(Color.BLUE);
-        health = 10; // takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
     }
     public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
     {
         if(moveLeft && skyx > levellength)
         {
-            landieX -= dx;
+            x -= dx;
         }
         else if(moveRight && skyx < 0)
         {
-            landieX += dx;
+            x += dx;
         }
         landieAnimation.update();
-        rectLandie = new Rect(landieX,landieY,(landieX+TH),(landieY+TH));
+        super.update();
     }
     public void load(int landieX, int landieY, int offset)
     {
         phoneWidth=  (PhoneSpecs.width);
-        phoneHeight=  (PhoneSpecs.height);
         dx = ((int) (phoneWidth * 0.01));
-        this.landieX = landieX + offset;
-        this.landieY = landieY;
-        rectLandie = new Rect(landieX,landieY,(landieX+TW),(landieY+TH));
+        x = landieX + offset;
+        y= landieY;
+        super.update();
     }
     public void draw(Canvas canvas)
     {
-        canvas.drawRect(rectLandie,paint);
-        canvas.drawBitmap(landieAnimation.getImage(),landieX, landieY,null);
+        canvas.drawBitmap(landieAnimation.getImage(),x, y,null);
+        super.draw(canvas);
     }
     public Rect getRectLandie()
     {
-        return rectLandie;
-    }
-    public int hit()
-    {
-        health--;
-        return health;
+        return hitbox;
     }
 }

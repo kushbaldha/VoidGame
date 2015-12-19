@@ -42,7 +42,7 @@ public class Player
     public Animation playerGunRight = new Animation();
 
 
-    Rect rectChar;
+    public Rect rectChar;
     Paint paint;
     public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true, showWeapon = false;
     public boolean state = false;
@@ -295,10 +295,7 @@ public class Player
     }
     public void switchStates()
     {
-        if(state)
-            state = false;
-        else
-        state = true;
+        state = !state;
         // false is sword and true is gun
     }
     public boolean getState()

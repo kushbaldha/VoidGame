@@ -43,7 +43,7 @@ public class PlatformMap {
      */
     public void loadMap(GameObjects objects , int offset){
         this.offset = offset;
-        landie = new Landie(objects.enemyPanel.landieAnimation,objects.enemyPanel.singleLandieImage);
+        landie = new Landie(objects.enemyPanel.landieAnimation,objects.enemyPanel.singleLandieImage, 10);
         String file = TextLoader.loadFile(path ,resources);
         String[] items = file.split("\\s+");
         width = TextLoader.parseInt(items[0]);

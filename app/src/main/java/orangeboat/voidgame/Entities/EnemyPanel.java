@@ -47,7 +47,6 @@ public class EnemyPanel
         }
         landieAnimation.setFrames(landieImage);
         landieAnimation.setDelay(120);
-        allLandies.add(0, new Landie(landieAnimation, singleLandieImage));
     }
     public void loadList(ArrayList<Enemy> landieArrayList)
     {
@@ -57,7 +56,7 @@ public class EnemyPanel
     {
             for(int i = 0; i < allLandies.size();i++)
             {
-                boolean temp = ((Landie)(allLandies.get(i))).getRectLandie().intersect(weaponHitbox);
+                boolean temp = (allLandies.get(i)).getHitbox().intersect(weaponHitbox);
                 if(temp)
                 {
                     allLandies.remove(i);
@@ -76,7 +75,7 @@ public class EnemyPanel
                     Rect rectTemp = bulletList.get(p).getRect();
                     boolean temp = ((Landie)(allLandies.get(i))).getRectLandie().intersect(rectTemp);
                     if (temp) {
-                        int temp1 = ((Landie)(allLandies.get(i))).hit();
+                        int temp1 = (allLandies.get(i).hit());
                         if(temp1 == 0)
                         {allLandies.remove(i);
                             numEnemies--;
@@ -87,6 +86,15 @@ public class EnemyPanel
                 }
             }
         return -1;
+    }
+    public boolean checkEnemyKill(Rect rectChar) {
+        for (int i = 0; i < allLandies.size(); i++) {
+                if(rectChar.intersect(allLandies.get(i).hitbox))
+                {
+                    return true;
+                }
+        }
+        return false;
     }
     public void moveLeft()
     {

@@ -92,7 +92,7 @@ public class GameMenu{
         // USE THE PAINT OBJECT TO CHECK WHERE THE HITBOXES ARE
         //paint.setColor(Color.GREEN);
         //canvas.drawRect(rectRight,paint);
-         paint.setColor(Color.RED);
+        // paint.setColor(Color.RED);
         // canvas.drawRect(rectLeft,paint);
 //        canvas.drawBitmap(menuButton,menuX,menuY,null);
         canvas.drawBitmap(jumpButton, jumpX, jumpY, null);
@@ -103,9 +103,9 @@ public class GameMenu{
         canvas.drawBitmap(menuButton, menuX, menuY, null);
         canvas.drawBitmap(okButton, okX, okY, null);
        if(showGun)
-            canvas.drawBitmap(gunButton, swordX, swordY, null);
+            canvas.drawBitmap(swordButton, swordX, swordY, null);
        else
-           canvas.drawBitmap(swordButton,swordX,swordY,null);
+           canvas.drawBitmap(gunButton,swordX,swordY,null);
         canvas.drawBitmap(healthBar,healthBarX,healthBarY,null);
         //canvas.drawRect(rectWeapons,paint);
 

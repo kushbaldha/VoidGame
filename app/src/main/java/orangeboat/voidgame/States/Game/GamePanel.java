@@ -45,7 +45,7 @@ public class GamePanel {
             objects.weapons.deleteBullet(num);
         if(objects.enemyPanel.checkEnemyKill(objects.player.rectChar))
         {
-            objects.player.allMovement(false);
+           // objects.player.allMovement(false);
         }
     }
 

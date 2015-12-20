@@ -16,6 +16,7 @@ public class GamePanel {
     int floorx = 0;
     int skyx = 0;
     int dx;
+    int timer;
     Random rand = new Random();
 
     public GamePanel(GameObjects objects , Resources resources) {
@@ -47,9 +48,16 @@ public class GamePanel {
         int num =objects.enemyPanel.killEnemyBullet(objects.weapons.bullets);
         if(num>=0)
             objects.weapons.deleteBullet(num);
-        if(objects.enemyPanel.checkEnemyKill(objects.player.rectChar))
+        if(timer > 0)
         {
+            timer--;
         }
+        if(objects.enemyPanel.checkEnemyKill(objects.player.rectChar) && timer == 0)
+        {
+            objects.player.hit();
+            timer = 30;
+        }
+        objects.gameMenu.update(objects.player.health);
     }
 
     public void draw(Canvas canvas) {
@@ -116,9 +124,7 @@ public class GamePanel {
             else {
                 objects.weapons.randomSlash = rand.nextInt(3);
                 objects.weapons.setShowSlash(true);
-            }// actual slash animation
-            //objects.player.allMovement(false);
-            //objects.player.moveStop();
+            }
         }
         if(check == 5)
         {

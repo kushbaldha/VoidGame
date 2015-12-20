@@ -61,6 +61,6 @@ public class Enemy
     }
     public void draw(Canvas canvas)
     {
-        canvas.drawRect(hitbox,paint);
+        //canvas.drawRect(hitbox,paint);
     }
 }

@@ -5,10 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-
 import java.util.ArrayList;
 
-import orangeboat.voidgame.Animation.Animation;
 import orangeboat.voidgame.PhoneSpecs;
 
 public class GameMenu{
@@ -18,7 +16,7 @@ public class GameMenu{
     int leftImgX, leftImgY, rightImgX, rightImgY, menuImgX, menuImgY, jumpImgX, jumpImgY, okImgX, okImgY, swordImageX, swordImageY, gunImageX, gunImageY, healthBarImageX, healthBarImageY;
     int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY,swordX,swordY,healthBarX,healthBarY;
     Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectWeapons;
-    int healthRectX, healthRectY;
+    int healthRectX, healthRectY, healthToDraw;
     boolean showGun = false;
     ArrayList<Rect> healthRects = new ArrayList <>();
     Paint paint;
@@ -52,8 +50,9 @@ public class GameMenu{
         healthBarImageY = healthBar.getHeight();
     }
 
-    public void update() {
-
+    public void update(int health)
+    {
+        healthToDraw = health;
     }
 
     public void load() {
@@ -77,13 +76,15 @@ public class GameMenu{
         swordX = phoneWidth - (int) (jumpImgX * 1.1);
         swordY = 0;
         rectWeapons = new Rect(swordX, swordY, (swordX + swordImageX),(swordY + swordImageY));
-        healthBarX = phoneWidth/2 -healthBarImageX/2;
+        healthBarX = phoneWidth/2 - healthBarImageX/2;
         healthBarY = 0;
         healthRectX = 114;
-        healthRectY = 48;
-        for(int i = 0; i <= 6; i++)
+        healthRectY = 50;
+        int temp;
+        for(int i = 0; i < 6; i++)
         {
-            healthRects.add(new Rect(i * (healthRectX)+healthBarX+16 +(i * 16),(healthRectY) + healthBarY + 16, healthRectX , healthRectY));
+            temp = i * (healthRectX) + (i* 16)+healthBarX+16;
+            healthRects.add(new Rect(temp,16 , temp + healthRectX , healthRectY));
         }
     }
 
@@ -91,18 +92,7 @@ public class GameMenu{
 
         canvas.drawBitmap(leftButton, leftX, leftY, null);
         canvas.drawBitmap(rightButton, rightX, rightY, null);
-        //Paint paint = new Paint();
-        // USE THE PAINT OBJECT TO CHECK WHERE THE HITBOXES ARE
-        //paint.setColor(Color.GREEN);
-        //canvas.drawRect(rectRight,paint);
-        // paint.setColor(Color.RED);
-        // canvas.drawRect(rectLeft,paint);
-//        canvas.drawBitmap(menuButton,menuX,menuY,null);
         canvas.drawBitmap(jumpButton, jumpX, jumpY, null);
-        //paint.setColor(Color.GREEN);
-        //canvas.drawRect(rectJump,paint);
-        //paint.setColor(Color.RED);
-        // canvas.drawRect(rectOk,paint);
         canvas.drawBitmap(menuButton, menuX, menuY, null);
         canvas.drawBitmap(okButton, okX, okY, null);
        if(showGun)
@@ -110,13 +100,7 @@ public class GameMenu{
        else
            canvas.drawBitmap(gunButton,swordX,swordY,null);
         canvas.drawBitmap(healthBar,healthBarX,healthBarY,null);
-        //canvas.drawRect(rectWeapons,paint);
-
-//        canvas.drawRect(rectLeft, paint);
-//        canvas.drawRect(rectRight,paint);
-//        canvas.drawRect(rectMenu,paint);
-//        canvas.drawRect(rectJump,paint);
-        for(int i = 0; i < healthRects.size(); i++)
+        for(int i = 0; i < healthToDraw; i++)
         {
             canvas.drawRect(healthRects.get(i),paint);
         }

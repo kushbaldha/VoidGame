@@ -58,7 +58,7 @@ public class GameObjects
     }
     public void playerLoad()
     {
-        player = new Player(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5),loader.get(6));
+        player = new Player(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5),loader.get(6) ,6);
         loader.clear();
     }
     public void gameMenuLoad()

@@ -14,6 +14,7 @@ public class Player
     public int phoneHeight,phoneWidth;
     int charX,charY,charImgX,charImgY;
     int dy,max = 0;
+    public int health;
     Bitmap mainChar;
 
 
@@ -47,7 +48,7 @@ public class Player
     public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false,stoppingMoveJump=false,jumpDown = false,allMovement = true, showWeapon = false;
     public boolean state = false;
     // false is sword and true is gun
-    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap slashing, Bitmap slashingRev, Bitmap gunWalking, Bitmap gunWalkingRev)
+    public Player(Bitmap mainChar,Bitmap charAnimationLeft, Bitmap charAnimationRight, Bitmap slashing, Bitmap slashingRev, Bitmap gunWalking, Bitmap gunWalkingRev , int health)
     {
         fullPlayerSwordLeftImage = charAnimationLeft;
         fullPlayerSwordRightImage = charAnimationRight;
@@ -60,6 +61,7 @@ public class Player
         this.mainChar = mainChar;
         charImgX = mainChar.getWidth();
         charImgY = mainChar.getHeight();
+        this.health = health;
     }
     public void update(boolean weapon) {
         if (allMovement) {
@@ -170,7 +172,8 @@ public class Player
     }
     public void draw(Canvas canvas)
     {
-        if(!state) {
+        if(!state) // Sword state
+         {
             if (showWeapon) {
                 if (lastMove) {
                     canvas.drawBitmap(playerSlashingLeft.getImage(), charX, charY, null);
@@ -205,11 +208,11 @@ public class Player
                 }
             }
         }
-        if(state)
+        if(state) // Gun state
         {
             if (moveJump) {
                 if (lastMove) {
-                    canvas.drawBitmap(playerGunLeftImage[4], charX, charY, null);
+                    canvas.drawBitmap(playerGunLeftImage[1], charX, charY, null);
 
                 } else {
                     canvas.drawBitmap(playerGunRightImage[4], charX, charY, null);
@@ -225,7 +228,7 @@ public class Player
             else {
                 //checks which way character was facing last.
                 if (lastMove) {
-                    canvas.drawBitmap(playerGunLeftImage[0], charX, charY, null);
+                    canvas.drawBitmap(playerGunLeftImage[4], charX, charY, null);
 
                 } else {
                     canvas.drawBitmap(playerGunRightImage[0], charX, charY, null);
@@ -301,5 +304,9 @@ public class Player
     public boolean getState()
     {
         return state;
+    }
+    public void hit()
+    {
+        health--;
     }
 }

@@ -29,7 +29,7 @@ public class Platform {
     /**
      * size of tile
      */
-    public static int TW = 250, TH =250;
+    public static int TW = 500, TH =100;
     /**
      * hitbox of tile
      */

@@ -18,7 +18,7 @@ public class Landie extends Enemy
     Bitmap landieImage;
     int phoneWidth;
     int dx;
-    public static final int id = 2;
+    public static final int id = 3;
     public Landie(Animation landieAnimation, Bitmap landieImage , int health)
     {
         super(landieImage,landieAnimation , health);// takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
@@ -48,7 +48,7 @@ public class Landie extends Enemy
     }
     public void draw(Canvas canvas)
     {
-        canvas.drawBitmap(landieAnimation.getImage(),x, y,null);
+        canvas.drawBitmap(landieAnimation.getImage(),x, y,null); //the plus 500 lowers the platforms, landie, and hitbox
         super.draw(canvas);
     }
     public Rect getRectLandie()

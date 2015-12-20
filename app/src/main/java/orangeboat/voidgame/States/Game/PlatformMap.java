@@ -18,6 +18,7 @@ public class PlatformMap {
     static GameObjects objects;
     int offset;
     public static Platform flat = new Flat(objects.flat, 1);
+    public static Platform spike = new Spike(objects.spike, 2);
     public static Landie landie;
     String path;
     public ArrayList<Enemy> allLandies = new ArrayList<>();
@@ -90,6 +91,9 @@ public class PlatformMap {
             if(layout[x][y] == 1) {
                 return flat;
             }
+        if(layout[x][y] == 2) {
+            return spike;
+        }
         //if (layout[x][y] == 0)
       //  return flat;
         return null;

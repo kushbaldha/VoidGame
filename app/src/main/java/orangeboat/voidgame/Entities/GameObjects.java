@@ -28,15 +28,16 @@ public class GameObjects
     public EnemyPanel enemyPanel;
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
 
-    //temp
     public static Bitmap flat;
+    public static Bitmap spike;
 
-    int phoneHeight,phoneWidth;
-    public GameObjects( Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky, Bitmap flat)
+    public int phoneHeight,phoneWidth;
+    public GameObjects( Bitmap gameBackgroundFloor, Bitmap gameBackgroundSky, Bitmap flat, Bitmap spike)
     {
         this.gameBackgroundFloor = gameBackgroundFloor;
         this.gameBackgroundSky = gameBackgroundSky;
         this.flat = flat;
+        this.spike = spike;
     }
     public void update()
     {

@@ -18,6 +18,7 @@ public class Weapons {
     int slashX, slashY, slashImgX, slashImgY;
     int shootX, shootY, shootImgX, shootImgY;
     int phoneWidth, phoneHeight;
+    public int randomSlash = 0;
     int gunWait = 0;
     public Rect rectSlash, rectShoot;
     public boolean showSlash = false, showGun = false;
@@ -52,8 +53,6 @@ public class Weapons {
     public void load() {
         phoneWidth = (PhoneSpecs.width);
         phoneHeight = (PhoneSpecs.height);
-        slash1.setFrames(slashes1);
-        slash1.setDelay(30);
 
         slashX = slashImgX + (phoneWidth / 2);
         slashY = (int) (phoneHeight / 1.49);
@@ -63,6 +62,26 @@ public class Weapons {
         for (int i = 0; i < slashes1.length; i++) {
             slashes1[i] = Bitmap.createBitmap(slash, i * d, 0, d, d);
         }
+        slash1.setFrames(slashes1);
+        slash1.setDelay(30);
+        for (int i = 0; i < slashes2.length; i++) {
+            slashes2[i] = Bitmap.createBitmap(slash, i * d + 400, 0, d, d);
+        }
+
+        slash2.setFrames(slashes2);
+        slash2.setDelay(30);
+        for (int i = 0; i < slashes3.length; i++) {
+            slashes3[i] = Bitmap.createBitmap(slash, i * d + 800, 0, d, d);
+        }
+
+        slash3.setFrames(slashes3);
+        slash3.setDelay(30);
+        for (int i = 0; i < slashes4.length; i++) {
+            slashes4[i] = Bitmap.createBitmap(slash, i * d + 1200, 0, d, d);
+        }
+
+        slash4.setFrames(slashes4);
+        slash4.setDelay(30);
     }
 
     public void update(int charY, boolean lastMove, boolean state) {
@@ -91,7 +110,20 @@ public class Weapons {
                 slashX = slashImgX + (phoneWidth / 2);
             }
             rectSlash = new Rect(slashX, slashY, (slashX + slashImgX), (slashY + slashImgY));
-            slash1.update();
+            switch(randomSlash) {
+                case 0:
+                    slash1.update();
+                    break;
+                case 1:
+                    slash2.update();
+                    break;
+                case 2:
+                    slash3.update();
+                    break;
+                case 3:
+                    slash4.update();
+            }
+
         }
         deleteBullet(-1);
         //slash2.update();
@@ -102,12 +134,20 @@ public class Weapons {
 
     public void draw(Canvas canvas) {
         if (showSlash) {
-            //if(moveLeft)
-            canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
-            //canvas.drawRect(rectSlash,paint);
-            //canvas.drawRect(rectSlash,paint);
-            //else if(moveRight)
-            // canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
+            switch(randomSlash) {
+                case 0:
+                    canvas.drawBitmap(slash1.getImage(), slashX, slashY, null);
+                    break;
+                case 1:
+                    canvas.drawBitmap(slash2.getImage(), slashX, slashY, null);
+                    break;
+                case 2:
+                    canvas.drawBitmap(slash3.getImage(), slashX, slashY, null);
+                    break;
+                case 3:
+                    canvas.drawBitmap(slash4.getImage(), slashX, slashY, null);
+                    break;
+            }
         }
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw(canvas);

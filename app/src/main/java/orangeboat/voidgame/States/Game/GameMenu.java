@@ -24,6 +24,8 @@ public class GameMenu{
     Paint paint;
 
     public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar) {
+        paint = new Paint();
+        paint.setColor(Color.RED);
         this.leftButton = leftButton;
         leftImgX = leftButton.getWidth();
         leftImgY = leftButton.getHeight();
@@ -51,6 +53,7 @@ public class GameMenu{
     }
 
     public void update() {
+
     }
 
     public void load() {
@@ -80,7 +83,7 @@ public class GameMenu{
         healthRectY = 48;
         for(int i = 0; i <= 6; i++)
         {
-            healthRects.add(new Rect(i * (healthRectX)+healthBarX+16,i*(healthRectY) + healthBarY + 16, healthRectX , healthRectY));
+            healthRects.add(new Rect(i * (healthRectX)+healthBarX+16 +(i * 16),(healthRectY) + healthBarY + 16, healthRectX , healthRectY));
         }
     }
 

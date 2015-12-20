@@ -3,6 +3,8 @@ package orangeboat.voidgame.States.Game;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 
+import java.util.Random;
+
 import orangeboat.voidgame.Entities.GameObjects;
 
 public class GamePanel {
@@ -14,6 +16,8 @@ public class GamePanel {
     int floorx = 0;
     int skyx = 0;
     int dx;
+    Random rand = new Random();
+
     public GamePanel(GameObjects objects , Resources resources) {
         this.objects = objects;
         dx = ((int) (objects.player.phoneWidth * 0.01));
@@ -34,8 +38,8 @@ public class GamePanel {
             floorx -= dx;
             skyx -= dx/2;
         }
-        objects.weapons.update(objects.player.getCharY(),objects.player.getLastMove(),objects.player.getState());
-        objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth())+ objects.player.phoneWidth);
+        objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState());
+        objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth);
 
         if(objects.weapons.showSlash)
         objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
@@ -45,7 +49,6 @@ public class GamePanel {
             objects.weapons.deleteBullet(num);
         if(objects.enemyPanel.checkEnemyKill(objects.player.rectChar))
         {
-           // objects.player.allMovement(false);
         }
     }
 
@@ -110,8 +113,10 @@ public class GamePanel {
             if(objects.player.getState()) {
                 objects.weapons.setShowGun(true);
             }//actual gun animation
-            else
-                objects.weapons.setShowSlash(true); // actual slash animation
+            else {
+                objects.weapons.randomSlash = rand.nextInt(3);
+                objects.weapons.setShowSlash(true);
+            }// actual slash animation
             //objects.player.allMovement(false);
             //objects.player.moveStop();
         }

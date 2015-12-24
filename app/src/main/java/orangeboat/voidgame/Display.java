@@ -47,7 +47,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public Display(Context context) {
 
         super(context);
-        j = MediaPlayer.create(context, R.raw.fight);
+        j = MediaPlayer.create(context, R.raw.voidost);
         //voido
         j.start();
         tempLoader = null;

@@ -69,18 +69,23 @@ public class Player
     public void update(boolean weapon) {
         if (allMovement) {
             if (moveJump) {
-                stupidPlat = 0;
                 if (jumpDown)
                 {
                     max -= dy;
                     charY += dy;
                     if (max == 0)
                     {
+                        stupidPlat = 1;
                         jumpDown = false;
                         if(stoppingMoveJump) {
                             moveJump = false;
                             stoppingMoveJump = false;
                         }
+                    }
+                    if((charY>= (int) (phoneHeight/1.49)))
+                    {
+                        stupidPlat = 1;
+                        completelyStopJumping();
                     }
                 }
                 else if (max < (dy * 20))
@@ -148,6 +153,7 @@ public class Player
     public void moveJump()
     {
      moveJump = true;
+        stupidPlat = 0;
     }
     public void setLastMove(boolean b)
     {
@@ -158,6 +164,18 @@ public class Player
     public void stopJump()
     {
         stoppingMoveJump = true;
+    }
+    public void completelyStopJumping()
+    {
+        moveJump = false;
+        jumpDown = false;
+        stoppingMoveJump = false;
+        max = 0;
+    }
+    public void startFalling()
+    {
+        moveJump = true;
+        jumpDown = true;
     }
     public void allMovement(boolean b)
     {
@@ -317,32 +335,38 @@ public class Player
     {
         for(int i = 0; i < hitbox.size();i++) {
             Rect temp = hitbox.get(i);
-            if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26)) {
+            if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26)&& (temp.left-charImgX-20 <= rectChar.left && temp.right+charImgX+20 >= rectChar.right)) {
                 if(stupidPlat == 1)
                 {
+                    if(i < hitbox.size() -1 && (temp.right == hitbox.get(i + 1).left || temp.left == hitbox.get(i+1).right) && hitbox.get(i+1).top == temp.top)
+                    {
+                           break;
+                    }
                     if(lastMove) {
-                        if (rectChar.right >= temp.right) {
-                            moveJump = true;
-                            jumpDown = true;
+                        if (rectChar.right <= temp.left) {
+                           startFalling();
                         }
                     }
                     else
-                    if (rectChar.left <= temp.left) {
-                        moveJump = true;
-                        jumpDown = true;
+                    if (rectChar.left >= temp.right) {
+                        startFalling();
                     }
 
                 }
-                else if(jumpDown == true && stupidPlat < 1 && temp.left <= rectChar.centerX() && temp.right >= rectChar.exactCenterX()) {
+                else if(jumpDown == true && stupidPlat < 1) {
                     stupidPlat++;
-                    jumpDown = false;
-                    moveJump = false;
-                    stoppingMoveJump = false;
-                    max = 0;
+                    completelyStopJumping();
                     charY = temp.top - charImgY;
                     rectChar = new Rect(charX, charY, charX+charImgX,charY+charImgY);
                 }
             }
         }
+    }
+    public boolean onPlatform(Rect hitbox)
+    {
+        if(rectChar.left >= hitbox.left || rectChar.right<= hitbox.right)
+            return true;
+        return false;
+
     }
 }

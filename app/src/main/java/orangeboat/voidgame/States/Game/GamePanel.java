@@ -60,7 +60,7 @@ public class GamePanel {
         }
         objects.gameMenu.update(objects.player.health);
         map.update(floorx);
-        objects.player.checkOnPlatform(map.inFrameList);
+        objects.player.checkOnPlatform(map.inFrameHitboxes);
     }
 
     public void draw(Canvas canvas) {

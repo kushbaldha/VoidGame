@@ -90,7 +90,7 @@ public class Weapons {
             shootY = charY;
             if (showGun) {
                 gunWait++;
-                if (gunWait == 10) {
+                if (gunWait == 5) {
                     shootBullet(lastMove);
                     gunWait = 0;
                 }

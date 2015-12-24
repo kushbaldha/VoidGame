@@ -313,10 +313,10 @@ public class Player
     {
         health--;
     }
-    public void checkOnPlatform(ArrayList<Platform> platforms)
+    public void checkOnPlatform(ArrayList<Rect> hitbox)
     {
-        for(int i = 0; i < platforms.size();i++) {
-            Rect temp = platforms.get(i).hitbox;
+        for(int i = 0; i < hitbox.size();i++) {
+            Rect temp = hitbox.get(i);
             if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26)) {
                 if(stupidPlat == 1)
                 {
@@ -334,7 +334,7 @@ public class Player
 
                 }
                 else if(jumpDown == true && stupidPlat < 1 && temp.left <= rectChar.centerX() && temp.right >= rectChar.exactCenterX()) {
-                        stupidPlat++;
+                    stupidPlat++;
                     jumpDown = false;
                     moveJump = false;
                     stoppingMoveJump = false;

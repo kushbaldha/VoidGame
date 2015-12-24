@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class PlatformMap {
     int phoneWidth;
     String path;
     public ArrayList<Enemy> allLandies = new ArrayList<>();
-    public ArrayList<Platform> inFrameList = new ArrayList<>();
+    public ArrayList<Rect> inFrameHitboxes = new ArrayList<>();
     Paint paint;
     /**
      * size of the map
@@ -84,7 +85,7 @@ public class PlatformMap {
                     temp.y = (int) (y * Platform.TH);
                     temp.update();
                     if(inFrame(temp))
-                        inFrameList.add(temp);
+                        inFrameHitboxes.add(temp.hitbox);
                 }
             }
         }
@@ -103,7 +104,7 @@ public class PlatformMap {
     }
 
     public void draw(Canvas canvas, int offset) {
-  /*     for (int y = 0; y < height; y++) {
+       for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (getTile(x, y) != null) {
                     Platform temp = getTile(x,y);
@@ -114,13 +115,12 @@ public class PlatformMap {
                     canvas.drawBitmap(temp.img, temp.x, temp.y, null);
                 }
             }
-        }*/
-       for(int i = 0; i< inFrameList.size();i++)
-        {
-            canvas.drawBitmap(inFrameList.get(i).img, inFrameList.get(i).x, inFrameList.get(i).y, null);
-            canvas.drawRect(inFrameList.get(i).hitbox,paint);
         }
-        inFrameList.clear();
+       for(int i = 0; i< inFrameHitboxes.size();i++)
+        {
+            canvas.drawRect(inFrameHitboxes.get(i),paint);
+        }
+        inFrameHitboxes.clear();
 
     }
 

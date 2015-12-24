@@ -6,8 +6,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import java.util.ArrayList;
+
 import orangeboat.voidgame.Animation.Animation;
 import orangeboat.voidgame.PhoneSpecs;
+import orangeboat.voidgame.States.Game.Platform;
 
 public class Player
 {
@@ -16,7 +19,7 @@ public class Player
     int dy,max = 0;
     public int health;
     Bitmap mainChar;
-
+    int stupidPlat = 2; //      0  is in the air      1 is first instance on platform       2 is platform
 
     Bitmap fullPlayerSwordLeftImage;
     Bitmap [] playerSwordLeftImage = new Bitmap[5];
@@ -57,7 +60,7 @@ public class Player
         fullPlayerGunLeftImage = gunWalkingRev;
         fullPlayerGunRightImage = gunWalking;
         paint = new Paint();
-        paint.setColor(Color.TRANSPARENT);
+        paint.setColor(Color.GREEN);
         this.mainChar = mainChar;
         charImgX = mainChar.getWidth();
         charImgY = mainChar.getHeight();
@@ -66,6 +69,7 @@ public class Player
     public void update(boolean weapon) {
         if (allMovement) {
             if (moveJump) {
+                stupidPlat = 0;
                 if (jumpDown)
                 {
                     max -= dy;
@@ -79,11 +83,11 @@ public class Player
                         }
                     }
                 }
-                else if (max < (dy * 8))
+                else if (max < (dy * 20))
                 {
                     max += dy;
                     charY -= dy;
-                    if (max == (dy * 8))
+                    if (max == (dy * 20))
                         jumpDown = true;
                 }
             }
@@ -294,7 +298,7 @@ public class Player
         charX = (phoneWidth/2);
         charY = (int) (phoneHeight/1.49);
         rectChar = new Rect(charX,charY,(charX+charImgX),(charY+charImgY));
-        dy = (int) (phoneHeight*0.017);
+        dy = (int) (phoneHeight*0.017); // 0.017
     }
     public void switchStates()
     {
@@ -309,10 +313,36 @@ public class Player
     {
         health--;
     }
-    public void onPlatform()
+    public void checkOnPlatform(ArrayList<Platform> platforms)
     {
-        jumpDown = false;
-        moveJump = false;
-        stoppingMoveJump = false;
+        for(int i = 0; i < platforms.size();i++) {
+            Rect temp = platforms.get(i).hitbox;
+            if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26)) {
+                if(stupidPlat == 1)
+                {
+                    if(lastMove) {
+                        if (rectChar.right >= temp.right) {
+                            moveJump = true;
+                            jumpDown = true;
+                        }
+                    }
+                    else
+                    if (rectChar.left <= temp.left) {
+                        moveJump = true;
+                        jumpDown = true;
+                    }
+
+                }
+                else if(jumpDown == true && stupidPlat < 1 && temp.left <= rectChar.centerX() && temp.right >= rectChar.exactCenterX()) {
+                        stupidPlat++;
+                    jumpDown = false;
+                    moveJump = false;
+                    stoppingMoveJump = false;
+                    max = 0;
+                    charY = temp.top - charImgY;
+                    rectChar = new Rect(charX, charY, charX+charImgX,charY+charImgY);
+                }
+            }
+        }
     }
 }

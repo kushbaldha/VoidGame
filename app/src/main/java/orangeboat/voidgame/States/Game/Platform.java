@@ -33,7 +33,7 @@ public class Platform {
     /**
      * hitbox of tile
      */
-    public static Rect hitbox;
+    public  Rect hitbox;
     /**
      *
      * @param img

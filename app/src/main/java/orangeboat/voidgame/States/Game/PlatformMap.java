@@ -2,6 +2,8 @@ package orangeboat.voidgame.States.Game;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class PlatformMap {
     String path;
     public ArrayList<Enemy> allLandies = new ArrayList<>();
     public ArrayList<Platform> inFrameList = new ArrayList<>();
+    Paint paint;
     /**
      * size of the map
      */
@@ -41,6 +44,8 @@ public class PlatformMap {
      * @param path
      */
     public PlatformMap(String path, Resources resources) {
+        paint = new Paint();
+        paint.setColor(Color.BLUE);
         this.resources = resources;
         this.path = path;
     }
@@ -71,19 +76,18 @@ public class PlatformMap {
 
     public void update(int offset) {
         //inFrameList.clear();
-       /* for (int y = 0; y < height; y++) {
+        for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                if (getTile(x, y).img != null)
-                {int two = 2;}
-                    *//*{
-                    getTile(x, y).update();
-                    getTile(x,y).x = (int) (x * Platform.TW) + offset;
-                    getTile(x,y).y = (int) (y * Platform.TH);
-                    if(inFrame(getTile(x,y)))
-                        inFrameList.add(getTile(x,y));
-                }*//*
+                Platform temp = getTile(x,y);
+                if (temp != null) {
+                    temp.x = (int) (x * Platform.TW) + offset;
+                    temp.y = (int) (y * Platform.TH);
+                    temp.update();
+                    if(inFrame(temp))
+                        inFrameList.add(temp);
+                }
             }
-        }*/
+        }
 
        /* for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -99,7 +103,7 @@ public class PlatformMap {
     }
 
     public void draw(Canvas canvas, int offset) {
-       for (int y = 0; y < height; y++) {
+  /*     for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (getTile(x, y) != null) {
                     Platform temp = getTile(x,y);
@@ -110,12 +114,13 @@ public class PlatformMap {
                     canvas.drawBitmap(temp.img, temp.x, temp.y, null);
                 }
             }
-        }
-      /* for(int i = 0; i< inFrameList.size();i++)
+        }*/
+       for(int i = 0; i< inFrameList.size();i++)
         {
             canvas.drawBitmap(inFrameList.get(i).img, inFrameList.get(i).x, inFrameList.get(i).y, null);
+            canvas.drawRect(inFrameList.get(i).hitbox,paint);
         }
-        inFrameList.clear();*/
+        inFrameList.clear();
 
     }
 
@@ -129,10 +134,10 @@ public class PlatformMap {
     public Platform getTile(int x, int y) {
         //Platform t = Platform.tiles[layout[x][y]];
         if (layout[x][y] == 1) {
-            return flat;
+            return new Flat(objects.flat, 1);
         }
         if (layout[x][y] == 2) {
-            return spike;
+            return new Spike(objects.spike, 2);
         }
         //if (layout[x][y] == 0)
         //  return flat;

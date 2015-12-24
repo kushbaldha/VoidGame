@@ -42,7 +42,7 @@ public class Platform {
     public Platform(Bitmap img, int id){
         this.img = img;
         this.id= id;
-
+        hitbox = new Rect(x, y, x + TW, y + TH);
     }
     /**
      *
@@ -55,6 +55,6 @@ public class Platform {
      * updates hitbox
      */
     public void update(){
-        hitbox = new Rect(x, y, TW, TH);
+        hitbox = new Rect(x, y, x + TW, y + TH);
     }
 }

@@ -309,4 +309,10 @@ public class Player
     {
         health--;
     }
+    public void onPlatform()
+    {
+        jumpDown = false;
+        moveJump = false;
+        stoppingMoveJump = false;
+    }
 }

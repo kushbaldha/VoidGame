@@ -17,6 +17,7 @@ public class GamePanel {
     int skyx = 0;
     int dx;
     int timer;
+    boolean check = false;
     Random rand = new Random();
 
     public GamePanel(GameObjects objects , Resources resources) {
@@ -58,9 +59,12 @@ public class GamePanel {
             timer = 30;
         }
         objects.gameMenu.update(objects.player.health);
+        map.update(floorx);
     }
 
     public void draw(Canvas canvas) {
+        if(!check)
+            check = true;
         canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
         canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
         objects.player.draw(canvas);

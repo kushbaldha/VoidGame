@@ -338,7 +338,7 @@ public class Player
 
                 if(stupidPlat == 1)
                 {
-                    if(i < hitbox.size() -1 && (temp.right == hitbox.get(i + 1).left || temp.left == hitbox.get(i+1).right) && hitbox.get(i+1).top == temp.top)
+                    if(i < hitbox.size() -1 && ((!lastMove && temp.right == hitbox.get(i + 1).left) || (lastMove && temp.left == hitbox.get(i+1).right)) && hitbox.get(i+1).top == temp.top)
                     {
                            break;
                     }

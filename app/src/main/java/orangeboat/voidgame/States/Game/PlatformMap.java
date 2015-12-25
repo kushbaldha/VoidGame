@@ -8,6 +8,7 @@ import android.graphics.Rect;
 
 import java.util.ArrayList;
 
+import orangeboat.voidgame.Entities.Enemies.Umbrack;
 import orangeboat.voidgame.Entities.Enemy;
 import orangeboat.voidgame.Entities.GameObjects;
 import orangeboat.voidgame.Entities.Landie;
@@ -25,6 +26,7 @@ public class PlatformMap {
     public static Platform spike = new Spike(objects.spike, 2);
     public static Rect baseRect;
     public static Landie landie;
+    public static Umbrack umbrack;
     int phoneWidth;
     String path;
     public ArrayList<Enemy> allLandies = new ArrayList<>();
@@ -60,7 +62,11 @@ public class PlatformMap {
         this.offset = offset;
         phoneWidth = PhoneSpecs.width;
         baseRect = new Rect(0,((int)(PhoneSpecs.height/1.49)+192),phoneWidth,((int)(PhoneSpecs.height/1.49)+1)+193);
+
         landie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
+        umbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
+
+
         String file = TextLoader.loadFile(path, resources);
         String[] items = file.split("\\s+");
         width = TextLoader.parseInt(items[0]);
@@ -159,6 +165,12 @@ public class PlatformMap {
             int landieY = (y * Platform.TH);
             landie.load(landieX, landieY, offset);
             return landie;
+        }
+        if (layout[x][y] == Umbrack.id) {
+            int umbrackX = (x * Platform.TW);
+            int umbrackY = (y * Platform.TH);
+            umbrack.load(umbrackX, umbrackY, offset);
+            return umbrack;
         }
 
         return null;

@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import java.util.ArrayList;
 
 import orangeboat.voidgame.Animation.Animation;
+import orangeboat.voidgame.Entities.Enemies.Umbrack;
 
 /**
  * Created by Kush on 11/30/2015.
@@ -20,12 +21,18 @@ public class EnemyPanel
     public Bitmap singleLandieImage;
     Bitmap [] landieImage = new Bitmap[6];
     public Animation landieAnimation = new Animation();
+    Bitmap fullUmbrackImage;
+    public Bitmap singleUmbrackImage;
+    Bitmap [] umbrackImage = new Bitmap[4];
+    public Animation umbrackAnimation = new Animation();
     boolean moveLeft = false, moveRight;
-    public EnemyPanel(Bitmap landie)
+    public EnemyPanel(Bitmap landie, Bitmap umbrack)
     {
         this.fullLandieImage = landie;
-        singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
+        singleUmbrackImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
         allLandies = new ArrayList<>();
+        this.fullUmbrackImage= umbrack;
+        singleUmbrackImage= Bitmap.createBitmap(umbrack, 0, 0, 150,150);
     }
     public void update(int skyx, int levellength)
     {
@@ -47,6 +54,14 @@ public class EnemyPanel
         }
         landieAnimation.setFrames(landieImage);
         landieAnimation.setDelay(120);
+        width = 150;
+        height = 150;
+        for (int i = 0; i < umbrackImage.length; i++){
+            umbrackImage[i] = Bitmap.createBitmap(fullLandieImage, i*width, 0, width, height);
+        }
+        umbrackAnimation.setFrames(umbrackImage);
+        umbrackAnimation.setDelay(100);
+
     }
     public void loadList(ArrayList<Enemy> landieArrayList)
     {
@@ -116,7 +131,7 @@ public class EnemyPanel
         for(int i = 0; i < allLandies.size();i++)
         {
 
-            ((Landie)(allLandies.get(i))).draw(canvas);
+            ((allLandies.get(i))).draw(canvas);
         }
 
     }

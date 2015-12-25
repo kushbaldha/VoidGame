@@ -14,7 +14,7 @@ import orangeboat.voidgame.PhoneSpecs;
  */
 public class Enemy
 {
-    int phoneWidth;
+    public int phoneWidth;
     /**
      * image of enemy
      */

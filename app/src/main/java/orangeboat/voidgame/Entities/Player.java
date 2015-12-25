@@ -13,6 +13,7 @@ import orangeboat.voidgame.PhoneSpecs;
 
 public class Player
 {
+    public boolean notBlockedByPlatform = true; //for now is always true
     public int phoneHeight,phoneWidth;
     int charX,charY,charImgX,charImgY;
     int dy,max = 0;
@@ -330,8 +331,10 @@ public class Player
     {
         health--;
     }
-    public void checkOnPlatform(ArrayList<Rect> hitbox)
+    public void checkOnPlatform(ArrayList<Rect> hitbox, ArrayList<Boolean> spikes)
     {
+        //immplemnt spike sensors
+        //implement horizontal restrictions to platforms
         for(int i = 0; i < hitbox.size();i++) {
             Rect temp = hitbox.get(i);
             if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26)&& (temp.left-charImgX-20 <= rectChar.left && temp.right+charImgX+20 >= rectChar.right)) {

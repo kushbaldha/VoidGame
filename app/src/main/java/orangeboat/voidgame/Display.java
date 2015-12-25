@@ -26,8 +26,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     private MainThread secondthread;
     private MenuPanel menu;
     Resources resources = getResources();
-    Bitmap flat =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.flat), 500, 100, false);
-    Bitmap spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), 500, 100, false);
+    Bitmap flat =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.flat), 500, 50, false);
+    Bitmap spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), 500, 50, false);
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
     GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
@@ -48,6 +48,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
         super(context);
         j = MediaPlayer.create(context, R.raw.voidost);
+
         //voido
         j.start();
         tempLoader = null;

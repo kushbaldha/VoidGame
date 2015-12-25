@@ -29,6 +29,7 @@ public class PlatformMap {
     String path;
     public ArrayList<Enemy> allLandies = new ArrayList<>();
     public ArrayList<Rect> inFrameHitboxes = new ArrayList<>();
+    public ArrayList<Boolean> inFrameSpikes = new ArrayList<>();
     Paint paint;
     /**
      * size of the map
@@ -86,8 +87,13 @@ public class PlatformMap {
                     temp.x = (int) (x * Platform.TW) + offset;
                     temp.y = (int) (y * Platform.TH);
                     temp.update();
-                    if(inFrame(temp))
+                    if(inFrame(temp)) {
                         inFrameHitboxes.add(temp.hitbox);
+                        if(temp.id == 2){
+                            inFrameSpikes.add(true);
+                        }
+                        else inFrameSpikes.add(false);
+                    }
                 }
             }
         }
@@ -120,9 +126,10 @@ public class PlatformMap {
         }
        for(int i = 0; i< inFrameHitboxes.size();i++)
         {
-            canvas.drawRect(inFrameHitboxes.get(i),paint);
+         //   canvas.drawRect(inFrameHitboxes.get(i),paint);
         }
         inFrameHitboxes.clear();
+        inFrameSpikes.clear();
     }
 
     /**

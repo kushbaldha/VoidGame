@@ -16,7 +16,6 @@ public class Landie extends Enemy
 {
     Animation landieAnimation;
     Bitmap landieImage;
-    int phoneWidth;
     int dx;
     public static final int id = 3;
     public Landie(Animation landieAnimation, Bitmap landieImage , int health)
@@ -40,10 +39,8 @@ public class Landie extends Enemy
     }
     public void load(int landieX, int landieY, int offset)
     {
-        phoneWidth=  (PhoneSpecs.width);
+        super.load(landieX, landieY, offset);
         dx = ((int) (phoneWidth * 0.01));
-        x = landieX + offset;
-        y= landieY;
         super.update();
     }
     public void draw(Canvas canvas)

@@ -59,7 +59,7 @@ public class Player
         fullPlayerGunLeftImage = gunWalkingRev;
         fullPlayerGunRightImage = gunWalking;
         paint = new Paint();
-        paint.setColor(Color.GREEN);
+        paint.setColor(Color.TRANSPARENT);
         this.mainChar = mainChar;
         charImgX = mainChar.getWidth();
         charImgY = mainChar.getHeight();

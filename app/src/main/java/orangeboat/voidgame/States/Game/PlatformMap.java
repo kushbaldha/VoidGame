@@ -23,6 +23,7 @@ public class PlatformMap {
     int offset;
     public static Platform flat = new Flat(objects.flat, 1);
     public static Platform spike = new Spike(objects.spike, 2);
+    public static Rect baseRect;
     public static Landie landie;
     int phoneWidth;
     String path;
@@ -57,6 +58,7 @@ public class PlatformMap {
     public void loadMap(GameObjects objects, int offset) {
         this.offset = offset;
         phoneWidth = PhoneSpecs.width;
+        baseRect = new Rect(0,((int)(PhoneSpecs.height/1.49)+192),phoneWidth,((int)(PhoneSpecs.height/1.49)+1)+193);
         landie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
         String file = TextLoader.loadFile(path, resources);
         String[] items = file.split("\\s+");
@@ -76,7 +78,7 @@ public class PlatformMap {
     }
 
     public void update(int offset) {
-        //inFrameList.clear();
+        inFrameHitboxes.add(baseRect);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Platform temp = getTile(x,y);
@@ -121,7 +123,6 @@ public class PlatformMap {
             canvas.drawRect(inFrameHitboxes.get(i),paint);
         }
         inFrameHitboxes.clear();
-
     }
 
     /**

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import orangeboat.voidgame.Animation.Animation;
 import orangeboat.voidgame.PhoneSpecs;
-import orangeboat.voidgame.States.Game.Platform;
 
 public class Player
 {
@@ -19,8 +18,8 @@ public class Player
     int dy,max = 0;
     public int health;
     Bitmap mainChar;
-    int stupidPlat = 2; //      0  is in the air      1 is first instance on platform       2 is platform
-
+    int stupidPlat = 1; //      0  is in the air jumping    1 is on platform  2 is in the air not on platform
+    boolean onPlatform = true;
     Bitmap fullPlayerSwordLeftImage;
     Bitmap [] playerSwordLeftImage = new Bitmap[5];
     public Animation playerLeft = new Animation();
@@ -73,25 +72,24 @@ public class Player
                 {
                     max -= dy;
                     charY += dy;
+                    if(max == -(dy*2))
+                        stupidPlat = 0;
                     if (max == 0)
                     {
-                        stupidPlat = 1;
                         jumpDown = false;
                         if(stoppingMoveJump) {
                             moveJump = false;
                             stoppingMoveJump = false;
                         }
                     }
-                    if((charY>= (int) (phoneHeight/1.49)))
-                    {
-                        stupidPlat = 1;
-                        completelyStopJumping();
-                    }
                 }
                 else if (max < (dy * 20))
                 {
+                    stupidPlat = 2; // can't stick to a platform for 2 dys so it can get out of the tolerance zone
                     max += dy;
                     charY -= dy;
+                    if(max >= (dy*2))
+                        stupidPlat = 0;
                     if (max == (dy * 20))
                         jumpDown = true;
                 }
@@ -176,6 +174,7 @@ public class Player
     {
         moveJump = true;
         jumpDown = true;
+        stupidPlat = 2;
     }
     public void allMovement(boolean b)
     {
@@ -336,6 +335,7 @@ public class Player
         for(int i = 0; i < hitbox.size();i++) {
             Rect temp = hitbox.get(i);
             if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26)&& (temp.left-charImgX-20 <= rectChar.left && temp.right+charImgX+20 >= rectChar.right)) {
+
                 if(stupidPlat == 1)
                 {
                     if(i < hitbox.size() -1 && (temp.right == hitbox.get(i + 1).left || temp.left == hitbox.get(i+1).right) && hitbox.get(i+1).top == temp.top)
@@ -353,7 +353,7 @@ public class Player
                     }
 
                 }
-                else if(jumpDown == true && stupidPlat < 1) {
+                else if(jumpDown == true && stupidPlat == 0) {
                     stupidPlat++;
                     completelyStopJumping();
                     charY = temp.top - charImgY;
@@ -361,6 +361,8 @@ public class Player
                 }
             }
         }
+     if(stupidPlat == 0 && !moveJump)
+         startFalling();
     }
     public boolean onPlatform(Rect hitbox)
     {

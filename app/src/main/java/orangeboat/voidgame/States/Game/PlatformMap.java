@@ -25,8 +25,9 @@ public class PlatformMap {
     public static Platform flat = new Flat(objects.flat, 1);
     public static Platform spike = new Spike(objects.spike, 2);
     public static Rect baseRect;
-    public static Landie landie;
-    public static Umbrack umbrack;
+    public Landie landie;
+    public Landie landie2;
+    public Umbrack umbrack;
     int phoneWidth;
     String path;
     public ArrayList<Enemy> allLandies = new ArrayList<>();
@@ -64,6 +65,7 @@ public class PlatformMap {
         baseRect = new Rect(0,((int)(PhoneSpecs.height/1.49)+192),phoneWidth,((int)(PhoneSpecs.height/1.49)+1)+193);
 
         landie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
+        landie2 = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
         umbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
 
 
@@ -166,10 +168,10 @@ public class PlatformMap {
             landie.load(landieX, landieY, offset);
             return landie;
         }
-        if (layout[x][y] == Umbrack.id) {
-            int umbrackX = (x * Platform.TW);
-            int umbrackY = (y * Platform.TH);
-            umbrack.load(umbrackX, umbrackY, offset);
+        else if (layout[x][y] == Umbrack.id) {
+            int uX = (x * Platform.TW);
+            int uY = (y * Platform.TH);
+            umbrack.load(uX, uY, offset);
             return umbrack;
         }
 

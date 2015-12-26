@@ -23,8 +23,8 @@ public class Umbrack extends Enemy {
     public void update(){
 
     }
-    public void load(int flippyX, int flippyY, int offset){
-        super.load(flippyX,flippyY,offset);
+    public void load(int umbrackX, int umbrackY, int offset){
+        super.load(umbrackX,umbrackY,offset);
         dx = ((int) (phoneWidth * 0.01));
         super.update();
     }

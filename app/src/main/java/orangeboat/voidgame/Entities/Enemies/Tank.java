@@ -23,8 +23,8 @@ public class Tank extends Enemy{
     public void update(){
 
     }
-    public void load(int flippyX, int flippyY, int offset){
-        super.load(flippyX,flippyY,offset);
+    public void load(int tankX, int tankY, int offset){
+        super.load(tankX,tankY,offset);
         dx = ((int) (phoneWidth * 0.01));
         super.update();
     }

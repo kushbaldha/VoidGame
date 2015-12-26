@@ -23,8 +23,8 @@ public class Rotor extends Enemy{
     public void update(){
 
     }
-    public void load(int flippyX, int flippyY, int offset){
-        super.load(flippyX,flippyY,offset);
+    public void load(int rotorX, int rotorY, int offset){
+        super.load(rotorX,rotorY,offset);
         dx = ((int) (phoneWidth * 0.01));
         super.update();
     }

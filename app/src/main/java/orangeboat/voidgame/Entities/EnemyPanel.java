@@ -29,7 +29,7 @@ public class EnemyPanel
     public EnemyPanel(Bitmap landie, Bitmap umbrack)
     {
         this.fullLandieImage = landie;
-        singleUmbrackImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
+        singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
         allLandies = new ArrayList<>();
         this.fullUmbrackImage= umbrack;
         singleUmbrackImage= Bitmap.createBitmap(umbrack, 0, 0, 150,150);
@@ -38,7 +38,11 @@ public class EnemyPanel
     {
         for(int i = 0; i < allLandies.size();i++)
         {
-            ((Landie)(allLandies.get(i))).update(moveLeft, moveRight, skyx, levellength);
+            if(allLandies.get(i) instanceof Landie){
+                ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
+            }
+            else allLandies.get(i).update();
+
         }
        // if(score == somenumber)
         // spawn an enemy. create a landie object with passing animation in.
@@ -50,7 +54,7 @@ public class EnemyPanel
         int height = 192;
         for (int i = 0; i < landieImage.length; i++)
         {
-            landieImage[i] = Bitmap.createBitmap(fullLandieImage,i * width, 0 , width ,height);
+            landieImage[i] = Bitmap.createBitmap(fullLandieImage,i * width, 0, width,height);
         }
         landieAnimation.setFrames(landieImage);
         landieAnimation.setDelay(120);

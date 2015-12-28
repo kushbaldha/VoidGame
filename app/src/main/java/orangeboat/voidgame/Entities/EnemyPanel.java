@@ -150,7 +150,7 @@ public class EnemyPanel
     }
     public boolean checkEnemyKill(Rect rectChar) {
         for (int i = 0; i < allLandies.size(); i++) {
-                if(rectChar.intersect(allLandies.get(i).hitbox))
+                if(Rect.intersects(rectChar,allLandies.get(i).hitbox))
                 {
                     return true;
                 }

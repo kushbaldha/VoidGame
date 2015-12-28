@@ -325,13 +325,18 @@ public class Player {
         //implement horizontal restrictions to platforms
         for (int i = 0; i < hitbox.size(); i++) {
             Rect temp = hitbox.get(i);
-            if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
+            if (temp.top <= (rectChar.bottom + dy) && temp.top >= (rectChar.bottom - dy) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
             {
                 //tangible on the top
+
+                //if it's on a platform then...
                 if (stupidPlat == 1) {
+                    //if there is a platform on the left or the right.. break
                     if (i < hitbox.size() - 1 && ((!lastMove && (temp.right == hitbox.get(i + 1).left)) || (lastMove && (temp.left == hitbox.get(i + 1).right))) && hitbox.get(i + 1).top == temp.top) {
                         break;
                     }
+                    if(i>0 && ((!lastMove && (temp.right == hitbox.get(i - 1).left)) || (lastMove && (temp.left == hitbox.get(i - 1).right))) && hitbox.get(i - 1).top == temp.top)
+                        break;
                     if (lastMove) {
                         if (rectChar.right <= temp.left) {
                             startFalling();
@@ -340,7 +345,9 @@ public class Player {
                         startFalling();
                     }
 
-                } else if (jumpDown == true && stupidPlat == 0) {
+                }
+                //falling down and is not on platform
+                else if (jumpDown == true && stupidPlat == 0) {
                     stupidPlat++;
                     completelyStopJumping();
                     charY = temp.top - charImgY;
@@ -348,7 +355,7 @@ public class Player {
                 }
             }
             // tangible on the bottom
-            if ((temp.bottom+13) <= rectChar.top && (temp.bottom-13) >= (rectChar.top) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right)) {
+            if (temp.bottom <= (rectChar.top+dy) && temp.bottom >= (rectChar.top-dy) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right)) {
                 if (jumpDown == false && stupidPlat == 0) {
                     startFalling();
                 }
@@ -358,10 +365,4 @@ public class Player {
             startFalling();
     }
 
-    public boolean onPlatform(Rect hitbox) {
-        if (rectChar.left >= hitbox.left || rectChar.right <= hitbox.right)
-            return true;
-        return false;
-
-    }
 }

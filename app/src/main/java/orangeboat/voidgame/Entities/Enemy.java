@@ -39,7 +39,11 @@ public class Enemy
     /**
      * hitbox of enemy
      */
-    public static Rect hitbox;
+    public  Rect hitbox;
+    /**
+     * The rate at which the screen scrolls
+     */
+    int dx;
     Paint paint = new Paint();
     public Enemy(Bitmap img, Animation animation , int health){
         this.img = img;
@@ -51,10 +55,20 @@ public class Enemy
     }
     public void load(int x, int y, int offset){
         phoneWidth=  (PhoneSpecs.width);
+        dx = ((int) (phoneWidth * 0.01));
         this.x = x+offset;
         this.y = y;
     }
-    public void update(){
+    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
+    {
+        if(moveLeft && skyx > levellength)
+        {
+            x -= dx;
+        }
+        else if(moveRight && skyx < 0)
+        {
+            x += dx;
+        }
         hitbox = new Rect(x, y, x + TW, y + TH);
     }
     public int hit()

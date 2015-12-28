@@ -60,13 +60,13 @@ public class PlatformMap {
      * creates map 2d array for render purposes
      */
     public void loadMap(GameObjects objects, int offset) {
+        this.objects = objects;
         this.offset = offset;
         phoneWidth = PhoneSpecs.width;
         baseRect = new Rect(0,((int)(PhoneSpecs.height/1.49)+192),phoneWidth,((int)(PhoneSpecs.height/1.49)+1)+193);
 
-        landie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
-        landie2 = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
-        umbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
+        //landie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
+        //landie2 = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
 
 
         String file = TextLoader.loadFile(path, resources);
@@ -163,18 +163,19 @@ public class PlatformMap {
 
     public Enemy getEnemy(int x, int y) {
         if (layout[x][y] == Landie.id) {
+            Landie tempLandie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
             int landieX = (x * Platform.TW);
             int landieY = (y * Platform.TH);
-            landie.load(landieX, landieY, offset);
-            return landie;
+            tempLandie.load(landieX, landieY, offset);
+            return tempLandie;
         }
         else if (layout[x][y] == Umbrack.id) {
+            Umbrack tempUmbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
             int uX = (x * Platform.TW);
             int uY = (y * Platform.TH);
-            umbrack.load(uX, uY, offset);
-            return umbrack;
+            tempUmbrack.load(uX, uY, offset);
+            return tempUmbrack;
         }
-
         return null;
     }
 

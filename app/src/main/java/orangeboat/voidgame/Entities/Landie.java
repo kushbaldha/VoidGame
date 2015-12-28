@@ -16,7 +16,6 @@ public class Landie extends Enemy
 {
     Animation landieAnimation;
     Bitmap landieImage;
-    int dx;
     public static final int id = 3;
     public Landie(Animation landieAnimation, Bitmap landieImage , int health)
     {
@@ -24,24 +23,14 @@ public class Landie extends Enemy
         this.landieAnimation = landieAnimation;
         this.landieImage = landieImage;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
     {
-        if(moveLeft && skyx > levellength)
-        {
-            x -= dx;
-        }
-        else if(moveRight && skyx < 0)
-        {
-            x += dx;
-        }
         landieAnimation.update();
-        super.update();
+        super.update(moveLeft,moveRight,skyX,levelLength);
     }
     public void load(int landieX, int landieY, int offset)
     {
         super.load(landieX, landieY, offset);
-        dx = ((int) (phoneWidth * 0.01));
-        super.update();
     }
     public void draw(Canvas canvas)
     {

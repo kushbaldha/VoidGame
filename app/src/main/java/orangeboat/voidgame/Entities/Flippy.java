@@ -25,7 +25,6 @@ public class Flippy extends Enemy{
     public void load(int flippyX, int flippyY, int offset){
         super.load(flippyX,flippyY,offset);
         dx = ((int) (phoneWidth * 0.01));
-        super.update();
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(flippyAnimation.getImage(),x, y,null);

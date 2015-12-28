@@ -325,7 +325,7 @@ public class Player {
         //implement horizontal restrictions to platforms
         for (int i = 0; i < hitbox.size(); i++) {
             Rect temp = hitbox.get(i);
-            if (temp.top <= (rectChar.bottom + 18) && temp.top >= (rectChar.bottom - 18) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
+            if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
             {
                 if (stupidPlat == 1) {
                     if (i < hitbox.size() - 1 && ((!lastMove && (temp.right == hitbox.get(i + 1).left)) || (lastMove && (temp.left == hitbox.get(i + 1).right))) && hitbox.get(i + 1).top == temp.top) {

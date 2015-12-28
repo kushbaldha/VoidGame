@@ -26,7 +26,6 @@ public class Tank extends Enemy{
     public void load(int tankX, int tankY, int offset){
         super.load(tankX,tankY,offset);
         dx = ((int) (phoneWidth * 0.01));
-        super.update();
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(tankAnimation.getImage(),x, y,null);

@@ -39,9 +39,12 @@ public class EnemyPanel
         for(int i = 0; i < allLandies.size();i++)
         {
             if(allLandies.get(i) instanceof Landie){
-                ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
+                ( (Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
             }
-            else allLandies.get(i).update();
+            else if(allLandies.get(i) instanceof Umbrack){
+                ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
+            }
+            else allLandies.get(i).update(moveLeft,moveRight,skyx,levellength);
 
         }
        // if(score == somenumber)
@@ -61,7 +64,7 @@ public class EnemyPanel
         width = 150;
         height = 150;
         for (int i = 0; i < umbrackImage.length; i++){
-            umbrackImage[i] = Bitmap.createBitmap(fullLandieImage, i*width, 0, width, height);
+            umbrackImage[i] = Bitmap.createBitmap(fullUmbrackImage, i*width, 0, width, height);
         }
         umbrackAnimation.setFrames(umbrackImage);
         umbrackAnimation.setDelay(100);

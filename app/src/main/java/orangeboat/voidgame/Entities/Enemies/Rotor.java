@@ -26,7 +26,6 @@ public class Rotor extends Enemy{
     public void load(int rotorX, int rotorY, int offset){
         super.load(rotorX,rotorY,offset);
         dx = ((int) (phoneWidth * 0.01));
-        super.update();
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(rotorAnimation.getImage(),x, y,null);

@@ -2,12 +2,9 @@ package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 
 import orangeboat.voidgame.Animation.Animation;
-import orangeboat.voidgame.PhoneSpecs;
 
 /**
  * Created by Kush on 11/30/2015.
@@ -15,18 +12,18 @@ import orangeboat.voidgame.PhoneSpecs;
 public class Landie extends Enemy
 {
     Animation landieAnimation;
-    Bitmap landieImage;
+    Bitmap landieHurtImage;
     public static final int id = 3;
-    public Landie(Animation landieAnimation, Bitmap landieImage , int health)
+    public Landie(Animation landieAnimation, Bitmap landieHurtImage, int health)
     {
-        super(landieImage,landieAnimation , health);// takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
+        super(landieHurtImage,landieAnimation , health);// takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
         this.landieAnimation = landieAnimation;
-        this.landieImage = landieImage;
+        this.landieHurtImage = landieHurtImage;
     }
     public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
     {
         landieAnimation.update();
-        super.update(moveLeft,moveRight,skyX,levelLength);
+        super.update(moveLeft, moveRight, skyX, levelLength);
     }
     public void load(int landieX, int landieY, int offset)
     {
@@ -34,8 +31,9 @@ public class Landie extends Enemy
     }
     public void draw(Canvas canvas)
     {
-        canvas.drawBitmap(landieAnimation.getImage(),x, y,null); //the plus 500 lowers the platforms, landie, and hitbox
         super.draw(canvas);
+        canvas.drawBitmap(landieAnimation.getImage(),x, y,null); //the plus 500 lowers the platforms, landie, and hitbox
+
     }
     public Rect getRectLandie()
     {

@@ -41,7 +41,7 @@ public class EnemyPanel
     public EnemyPanel(Bitmap landie, Bitmap umbrack, Bitmap rotor, Bitmap tank, Bitmap flippy)
     {
         this.fullLandieImage = landie;
-        singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
+        singleLandieImage = Bitmap.createBitmap(landie, 912, 0, 152, 192);
         allLandies = new ArrayList<>();
         this.fullUmbrackImage= umbrack;
         singleUmbrackImage= Bitmap.createBitmap(umbrack, 0, 0, 300,400);
@@ -50,7 +50,7 @@ public class EnemyPanel
         this.fullTankImage = tank;
         singleTankImage = Bitmap.createBitmap(tank, 0, 0, 159, 120);
         this.fullFlippyImage = flippy;
-        singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 100, 100);
+        singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 200, 200);
     }
     public void update(int skyx, int levellength)
     {
@@ -100,8 +100,8 @@ public class EnemyPanel
         }
         tankAnimation.setFrames(tankImage);
         tankAnimation.setDelay(100);
-        width =100;
-        height =100;
+        width =200;
+        height =200;
         for (int i = 0; i < flippyImage.length; i++){
             flippyImage[i] = Bitmap.createBitmap(fullFlippyImage, i*width, 0, width, height);
         }
@@ -120,6 +120,7 @@ public class EnemyPanel
                 boolean temp = (allLandies.get(i)).getHitbox().intersect(weaponHitbox);
                 if(temp)
                 {
+                    allLandies.get(i).hit = true;
                     allLandies.remove(i);
                     numEnemies--;
                     System.out.println("Killed a bogey");
@@ -136,6 +137,7 @@ public class EnemyPanel
                     Rect rectTemp = bulletList.get(p).getRect();
                     boolean temp = ((Landie)(allLandies.get(i))).getRectLandie().intersect(rectTemp);
                     if (temp) {
+                        allLandies.get(i).hit = true;
                         int temp1 = (allLandies.get(i).hit());
                         if(temp1 == 0)
                         {allLandies.remove(i);
@@ -150,7 +152,7 @@ public class EnemyPanel
     }
     public boolean checkEnemyKill(Rect rectChar) {
         for (int i = 0; i < allLandies.size(); i++) {
-                if(Rect.intersects(rectChar,allLandies.get(i).hitbox))
+            if (Rect.intersects(rectChar,allLandies.get(i).hitbox))
                 {
                     return true;
                 }

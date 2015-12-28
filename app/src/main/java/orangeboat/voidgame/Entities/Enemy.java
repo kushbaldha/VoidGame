@@ -14,6 +14,7 @@ import orangeboat.voidgame.PhoneSpecs;
  */
 public class Enemy
 {
+    public boolean hit;
     public int phoneWidth;
     /**
      * image of enemy
@@ -46,6 +47,7 @@ public class Enemy
     int dx;
     Paint paint = new Paint();
     public Enemy(Bitmap img, Animation animation , int health){
+        hit = false;
         this.img = img;
         this.animation = animation;
         TW = img.getWidth();
@@ -80,8 +82,11 @@ public class Enemy
     {
         return hitbox;
     }
-    public void draw(Canvas canvas)
-    {
+    public void draw(Canvas canvas) {
+        if (hit) {
+            canvas.drawBitmap(img, x, y, null);
+        }
         //canvas.drawRect(hitbox,paint);
     }
+
 }

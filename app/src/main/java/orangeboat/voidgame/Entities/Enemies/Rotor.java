@@ -14,14 +14,14 @@ public class Rotor extends Enemy{
     Animation rotorAnimation;
     Bitmap rotorImg;
     int dx;
-    public static final int id = 6;
+    public static final int id = 7;
     public Rotor(Animation rotorAnimation, Bitmap rotorImg , int health){
         super(rotorImg,rotorAnimation,health);
         this.rotorAnimation = rotorAnimation;
         this.rotorImg = rotorImg;
     }
     public void update(){
-
+        rotorAnimation.update();
     }
     public void load(int rotorX, int rotorY, int offset){
         super.load(rotorX,rotorY,offset);

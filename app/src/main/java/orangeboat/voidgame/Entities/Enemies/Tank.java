@@ -21,7 +21,7 @@ public class Tank extends Enemy{
         this.tankImg = tankImg;
     }
     public void update(){
-
+        tankAnimation.update();
     }
     public void load(int tankX, int tankY, int offset){
         super.load(tankX,tankY,offset);

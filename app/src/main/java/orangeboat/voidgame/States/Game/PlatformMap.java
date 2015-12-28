@@ -8,8 +8,11 @@ import android.graphics.Rect;
 
 import java.util.ArrayList;
 
+import orangeboat.voidgame.Entities.Enemies.Rotor;
+import orangeboat.voidgame.Entities.Enemies.Tank;
 import orangeboat.voidgame.Entities.Enemies.Umbrack;
 import orangeboat.voidgame.Entities.Enemy;
+import orangeboat.voidgame.Entities.Flippy;
 import orangeboat.voidgame.Entities.GameObjects;
 import orangeboat.voidgame.Entities.Landie;
 import orangeboat.voidgame.Input.TextLoader;
@@ -171,6 +174,27 @@ public class PlatformMap {
         }
         else if (layout[x][y] == Umbrack.id) {
             Umbrack tempUmbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
+            int uX = (x * Platform.TW);
+            int uY = (y * Platform.TH);
+            tempUmbrack.load(uX, uY, offset);
+            return tempUmbrack;
+        }
+        else if (layout[x][y] == Rotor.id) {
+            Rotor tempUmbrack = new Rotor(objects.enemyPanel.rotorAnimation, objects.enemyPanel.singleRotorImage, 22);
+            int uX = (x * Platform.TW);
+            int uY = (y * Platform.TH);
+            tempUmbrack.load(uX, uY, offset);
+            return tempUmbrack;
+        }
+        else if (layout[x][y] == Tank.id) {
+            Tank tempUmbrack = new Tank(objects.enemyPanel.tankAnimation, objects.enemyPanel.singleTankImage, 22);
+            int uX = (x * Platform.TW);
+            int uY = (y * Platform.TH);
+            tempUmbrack.load(uX, uY, offset);
+            return tempUmbrack;
+        }
+        else if (layout[x][y] == Flippy.id) {
+            Flippy tempUmbrack = new Flippy(objects.enemyPanel.flippyAnimation, objects.enemyPanel.singleFlippyImage, 22);
             int uX = (x * Platform.TW);
             int uY = (y * Platform.TH);
             tempUmbrack.load(uX, uY, offset);

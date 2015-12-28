@@ -20,7 +20,7 @@ public class Flippy extends Enemy{
         this.flippyImg = flippyImg;
     }
     public void update(){
-
+        flippyAnimation.update();
     }
     public void load(int flippyX, int flippyY, int offset){
         super.load(flippyX,flippyY,offset);

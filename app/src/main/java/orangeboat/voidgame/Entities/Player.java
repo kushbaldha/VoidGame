@@ -327,6 +327,7 @@ public class Player {
             Rect temp = hitbox.get(i);
             if (temp.top <= (rectChar.bottom + 26) && temp.top >= (rectChar.bottom - 26) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
             {
+                //tangible on the top
                 if (stupidPlat == 1) {
                     if (i < hitbox.size() - 1 && ((!lastMove && (temp.right == hitbox.get(i + 1).left)) || (lastMove && (temp.left == hitbox.get(i + 1).right))) && hitbox.get(i + 1).top == temp.top) {
                         break;
@@ -346,7 +347,8 @@ public class Player {
                     rectChar = new Rect(charX, charY, charX + charImgX, charY + charImgY);
                 }
             }
-            if (temp.bottom <= (rectChar.top + 13) && temp.bottom >= (rectChar.top - 13) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right)) {
+            // tangible on the bottom
+            if ((temp.bottom+13) <= rectChar.top && (temp.bottom-13) >= (rectChar.top) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right)) {
                 if (jumpDown == false && stupidPlat == 0) {
                     startFalling();
                 }

@@ -180,25 +180,25 @@ public class PlatformMap {
             return tempUmbrack;
         }
         else if (layout[x][y] == Rotor.id) {
-            Rotor tempUmbrack = new Rotor(objects.enemyPanel.rotorAnimation, objects.enemyPanel.singleRotorImage, 22);
-            int uX = (x * Platform.TW);
-            int uY = (y * Platform.TH);
-            tempUmbrack.load(uX, uY, offset);
-            return tempUmbrack;
+            Rotor tempRotor = new Rotor(objects.enemyPanel.rotorAnimation, objects.enemyPanel.singleRotorImage, 22);
+            int rX = (x * Platform.TW);
+            int rY = (y * Platform.TH);
+            tempRotor.load(rX, rY, offset);
+            return tempRotor;
         }
         else if (layout[x][y] == Tank.id) {
-            Tank tempUmbrack = new Tank(objects.enemyPanel.tankAnimation, objects.enemyPanel.singleTankImage, 22);
-            int uX = (x * Platform.TW);
-            int uY = (y * Platform.TH);
-            tempUmbrack.load(uX, uY, offset);
-            return tempUmbrack;
+            Tank tempTank = new Tank(objects.enemyPanel.tankAnimation, objects.enemyPanel.singleTankImage, 22);
+            int tX = (x * Platform.TW);
+            int tY = (y * Platform.TH);
+            tempTank.load(tX, tY, offset);
+            return tempTank;
         }
         else if (layout[x][y] == Flippy.id) {
-            Flippy tempUmbrack = new Flippy(objects.enemyPanel.flippyAnimation, objects.enemyPanel.singleFlippyImage, 22);
-            int uX = (x * Platform.TW);
-            int uY = (y * Platform.TH);
-            tempUmbrack.load(uX, uY, offset);
-            return tempUmbrack;
+            Flippy tempFlippy = new Flippy(objects.enemyPanel.flippyAnimation, objects.enemyPanel.singleFlippyImage, 22);
+            int fX = (x * Platform.TW);
+            int fY = (y * Platform.TH);
+            tempFlippy.load(fX, fY, offset);
+            return tempFlippy;
         }
         return null;
     }

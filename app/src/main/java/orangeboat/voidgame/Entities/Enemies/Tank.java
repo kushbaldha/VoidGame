@@ -20,12 +20,13 @@ public class Tank extends Enemy{
         this.tankAnimation = tankAnimation;
         this.tankImg = tankImg;
     }
-    public void update(){
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
+    {
         tankAnimation.update();
+        super.update(moveLeft, moveRight, skyX, levelLength);
     }
     public void load(int tankX, int tankY, int offset){
         super.load(tankX,tankY,offset);
-        dx = ((int) (phoneWidth * 0.01));
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(tankAnimation.getImage(),x, y,null);

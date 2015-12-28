@@ -20,12 +20,13 @@ public class Rotor extends Enemy{
         this.rotorAnimation = rotorAnimation;
         this.rotorImg = rotorImg;
     }
-    public void update(){
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
+    {
         rotorAnimation.update();
+        super.update(moveLeft, moveRight, skyX, levelLength);
     }
     public void load(int rotorX, int rotorY, int offset){
         super.load(rotorX,rotorY,offset);
-        dx = ((int) (phoneWidth * 0.01));
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(rotorAnimation.getImage(),x, y,null);

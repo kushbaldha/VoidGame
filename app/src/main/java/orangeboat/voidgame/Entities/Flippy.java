@@ -19,12 +19,13 @@ public class Flippy extends Enemy{
         this.flippyAnimation = flippyAnimation;
         this.flippyImg = flippyImg;
     }
-    public void update(){
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
+    {
         flippyAnimation.update();
+        super.update(moveLeft, moveRight, skyX, levelLength);
     }
     public void load(int flippyX, int flippyY, int offset){
         super.load(flippyX,flippyY,offset);
-        dx = ((int) (phoneWidth * 0.01));
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(flippyAnimation.getImage(),x, y,null);

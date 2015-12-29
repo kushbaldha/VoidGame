@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -16,7 +17,6 @@ import orangeboat.voidgame.Input.TouchEvents;
 import orangeboat.voidgame.States.Game.GamePanel;
 import orangeboat.voidgame.States.Title.MenuPanel;
 import orangeboat.voidgame.States.Game.MainThread;
-import orangeboat.voidgame.States.Title.MenuThread;
 
 
 public class Display extends SurfaceView implements SurfaceHolder.Callback
@@ -30,11 +30,14 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), 500, 50, false);
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
+    Bitmap gameOverScreen = BitmapFactory.decodeResource(getResources(), R.drawable.tempgamebutton);
     GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
     ImageLoader tempLoader = new ImageLoader(objects,resources);
+    Rect rectRetryButton;
     GamePanel gamePanel;
     boolean showMenu = true;
     boolean showGame = false;
+    boolean newGame = false;
     float scaleFactorX;
     float scaleFactorY;
     public static final int WIDTH = 1900;
@@ -109,11 +112,25 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         if(showGame)
         gamePanel.update();
         j.start();
+        checkNewGame();
+
     }
     public boolean onTouchEvent(MotionEvent event)
     {
         touch = new TouchEvents(event);
 
+        if(newGame)
+        {
+            int x = (int) event.getX();
+            int y = (int) event.getY();
+            if(rectRetryButton.contains(x,y))
+            {
+                newGame = false;
+                gamePanel = new GamePanel(objects,resources);
+                gamePanel.objects.player.health = 6;
+                gamePanel.load();
+            }
+        }
         if(showMenu)
         { touch.check(menu);}
         if(!touch.checkMenu()) {
@@ -148,6 +165,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 menu.load();
                 check = false;
                 objects.load();
+                rectRetryButton = new Rect(getWidth()/2,getHeight()/2,(getWidth()/2+getWidth()/5),(getHeight()/2+getHeight()/5));
             }
             else {
                 final int savedState = canvas.save();
@@ -161,13 +179,24 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 {
                     gamePanel.draw(canvas);
                 }
-                //return to savedstate. If we didn't have this, it would keep on scaling. So we do this to return it to original state
+                if(newGame)
+                {
+                    canvas.drawBitmap(gameOverScreen,0,0,null);
+                    //canvas.drawRect(rectRetryButton,null);
+                }
                 canvas.restoreToCount(savedState);
             }
         }
     }
     public void newThread() {
         secondthread = new MainThread(contextHolder, this);
+    }
+    public void checkNewGame()
+    {
+        if(objects.player.health<=0)
+        {
+            newGame = true;
+        }
     }
     //random comment
 }

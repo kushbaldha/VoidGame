@@ -12,19 +12,20 @@ import orangeboat.voidgame.PhoneSpecs;
 
 public class GameMenu {
 
-    Bitmap leftButton, rightButton, menuButton, jumpButton, okButton, swordButton, gunButton, healthBar, resumeButton;
+    Bitmap leftButton, rightButton, menuButton, jumpButton, okButton, swordButton, gunButton, healthBar, resumeButton, quitButton;
     int phoneHeight, phoneWidth;
     int leftImgX, leftImgY, rightImgX, rightImgY, menuImgX, menuImgY, jumpImgX, jumpImgY, okImgX, okImgY, swordImageX, swordImageY, gunImageX, gunImageY, healthBarImageX, healthBarImageY;
-    int resumeImgX, resumeImgY, resumeX, resumeY;
+    int resumeImgX, resumeImgY, resumeX, resumeY, quitImgX, quitImgY, quitX, quitY;
     int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY, swordX, swordY, healthBarX, healthBarY;
-    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectWeapons, rectResumeButton;
+    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectWeapons, rectResumeButton, rectQuitbutton;
     int healthRectX, healthRectY, healthToDraw;
     boolean showGun = false;
+    public boolean quitGame = false;
     ArrayList<Rect> healthRects = new ArrayList<>();
     boolean gamePaused = false;
     Paint paint;
 
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton) {
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton, Bitmap quitButton) {
         paint = new Paint();
         paint.setColor(Color.RED);
         this.leftButton = leftButton;
@@ -54,6 +55,9 @@ public class GameMenu {
         this.resumeButton = resumeButton;
         resumeImgX = resumeButton.getWidth();
         resumeImgY = resumeButton.getHeight();
+        this.quitButton = quitButton;
+        quitImgX = quitButton.getWidth();
+        quitImgY = quitButton.getHeight();
     }
 
     public void update(int health) {
@@ -88,7 +92,9 @@ public class GameMenu {
         resumeX = phoneWidth / 2 - resumeImgX / 2;
         resumeY = phoneHeight / 2 - resumeImgY / 2;
         rectResumeButton = new Rect(resumeX, resumeY, resumeX + resumeImgX, resumeY + resumeImgY);
-
+        quitX = 500;
+        quitY = 0;
+        rectQuitbutton = new Rect(quitX,quitY,quitX+quitImgX,quitY +quitImgY);
         int temp;
         for (int i = 0; i < 6; i++) {
             temp = i * (healthRectX) + (i * 16) + healthBarX + 16;
@@ -112,6 +118,7 @@ public class GameMenu {
             canvas.drawRect(healthRects.get(i), paint);
         }
         if (gamePaused) {
+            canvas.drawBitmap(quitButton,quitX,quitY,null);
             canvas.drawBitmap(resumeButton, resumeX, resumeY, null);
         }
     }
@@ -124,6 +131,11 @@ public class GameMenu {
         // returns which button was pressed
         if (gamePaused) {
             if (rectResumeButton.contains(x, y)) {
+                return 5;
+            }
+            if(rectQuitbutton.contains(x,y))
+            {
+                quitGame = true;
                 return 5;
             }
         }

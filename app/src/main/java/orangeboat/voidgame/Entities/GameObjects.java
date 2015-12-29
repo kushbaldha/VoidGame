@@ -63,7 +63,7 @@ public class GameObjects
     }
     public void gameMenuLoad()
     {
-        gameMenu = new GameMenu(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4), loader.get(5), loader.get(6), loader.get(7),loader.get(8));
+        gameMenu = new GameMenu(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4), loader.get(5), loader.get(6), loader.get(7),loader.get(8), loader.get(9));
         loader.clear();
     }
     public void weaponsLoad()

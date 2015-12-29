@@ -144,8 +144,8 @@ public class EnemyPanel
                         {allLandies.remove(i);
                             numEnemies--;
                             System.out.println("Killed a bogey bullet");
-                            score++;
-                            return p;}
+                            score++;}
+                        return p;
                     }
                 }
             }

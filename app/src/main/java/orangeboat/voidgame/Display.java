@@ -30,7 +30,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), 500, 50, false);
     Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
     Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
-    Bitmap gameOverScreen = BitmapFactory.decodeResource(getResources(), R.drawable.tempgamebutton);
+    Bitmap gameOverScreen = BitmapFactory.decodeResource(getResources(), R.drawable.gameover);
+    Bitmap retryButton =  BitmapFactory.decodeResource(getResources(), R.drawable.retry);
     GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
     ImageLoader tempLoader = new ImageLoader(objects,resources);
     Rect rectRetryButton;
@@ -113,6 +114,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         gamePanel.update();
         j.start();
         checkNewGame();
+        checkQuit();
 
     }
     public boolean onTouchEvent(MotionEvent event)
@@ -165,7 +167,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 menu.load();
                 check = false;
                 objects.load();
-                rectRetryButton = new Rect(getWidth()/2,getHeight()/2,(getWidth()/2+getWidth()/5),(getHeight()/2+getHeight()/5));
+                rectRetryButton = new Rect((getWidth()/2-retryButton.getWidth()/2),(int)(getHeight()/1.5),getWidth()/2+retryButton.getWidth(),((int)(getHeight()/1.5)+retryButton.getHeight()));
             }
             else {
                 final int savedState = canvas.save();
@@ -182,6 +184,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 if(newGame)
                 {
                     canvas.drawBitmap(gameOverScreen,0,0,null);
+                    canvas.drawBitmap(retryButton,(getWidth()/2-retryButton.getWidth()/2),(int)(getHeight()/1.5),null);
                     //canvas.drawRect(rectRetryButton,null);
                 }
                 canvas.restoreToCount(savedState);
@@ -197,6 +200,16 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         {
             newGame = true;
         }
+    }
+    public void checkQuit()
+    {
+            if(objects.gameMenu.quitGame == true) {
+                menu = new MenuPanel(0,1900,1200,BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
+                menu.load();
+                showMenu = true;
+                showGame = false;
+                objects.gameMenu.quitGame = false;
+            }
     }
     //random comment
 }

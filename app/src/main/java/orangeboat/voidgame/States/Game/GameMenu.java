@@ -5,23 +5,26 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
 import java.util.ArrayList;
 
 import orangeboat.voidgame.PhoneSpecs;
 
-public class GameMenu{
+public class GameMenu {
 
-    Bitmap leftButton, rightButton, menuButton, jumpButton, okButton , swordButton, gunButton, healthBar ;
+    Bitmap leftButton, rightButton, menuButton, jumpButton, okButton, swordButton, gunButton, healthBar, resumeButton;
     int phoneHeight, phoneWidth;
     int leftImgX, leftImgY, rightImgX, rightImgY, menuImgX, menuImgY, jumpImgX, jumpImgY, okImgX, okImgY, swordImageX, swordImageY, gunImageX, gunImageY, healthBarImageX, healthBarImageY;
-    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY,swordX,swordY,healthBarX,healthBarY;
-    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectWeapons;
+    int resumeImgX, resumeImgY, resumeX, resumeY;
+    int leftX, leftY, rightX, rightY, menuX, menuY, jumpX, jumpY, okX, okY, swordX, swordY, healthBarX, healthBarY;
+    Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectWeapons, rectResumeButton;
     int healthRectX, healthRectY, healthToDraw;
     boolean showGun = false;
-    ArrayList<Rect> healthRects = new ArrayList <>();
+    ArrayList<Rect> healthRects = new ArrayList<>();
+    boolean gamePaused = false;
     Paint paint;
 
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar) {
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton) {
         paint = new Paint();
         paint.setColor(Color.RED);
         this.leftButton = leftButton;
@@ -48,10 +51,12 @@ public class GameMenu{
         this.healthBar = healthBar;
         healthBarImageX = healthBar.getWidth();
         healthBarImageY = healthBar.getHeight();
+        this.resumeButton = resumeButton;
+        resumeImgX = resumeButton.getWidth();
+        resumeImgY = resumeButton.getHeight();
     }
 
-    public void update(int health)
-    {
+    public void update(int health) {
         healthToDraw = health;
     }
 
@@ -75,16 +80,19 @@ public class GameMenu{
         rectOk = new Rect(okX, okY, (okX + okImgX), (okY + okImgY));
         swordX = phoneWidth - (int) (jumpImgX * 1.1);
         swordY = 0;
-        rectWeapons = new Rect(swordX, swordY, (swordX + swordImageX),(swordY + swordImageY));
-        healthBarX = phoneWidth/2 - healthBarImageX/2;
+        rectWeapons = new Rect(swordX, swordY, (swordX + swordImageX), (swordY + swordImageY));
+        healthBarX = phoneWidth / 2 - healthBarImageX / 2;
         healthBarY = 0;
         healthRectX = 114;
         healthRectY = 50;
+        resumeX = phoneWidth / 2 - resumeImgX / 2;
+        resumeY = phoneHeight / 2 - resumeImgY / 2;
+        rectResumeButton = new Rect(resumeX, resumeY, resumeX + resumeImgX, resumeY + resumeImgY);
+
         int temp;
-        for(int i = 0; i < 6; i++)
-        {
-            temp = i * (healthRectX) + (i* 16)+healthBarX+16;
-            healthRects.add(new Rect(temp,16 , temp + healthRectX , healthRectY));
+        for (int i = 0; i < 6; i++) {
+            temp = i * (healthRectX) + (i * 16) + healthBarX + 16;
+            healthRects.add(new Rect(temp, 16, temp + healthRectX, healthRectY));
         }
     }
 
@@ -95,37 +103,46 @@ public class GameMenu{
         canvas.drawBitmap(jumpButton, jumpX, jumpY, null);
         canvas.drawBitmap(menuButton, menuX, menuY, null);
         canvas.drawBitmap(okButton, okX, okY, null);
-       if(showGun)
+        if (showGun)
             canvas.drawBitmap(swordButton, swordX, swordY, null);
-       else
-           canvas.drawBitmap(gunButton,swordX,swordY,null);
-        canvas.drawBitmap(healthBar,healthBarX,healthBarY,null);
-        for(int i = 0; i < healthToDraw; i++)
-        {
-            canvas.drawRect(healthRects.get(i),paint);
+        else
+            canvas.drawBitmap(gunButton, swordX, swordY, null);
+        canvas.drawBitmap(healthBar, healthBarX, healthBarY, null);
+        for (int i = 0; i < healthToDraw; i++) {
+            canvas.drawRect(healthRects.get(i), paint);
+        }
+        if (gamePaused) {
+            canvas.drawBitmap(resumeButton, resumeX, resumeY, null);
         }
     }
-    public void switchStates()
-    {
+
+    public void switchStates() {
         showGun = !showGun;
     }
+
     public int checkGameButton(int x, int y) {
         // returns which button was pressed
-        if (rectLeft.contains(x, y)) {
-            return 1;
-        } else if (rectRight.contains(x, y)) {
-            return 2;
-        } else if (rectJump.contains(x, y)) {
-            return 3;
-        } else if(rectOk.contains(x,y)) {
-            return 4;
+        if (gamePaused) {
+            if (rectResumeButton.contains(x, y)) {
+                return 5;
+            }
         }
-        else if(rectMenu.contains(x,y)) {
-            return 5;
+        else {
+            if (rectLeft.contains(x, y)) {
+                return 1;
+            } else if (rectRight.contains(x, y)) {
+                return 2;
+            } else if (rectJump.contains(x, y)) {
+                return 3;
+            } else if (rectOk.contains(x, y)) {
+                return 4;
+            } else if (rectMenu.contains(x, y)) {
+                return 5;
+            } else if (rectWeapons.contains(x, y))
+                return 6;
         }
-        else if(rectWeapons.contains(x,y))
-            return 6;
         return 0;
+
     }
 }
 

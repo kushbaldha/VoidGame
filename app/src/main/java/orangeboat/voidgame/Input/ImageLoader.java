@@ -59,6 +59,8 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.healthbar)), 800, 80, true);
         objects.imgLoad(temp);
+        temp =  BitmapFactory.decodeResource(resources, R.drawable.playbutton1);
+        objects.imgLoad(temp);
         objects.gameMenuLoad();
 
         //WEAPONS LOAD

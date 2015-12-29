@@ -18,6 +18,7 @@ public class GamePanel {
     int dx;
     int timer;
     boolean check = false;
+    boolean gamePaused = false;
     Random rand = new Random();
 
     public GamePanel(GameObjects objects , Resources resources) {
@@ -31,39 +32,38 @@ public class GamePanel {
         map.loadMap(objects, floorx);
     }
     public void update() {
-        objects.player.update(objects.weapons.getWeapon());
-        if(objects.player.notBlockedByPlatform) {
-            if (objects.player.moveLeft && skyx < 0) {
-                floorx += dx;
-                skyx += dx / 2;
+        if(!gamePaused) {
+            objects.player.update(objects.weapons.getWeapon());
+            if (objects.player.notBlockedByPlatform) {
+                if (objects.player.moveLeft && skyx < 0) {
+                    floorx += dx;
+                    skyx += dx / 2;
+                }
+                if (objects.player.moveRight && skyx > -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth) {
+                    floorx -= dx;
+                    skyx -= dx / 2;
+                }
             }
-            if (objects.player.moveRight && skyx > -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth) {
-                floorx -= dx;
-                skyx -= dx / 2;
+            objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState());
+            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth);
+
+            if (objects.weapons.showSlash)
+                objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
+
+            int num = objects.enemyPanel.killEnemyBullet(objects.weapons.bullets);
+            if (num >= 0)
+                objects.weapons.deleteBullet(num);
+            if (timer > 0) {
+                timer--;
             }
+            if (objects.enemyPanel.checkEnemyKill(objects.player.rectChar) && timer == 0) {
+                objects.player.hit();
+                timer = 30;
+            }
+            objects.gameMenu.update(objects.player.health);
+            map.update(floorx);
+            objects.player.checkOnPlatform(map.inFrameHitboxes, map.inFrameSpikes);
         }
-        objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState());
-        objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth);
-
-        if(objects.weapons.showSlash)
-        objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
-
-        int num =objects.enemyPanel.killEnemyBullet(objects.weapons.bullets);
-        if(num>=0)
-            objects.weapons.deleteBullet(num);
-        if(timer > 0)
-        {
-            timer--;
-        }
-        if(objects.enemyPanel.checkEnemyKill(objects.player.rectChar) && timer == 0)
-        {
-            objects.player.hit();
-            timer = 30;
-        }
-        objects.gameMenu.update(objects.player.health);
-        map.update(floorx);
-        objects.player.checkOnPlatform(map.inFrameHitboxes, map.inFrameSpikes);
-        //objects.player.checkOnPlatform(map.inFrameHitboxes);
     }
 
     public void draw(Canvas canvas) {
@@ -76,7 +76,6 @@ public class GamePanel {
         objects.weapons.draw(canvas);
         map.draw(canvas, floorx);
         objects.gameMenu.draw(canvas);
-
     }
 
 
@@ -136,7 +135,7 @@ public class GamePanel {
         }
         if(check == 5)
         {
-            objects.player.allMovement(false);
+            pauseGame(!gamePaused);
         }
         if(check == 6)
         {
@@ -166,6 +165,11 @@ public class GamePanel {
     public int getJumping()
     {
         return jumping;
+    }
+    public void pauseGame(boolean b)
+    {
+        gamePaused = b;
+        objects.gameMenu.gamePaused = b;
     }
 }
 

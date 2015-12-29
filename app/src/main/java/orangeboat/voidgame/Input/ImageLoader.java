@@ -81,7 +81,8 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.flippy), 1000, 200, true);
         objects.imgLoad(temp);
+        temp =  BitmapFactory.decodeResource(resources, R.drawable.spray);
+        objects.imgLoad(temp);
         objects.enemyPanelLoad();
-
     }
 }

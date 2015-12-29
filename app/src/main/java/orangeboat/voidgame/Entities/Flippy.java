@@ -24,8 +24,9 @@ public class Flippy extends Enemy{
         flippyAnimation.update();
         super.update(moveLeft, moveRight, skyX, levelLength);
     }
-    public void load(int flippyX, int flippyY, int offset){
-        super.load(flippyX,flippyY,offset);
+    public void load(int landieX, int landieY, int offset , Bitmap splatter)
+    {
+        super.load(landieX, landieY, offset, splatter);
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(flippyAnimation.getImage(),x, y,null);

@@ -26,9 +26,9 @@ public class Umbrack extends Enemy
         umbrackAnimation.update();
         super.update(moveLeft,moveRight,skyX,levelLength);
     }
-    public void load(int umbrackX, int umbrackY, int offset)
+    public void load(int landieX, int landieY, int offset , Bitmap splatter)
     {
-        super.load(umbrackX,umbrackY,offset);
+        super.load(landieX, landieY, offset, splatter);
     }
     public void draw(Canvas canvas)
     {

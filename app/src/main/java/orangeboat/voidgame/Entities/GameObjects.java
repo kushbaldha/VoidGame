@@ -73,7 +73,7 @@ public class GameObjects
     }
     public void enemyPanelLoad()
     {
-        enemyPanel = new EnemyPanel(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4));
+        enemyPanel = new EnemyPanel(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5));
         loader.clear();
     }
 }

@@ -25,9 +25,9 @@ public class Landie extends Enemy
         landieAnimation.update();
         super.update(moveLeft, moveRight, skyX, levelLength);
     }
-    public void load(int landieX, int landieY, int offset)
+    public void load(int landieX, int landieY, int offset , Bitmap splatter)
     {
-        super.load(landieX, landieY, offset);
+        super.load(landieX, landieY, offset, splatter);
     }
     public void draw(Canvas canvas)
     {

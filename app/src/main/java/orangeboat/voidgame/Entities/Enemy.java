@@ -45,6 +45,11 @@ public class Enemy
      * The rate at which the screen scrolls
      */
     int dx;
+    /**
+     * The bullet splatter;
+     */
+    public Bitmap splatter;
+    int splatX,splatY;
     Paint paint = new Paint();
     public Enemy(Bitmap img, Animation animation , int health){
         hit = false;
@@ -55,9 +60,10 @@ public class Enemy
         this.health = health;
         paint.setColor(Color.BLUE);
     }
-    public void load(int x, int y, int offset){
+    public void load(int x, int y, int offset, Bitmap splatter){
         phoneWidth=  (PhoneSpecs.width);
         dx = ((int) (phoneWidth * 0.01));
+        this.splatter = splatter;
         this.x = x+offset;
         this.y = y;
     }
@@ -73,9 +79,12 @@ public class Enemy
         }
         hitbox = new Rect(x, y, x + TW, y + TH);
     }
-    public int hit()
+    public int hit(int x, int y)
     {
         health--;
+        hit = true;
+        splatX = x;
+        splatY = y;
         return health;
     }
     public Rect getHitbox()
@@ -84,7 +93,8 @@ public class Enemy
     }
     public void draw(Canvas canvas) {
         if (hit) {
-            canvas.drawBitmap(img, x, y, null);
+            canvas.drawBitmap(splatter,splatX,splatY,null);
+            hit = false;
         }
         //canvas.drawRect(hitbox,paint);
     }

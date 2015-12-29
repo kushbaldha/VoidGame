@@ -25,8 +25,9 @@ public class Tank extends Enemy{
         tankAnimation.update();
         super.update(moveLeft, moveRight, skyX, levelLength);
     }
-    public void load(int tankX, int tankY, int offset){
-        super.load(tankX,tankY,offset);
+    public void load(int landieX, int landieY, int offset , Bitmap splatter)
+    {
+        super.load(landieX, landieY, offset, splatter);
     }
     public void draw(Canvas canvas){
         canvas.drawBitmap(tankAnimation.getImage(),x, y,null);

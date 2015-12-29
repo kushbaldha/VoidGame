@@ -38,7 +38,8 @@ public class EnemyPanel
     Bitmap [] flippyImage = new Bitmap[4];
     public Animation flippyAnimation = new Animation();
     boolean moveLeft = false, moveRight;
-    public EnemyPanel(Bitmap landie, Bitmap umbrack, Bitmap rotor, Bitmap tank, Bitmap flippy)
+    public Bitmap splatter;
+    public EnemyPanel(Bitmap landie, Bitmap umbrack, Bitmap rotor, Bitmap tank, Bitmap flippy, Bitmap spray)
     {
         this.fullLandieImage = landie;
         singleLandieImage = Bitmap.createBitmap(landie, 912, 0, 152, 192);
@@ -51,6 +52,7 @@ public class EnemyPanel
         singleTankImage = Bitmap.createBitmap(tank, 0, 0, 159, 120);
         this.fullFlippyImage = flippy;
         singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 200, 200);
+        splatter = spray;
     }
     public void update(int skyx, int levellength)
     {
@@ -135,10 +137,9 @@ public class EnemyPanel
             for (int i = 0; i < allLandies.size(); i++) {
                 for (int p = 0; p < bulletList.size(); p++) {
                     Rect rectTemp = bulletList.get(p).getRect();
-                    boolean temp = ((Landie)(allLandies.get(i))).getRectLandie().intersect(rectTemp);
+                    boolean temp = Rect.intersects(allLandies.get(i).hitbox,rectTemp);
                     if (temp) {
-                        allLandies.get(i).hit = true;
-                        int temp1 = (allLandies.get(i).hit());
+                        int temp1 = (allLandies.get(i).hit(rectTemp.left,rectTemp.top));
                         if(temp1 == 0)
                         {allLandies.remove(i);
                             numEnemies--;

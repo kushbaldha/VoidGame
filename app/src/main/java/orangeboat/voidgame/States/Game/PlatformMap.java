@@ -169,35 +169,35 @@ public class PlatformMap {
             Landie tempLandie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
             int landieX = (x * Platform.TW);
             int landieY = (y * Platform.TH);
-            tempLandie.load(landieX, landieY, offset);
+            tempLandie.load(landieX, landieY, offset, objects.enemyPanel.splatter);
             return tempLandie;
         }
         else if (layout[x][y] == Umbrack.id) {
             Umbrack tempUmbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
             int uX = (x * Platform.TW);
             int uY = (y * Platform.TH);
-            tempUmbrack.load(uX, uY, offset);
+            tempUmbrack.load(uX, uY, offset, objects.enemyPanel.splatter);
             return tempUmbrack;
         }
         else if (layout[x][y] == Rotor.id) {
             Rotor tempRotor = new Rotor(objects.enemyPanel.rotorAnimation, objects.enemyPanel.singleRotorImage, 22);
             int rX = (x * Platform.TW);
             int rY = (y * Platform.TH);
-            tempRotor.load(rX, rY, offset);
+            tempRotor.load(rX, rY, offset, objects.enemyPanel.splatter);
             return tempRotor;
         }
         else if (layout[x][y] == Tank.id) {
             Tank tempTank = new Tank(objects.enemyPanel.tankAnimation, objects.enemyPanel.singleTankImage, 22);
             int tX = (x * Platform.TW);
             int tY = (y * Platform.TH);
-            tempTank.load(tX, tY, offset);
+            tempTank.load(tX, tY, offset, objects.enemyPanel.splatter);
             return tempTank;
         }
         else if (layout[x][y] == Flippy.id) {
             Flippy tempFlippy = new Flippy(objects.enemyPanel.flippyAnimation, objects.enemyPanel.singleFlippyImage, 22);
             int fX = (x * Platform.TW);
             int fY = (y * Platform.TH);
-            tempFlippy.load(fX, fY, offset);
+            tempFlippy.load(fX, fY, offset, objects.enemyPanel.splatter);
             return tempFlippy;
         }
         return null;

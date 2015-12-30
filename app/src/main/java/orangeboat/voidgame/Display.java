@@ -129,8 +129,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             {
                 newGame = false;
                 gamePanel = new GamePanel(objects,resources);
-                gamePanel.objects.player.health = 6;
                 gamePanel.load();
+                gamePanel.objects.player.health = 6;
+
             }
         }
         if(showMenu)

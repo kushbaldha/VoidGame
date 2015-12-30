@@ -321,9 +321,8 @@ public class Player {
         health--;
     }
 
-    public void checkOnPlatform(ArrayList<Rect> hitbox, ArrayList<Boolean> spikes) {
-        //immplemnt spike sensors
-        //implement horizontal restrictions to platforms
+    public int checkOnPlatform(ArrayList<Rect> hitbox, ArrayList<Boolean> spikes, int timer) {
+        // takes care of falling and jumping on to platforms
         for (int i = 0; i < hitbox.size(); i++) {
             Rect temp = hitbox.get(i);
             if (temp.top <= (rectChar.bottom) && (temp.top+2*dy) >= (rectChar.bottom) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
@@ -333,6 +332,11 @@ public class Player {
                 //if it's on a platform then...
                 if (stupidPlat == 1) {
                     //if there is a platform on the left or the right.. break
+                    if(spikes.get(i)==true && timer == 0)
+                    {
+                        hit();
+                        return 30;
+                    }
                     if (i < hitbox.size() - 1 && ((!lastMove && (temp.right == hitbox.get(i + 1).left)) || (lastMove && (temp.left == hitbox.get(i + 1).right))) && hitbox.get(i + 1).top == temp.top) {
                         break;
                     }
@@ -364,7 +368,9 @@ public class Player {
         }
         if (stupidPlat == 0 && !moveJump)
             startFalling();
+        // takes care of side detections of platforms
         notBlockedByPlatform = checkSideHit(hitbox);
+        return timer;
     }
     public boolean checkSideHit(ArrayList<Rect> hitbox)
     {
@@ -389,5 +395,17 @@ public class Player {
             }
         }
         return true;
+    }
+    public void checkSpikes(ArrayList<Rect> hitbox, ArrayList<Boolean> spikes )
+    {
+             for (int i = 0; i < hitbox.size(); i++)
+             {
+                 Rect temp = hitbox.get(i);
+                 if (temp.top <= (rectChar.bottom) && (temp.top+2*dy) >= (rectChar.bottom) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
+                 {
+                     if(spikes.get(i) == true)
+                         hit();
+                 }
+             }
     }
 }

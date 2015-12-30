@@ -91,6 +91,7 @@ public class PlatformMap {
 
     public void update(int offset) {
         inFrameHitboxes.add(baseRect);
+        inFrameSpikes.add(false);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Platform temp = getTile(x,y);

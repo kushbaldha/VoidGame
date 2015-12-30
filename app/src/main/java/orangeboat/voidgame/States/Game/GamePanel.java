@@ -62,7 +62,7 @@ public class GamePanel {
             }
             objects.gameMenu.update(objects.player.health);
             map.update(floorx);
-            objects.player.checkOnPlatform(map.inFrameHitboxes, map.inFrameSpikes);
+            timer = objects.player.checkOnPlatform(map.inFrameHitboxes, map.inFrameSpikes, timer);
         }
     }
 

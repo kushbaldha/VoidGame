@@ -35,7 +35,7 @@ public class GamePanel {
         if(!gamePaused) {
             objects.player.update(objects.weapons.getWeapon());
             if (objects.player.notBlockedByPlatform) {
-                if (objects.player.moveLeft && skyx+objects.gameBackgroundSky.getWidth() < 0) {
+                if (objects.player.moveLeft && skyx < 0) {
                     floorx += dx;
                     skyx += dx / 2;
                 }

@@ -79,7 +79,7 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources,R.drawable.rotor),1664,128,true);
         objects.imgLoad(temp);
-        temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.tank), 795, 120, true);
+        temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.tank), 1590, 240, true);
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.flippy), 1000, 200, true);
         objects.imgLoad(temp);

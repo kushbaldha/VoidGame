@@ -49,7 +49,7 @@ public class EnemyPanel
         this.fullRotorImage = rotor;
         singleRotorImage = Bitmap.createBitmap(rotor, 0, 0, 128, 128);
         this.fullTankImage = tank;
-        singleTankImage = Bitmap.createBitmap(tank, 0, 0, 159, 120);
+        singleTankImage = Bitmap.createBitmap(tank, 0, 0, 318, 240);
         this.fullFlippyImage = flippy;
         singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 200, 200);
         splatter = spray;
@@ -95,8 +95,8 @@ public class EnemyPanel
         }
         rotorAnimation.setFrames(rotorImage);
         rotorAnimation.setDelay(100);
-        width =159;
-        height =120;
+        width =318;
+        height =240;
         for (int i = 0; i < tankImage.length; i++){
             tankImage[i] = Bitmap.createBitmap(fullTankImage, i*width, 0, width, height);
         }

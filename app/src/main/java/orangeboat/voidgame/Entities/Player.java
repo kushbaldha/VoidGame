@@ -45,8 +45,10 @@ public class Player {
     public Animation playerGunRight = new Animation();
 
 
-    public Rect rectChar;
+    public Rect rectChar, rectHurtChar;
     Paint paint;
+    Paint paintHurt;
+    int hit = 0;
     public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false, jumpDown = false, allMovement = true, showWeapon = false;
     public boolean state = false;
 
@@ -59,6 +61,10 @@ public class Player {
         fullPlayerGunLeftImage = gunWalkingRev;
         fullPlayerGunRightImage = gunWalking;
         paint = new Paint();
+        paintHurt = new Paint();
+        paintHurt.setColor(Color.rgb(85,11,11));
+        paintHurt.setStyle(Paint.Style.STROKE);
+        paintHurt.setStrokeWidth(10);
         paint.setColor(Color.TRANSPARENT);
         this.mainChar = mainChar;
         charImgX = mainChar.getWidth();
@@ -241,6 +247,11 @@ public class Player {
             }
         }
         canvas.drawRect(rectChar, paint);
+        if(hit!=0)
+        {
+            canvas.drawRect(rectHurtChar,paintHurt);
+            hit--;
+        }
     }
 
     public int getCharY() {
@@ -294,6 +305,7 @@ public class Player {
         rectChar = new Rect(charX, charY, (charX + charImgX), (charY + charImgY));
         dy = (int) (phoneHeight * 0.017); // 0.017
         dx = ((int) (phoneWidth * 0.01));
+        rectHurtChar = new Rect(0,0,phoneWidth,phoneHeight);
     }
 
     public void switchStates() {
@@ -307,6 +319,7 @@ public class Player {
 
     public void hit() {
         health--;
+        hit = 10;// stays for hit/30ths of a second
     }
 
     public int checkOnPlatform(ArrayList<Rect> hitbox, ArrayList<Boolean> spikes, int timer) {

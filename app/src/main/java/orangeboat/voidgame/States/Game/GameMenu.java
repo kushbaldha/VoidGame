@@ -87,13 +87,14 @@ public class GameMenu {
         rectWeapons = new Rect(swordX, swordY, (swordX + swordImageX), (swordY + swordImageY));
         healthBarX = phoneWidth / 2 - healthBarImageX / 2;
         healthBarY = 0;
+
         healthRectX = 114;
         healthRectY = 50;
         resumeX = phoneWidth / 2 - resumeImgX / 2;
-        resumeY = phoneHeight / 2 - resumeImgY / 2;
+        resumeY = phoneHeight / 3 - resumeImgY / 2;
         rectResumeButton = new Rect(resumeX, resumeY, resumeX + resumeImgX, resumeY + resumeImgY);
-        quitX = 500;
-        quitY = 0;
+        quitX = phoneWidth / 2 - resumeImgX / 2;
+        quitY = 2* phoneHeight / 3 - resumeImgY / 2;
         rectQuitbutton = new Rect(quitX,quitY,quitX+quitImgX,quitY +quitImgY);
         int temp;
         for (int i = 0; i < 6; i++) {

@@ -1,22 +1,22 @@
 package orangeboat.voidgame;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.media.MediaPlayer;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+        import android.content.res.Resources;
+        import android.graphics.Bitmap;
+        import android.graphics.BitmapFactory;
+        import android.graphics.Canvas;
+        import android.graphics.Rect;
+        import android.media.MediaPlayer;
+        import android.view.MotionEvent;
+        import android.view.SurfaceHolder;
+        import android.view.SurfaceView;
 
-import orangeboat.voidgame.Entities.GameObjects;
-import orangeboat.voidgame.Input.ImageLoader;
-import orangeboat.voidgame.Input.TouchEvents;
-import orangeboat.voidgame.States.Game.GamePanel;
-import orangeboat.voidgame.States.Title.MenuPanel;
-import orangeboat.voidgame.States.Game.MainThread;
+        import orangeboat.voidgame.Entities.GameObjects;
+        import orangeboat.voidgame.Input.ImageLoader;
+        import orangeboat.voidgame.Input.TouchEvents;
+        import orangeboat.voidgame.States.Game.GamePanel;
+        import orangeboat.voidgame.States.Title.MenuPanel;
+        import orangeboat.voidgame.States.Game.MainThread;
 
 
 public class Display extends SurfaceView implements SurfaceHolder.Callback
@@ -184,7 +184,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 if(newGame)
                 {
                     canvas.drawBitmap(gameOverScreen,0,0,null);
-                    canvas.drawBitmap(retryButton,(getWidth()/2-retryButton.getWidth()/2),(int)(getHeight()/1.5),null);
+                    canvas.drawBitmap(retryButton, (getWidth() / 2 - retryButton.getWidth() / 2), (int) (getHeight() / 1.5), null);
                     //canvas.drawRect(rectRetryButton,null);
                 }
                 canvas.restoreToCount(savedState);

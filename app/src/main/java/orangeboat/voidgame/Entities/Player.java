@@ -72,7 +72,7 @@ public class Player {
                 if (jumpDown) {
                     max -= dy;
                     charY += dy;
-                    if (max == -(dy * 2))
+                    if (max == -(dy*2))
                         stupidPlat = 0;
                     if (max == 0) {
                         jumpDown = false;
@@ -81,13 +81,13 @@ public class Player {
                             stoppingMoveJump = false;
                         }
                     }
-                } else if (max < (dy * 20)) {
+                } else if (max < (dy * 12)) {
                     stupidPlat = 2; // can't stick to a platform for 2 dys so it can get out of the tolerance zone
                     max += dy;
                     charY -= dy;
-                    if (max >= (dy * 2))
+                    if (max >= (dy*2))
                         stupidPlat = 0;
-                    if (max == (dy * 20))
+                    if (max == (dy * 12))
                         jumpDown = true;
                 }
             }

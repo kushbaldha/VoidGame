@@ -35,11 +35,11 @@ public class GamePanel {
         if(!gamePaused) {
             objects.player.update(objects.weapons.getWeapon());
             if (objects.player.notBlockedByPlatform) {
-                if (objects.player.moveLeft && skyx < 0) {
+                if (objects.player.moveLeft && skyx+objects.gameBackgroundSky.getWidth() < 0) {
                     floorx += dx;
                     skyx += dx / 2;
                 }
-                if (objects.player.moveRight && skyx > -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth) {
+                if (objects.player.moveRight && skyx+objects.gameBackgroundSky.getWidth() > -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth) {
                     floorx -= dx;
                     skyx -= dx / 2;
                 }
@@ -70,7 +70,9 @@ public class GamePanel {
         if(!check)
             check = true;
         canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
+        canvas.drawBitmap(objects.gameBackgroundSky, skyx+objects.gameBackgroundSky.getWidth(), 0, null);
         canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, floorx+objects.gameBackgroundFloor.getWidth(), 840, null);
         objects.player.draw(canvas);
         objects.enemyPanel.draw(canvas);
         objects.weapons.draw(canvas);

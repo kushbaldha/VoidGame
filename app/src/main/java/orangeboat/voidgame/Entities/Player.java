@@ -62,7 +62,7 @@ public class Player {
         fullPlayerGunRightImage = gunWalking;
         paint = new Paint();
         paintHurt = new Paint();
-        paintHurt.setColor(Color.rgb(100,07,07));
+        paintHurt.setColor(Color.rgb(230, 10, 10));
         paintHurt.setStyle(Paint.Style.STROKE);
         paintHurt.setStrokeWidth(50);
         paint.setColor(Color.TRANSPARENT);

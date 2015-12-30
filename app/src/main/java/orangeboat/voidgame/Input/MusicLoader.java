@@ -25,6 +25,8 @@ public class MusicLoader {
         objects.sfxLoad(temp);
         temp = MediaPlayer.create(context, R.raw.swordsfx);
         objects.sfxLoad(temp);
+        temp = MediaPlayer.create(context, R.raw.jumpsfx);
+        objects.sfxLoad(temp);
         temp = null;
     }
 

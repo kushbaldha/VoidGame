@@ -21,18 +21,18 @@ public class GameMenu {
     Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectWeapons, rectResumeButton, rectQuitbutton;
     int healthRectX, healthRectY, healthToDraw;
     boolean showGun = false;
-    MediaPlayer shootfx;
-    MediaPlayer swordfx;
+    MediaPlayer shootfx, swordfx, jumpsfx;
     public boolean quitGame = false;
     ArrayList<Rect> healthRects = new ArrayList<>();
     boolean gamePaused = false;
     Paint paint;
 
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton, Bitmap quitButton, MediaPlayer shoot, MediaPlayer slash) {
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton, Bitmap quitButton, MediaPlayer shoot, MediaPlayer slash, MediaPlayer jump) {
         paint = new Paint();
         paint.setColor(Color.RED);
         this.swordfx = slash;
         this.shootfx = shoot;
+        this.jumpsfx = jump;
         this.leftButton = leftButton;
         leftImgX = leftButton.getWidth();
         leftImgY = leftButton.getHeight();
@@ -151,6 +151,7 @@ public class GameMenu {
             } else if (rectRight.contains(x, y)) {
                 return 2;
             } else if (rectJump.contains(x, y)) {
+                jumpsfx.start();
                 return 3;
             } else if (rectOk.contains(x, y)) {
                 if(showGun){shootfx.start();}

@@ -34,13 +34,14 @@ public class Weapons {
     Bitmap[] slashes3 = new Bitmap[4];
     Bitmap[] slashes4 = new Bitmap[4];
     int updateBullet = 0;
-    Bitmap fullShoot;
+    Bitmap fullShoot, fullShootRev;
     public ArrayList<Bullet> bullets = new ArrayList<>();
 
     Paint paint;
 
-    public Weapons(Bitmap slash, Bitmap shoot) {
+    public Weapons(Bitmap slash, Bitmap shoot, Bitmap shootRev) {
         fullShoot = shoot;
+        fullShootRev = shootRev;
         shootImgX = shoot.getWidth();
         shootImgY = shoot.getHeight();
         slashImgX = slash.getWidth() / 16;
@@ -167,7 +168,11 @@ public class Weapons {
     }
 
     public void shootBullet(boolean lastMove) {
-        Bullet temp = new Bullet(fullShoot, lastMove);
+        Bullet temp;
+        if(lastMove)
+            temp = new Bullet(fullShootRev,lastMove);
+        else
+            temp = new Bullet(fullShoot, lastMove);
         temp.load();
         bullets.add(temp);
     }

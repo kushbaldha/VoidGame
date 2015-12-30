@@ -38,11 +38,11 @@ public class EnemyPanel
     Bitmap [] flippyImage = new Bitmap[4];
     public Animation flippyAnimation = new Animation();
     boolean moveLeft = false, moveRight;
-    public Bitmap splatter;
-    public EnemyPanel(Bitmap landie, Bitmap umbrack, Bitmap rotor, Bitmap tank, Bitmap flippy, Bitmap spray)
+    public Bitmap splatter, splatterRev;
+    public EnemyPanel(Bitmap landie, Bitmap umbrack, Bitmap rotor, Bitmap tank, Bitmap flippy, Bitmap spray, Bitmap sprayRev)
     {
         this.fullLandieImage = landie;
-        singleLandieImage = Bitmap.createBitmap(landie, 912, 0, 152, 192);
+        singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
         allLandies = new ArrayList<>();
         this.fullUmbrackImage= umbrack;
         singleUmbrackImage= Bitmap.createBitmap(umbrack, 0, 0, 300,400);
@@ -53,6 +53,7 @@ public class EnemyPanel
         this.fullFlippyImage = flippy;
         singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 200, 200);
         splatter = spray;
+        this.splatterRev = sprayRev;
     }
     public void update(int skyx, int levellength, boolean notBlockedByPlatform)
     {
@@ -136,10 +137,14 @@ public class EnemyPanel
             for (int i = 0; i < allLandies.size(); i++) {
                 for (int p = 0; p < bulletList.size(); p++) {
                     Rect rectTemp = bulletList.get(p).getRect();
-                    boolean temp = Rect.intersects(allLandies.get(i).hitbox,rectTemp);
+                    boolean temp = Rect.intersects(allLandies.get(i).hitbox, rectTemp);
                     if (temp) {
-                        int temp1 = (allLandies.get(i).hit(rectTemp.left,rectTemp.top));
-                        if(temp1 == 0)
+                        int healthOfEnemy;
+                        if(bulletList.get(p).lastMove)
+                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.right,rectTemp.top, bulletList.get(p).lastMove));
+                        else
+                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.left,rectTemp.top,bulletList.get(p).lastMove));
+                        if(healthOfEnemy == 0)
                         {allLandies.remove(i);
                             numEnemies--;
                             System.out.println("Killed a bogey bullet");

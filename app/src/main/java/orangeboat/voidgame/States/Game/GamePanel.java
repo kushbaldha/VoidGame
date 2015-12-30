@@ -93,10 +93,6 @@ public class GamePanel {
             objects.enemyPanel.moveLeft();
             moving = pointerNumber;
         }
-        if (check == 3) {
-            objects.player.moveJump();
-            jumping = pointerNumber;
-        }
         if (check == 4) {
             weapon = pointerNumber;
             if(objects.player.getState()) {
@@ -104,8 +100,6 @@ public class GamePanel {
             }//actual gun animation
             else
                 objects.weapons.setShowSlash(true); // actual slash animation
-            //objects.player.allMovement(false);
-            //objects.player.moveStop();
         }
     }
     public void singleDownTouch(int x, int y, int pointerNumber)
@@ -123,7 +117,6 @@ public class GamePanel {
         }
         if (check == 3) {
             objects.player.moveJump();
-            jumping = pointerNumber;
         }
         if (check == 4) {
             weapon = pointerNumber;
@@ -149,10 +142,6 @@ public class GamePanel {
         if (objects.player.checkIfMoving() && moving == pointerNumber) {
             objects.player.moveStop();
             objects.enemyPanel.moveStop();
-        }
-        if(jumping == pointerNumber)
-        {
-            objects.player.stopJump();
         }
         if(weapon == pointerNumber)
         {

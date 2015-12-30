@@ -47,7 +47,7 @@ public class Player {
 
     public Rect rectChar;
     Paint paint;
-    public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false, stoppingMoveJump = false, jumpDown = false, allMovement = true, showWeapon = false;
+    public boolean moveLeft = false, moveRight = false, lastMove = true, moveJump = false, jumpDown = false, allMovement = true, showWeapon = false;
     public boolean state = false;
 
     // false is sword and true is gun
@@ -74,13 +74,6 @@ public class Player {
                     charY += dy;
                     if (max == -(dy*2))
                         stupidPlat = 0;
-                    if (max == 0) {
-                        jumpDown = false;
-                        if (stoppingMoveJump) {
-                            moveJump = false;
-                            stoppingMoveJump = false;
-                        }
-                    }
                 } else if (max < (dy * 12)) {
                     stupidPlat = 2; // can't stick to a platform for 2 dys so it can get out of the tolerance zone
                     max += dy;
@@ -155,14 +148,9 @@ public class Player {
         // false is right
     }
 
-    public void stopJump() {
-        stoppingMoveJump = true;
-    }
-
     public void completelyStopJumping() {
         moveJump = false;
         jumpDown = false;
-        stoppingMoveJump = false;
         max = 0;
     }
 

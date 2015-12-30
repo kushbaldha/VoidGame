@@ -68,12 +68,12 @@ public class GameObjects
     }
     public void weaponsLoad()
     {
-        weapons = new Weapons(loader.get(0),loader.get(1));
+        weapons = new Weapons(loader.get(0),loader.get(1),loader.get(2));
         loader.clear();
     }
     public void enemyPanelLoad()
     {
-        enemyPanel = new EnemyPanel(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5));
+        enemyPanel = new EnemyPanel(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5),loader.get(6));
         loader.clear();
     }
 }

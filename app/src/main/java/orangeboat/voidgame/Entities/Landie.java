@@ -12,22 +12,22 @@ import orangeboat.voidgame.Animation.Animation;
 public class Landie extends Enemy
 {
     Animation landieAnimation;
-    Bitmap landieHurtImage;
+    Bitmap singleLandieImage;
     public static final int id = 3;
-    public Landie(Animation landieAnimation, Bitmap landieHurtImage, int health)
+    public Landie(Animation landieAnimation, Bitmap singleLandieImage, int health)
     {
-        super(landieHurtImage,landieAnimation , health);// takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
+        super(singleLandieImage,landieAnimation , health);// takes 5 bullets to kill. Means that one visual bullet is actually 2 bullets?
         this.landieAnimation = landieAnimation;
-        this.landieHurtImage = landieHurtImage;
+        this.singleLandieImage = singleLandieImage;
     }
     public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
     {
         landieAnimation.update();
         super.update(moveLeft, moveRight, skyX, levelLength);
     }
-    public void load(int landieX, int landieY, int offset , Bitmap splatter)
+    public void load(int landieX, int landieY, int offset , Bitmap splatter, Bitmap splatterRev)
     {
-        super.load(landieX, landieY, offset, splatter);
+        super.load(landieX, landieY, offset, splatter, splatterRev);
     }
     public void draw(Canvas canvas)
     {

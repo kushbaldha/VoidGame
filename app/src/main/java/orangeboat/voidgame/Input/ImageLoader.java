@@ -70,6 +70,8 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = BitmapFactory.decodeResource(resources, R.drawable.bullet); //60 x 10
         objects.imgLoad(temp);
+        temp = BitmapFactory.decodeResource(resources, R.drawable.bulletrev); //60 x 10
+        objects.imgLoad(temp);
         objects.weaponsLoad();
 
         //ENEMYPANEL LOAD
@@ -84,6 +86,8 @@ public class ImageLoader
         temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.flippy), 1000, 200, true);
         objects.imgLoad(temp);
         temp =  BitmapFactory.decodeResource(resources, R.drawable.spray);
+        objects.imgLoad(temp);
+        temp =  BitmapFactory.decodeResource(resources, R.drawable.sprayrev);
         objects.imgLoad(temp);
         objects.enemyPanelLoad();
     }

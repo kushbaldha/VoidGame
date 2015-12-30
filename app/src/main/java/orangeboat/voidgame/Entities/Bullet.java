@@ -20,7 +20,7 @@ public class Bullet
     int dy;
     int total;
     boolean lastMove;
-    public Bullet(Bitmap bullet , boolean lastMove)
+    public Bullet(Bitmap bullet,  boolean lastMove)
     {
         this.lastMove = lastMove;
         this.bullet = bullet;
@@ -49,7 +49,7 @@ public class Bullet
     }
     public void draw(Canvas canvas)
     {
-        canvas.drawBitmap(bullet,bulletX,bulletY,null);
+            canvas.drawBitmap(bullet,bulletX,bulletY,null);
     }
     public Rect getRect()
     {

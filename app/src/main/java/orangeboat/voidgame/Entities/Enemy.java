@@ -48,8 +48,9 @@ public class Enemy
     /**
      * The bullet splatter;
      */
-    public Bitmap splatter;
+    public Bitmap splatter, splatterRev;
     int splatX,splatY;
+    Boolean lastMove;
     Paint paint = new Paint();
     public Enemy(Bitmap img, Animation animation , int health){
         hit = false;
@@ -60,10 +61,11 @@ public class Enemy
         this.health = health;
         paint.setColor(Color.BLUE);
     }
-    public void load(int x, int y, int offset, Bitmap splatter){
+    public void load(int x, int y, int offset, Bitmap splatter, Bitmap splatterRev){
         phoneWidth=  (PhoneSpecs.width);
         dx = ((int) (phoneWidth * 0.01));
         this.splatter = splatter;
+        this.splatterRev = splatterRev;
         this.x = x+offset;
         this.y = y;
     }
@@ -79,8 +81,9 @@ public class Enemy
         }
         hitbox = new Rect(x, y, x + TW, y + TH);
     }
-    public int hit(int x, int y)
+    public int hit(int x, int y, Boolean lastMove)
     {
+        this.lastMove = lastMove;
         health--;
         hit = true;
         splatX = x;
@@ -93,6 +96,9 @@ public class Enemy
     }
     public void draw(Canvas canvas) {
         if (hit) {
+            if(lastMove)
+            canvas.drawBitmap(splatterRev,splatX,splatY,null);
+            else
             canvas.drawBitmap(splatter,splatX,splatY,null);
             hit = false;
         }

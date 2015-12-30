@@ -2,6 +2,7 @@ package orangeboat.voidgame.Entities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class GameObjects
 {
     public Player player;
     ArrayList <Bitmap> loader = new ArrayList<>();
+    ArrayList<MediaPlayer> sfxloader = new ArrayList<>();
     public Weapons weapons;
     public GameMenu gameMenu;
     public EnemyPanel enemyPanel;
@@ -56,6 +58,7 @@ public class GameObjects
     {
         loader.add(image);
     }
+    public void sfxLoad(MediaPlayer sfx){ sfxloader.add(sfx);}
     public void playerLoad()
     {
         player = new Player(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5),loader.get(6) ,6);
@@ -63,7 +66,7 @@ public class GameObjects
     }
     public void gameMenuLoad()
     {
-        gameMenu = new GameMenu(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4), loader.get(5), loader.get(6), loader.get(7),loader.get(8), loader.get(9));
+        gameMenu = new GameMenu(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4), loader.get(5), loader.get(6), loader.get(7),loader.get(8), loader.get(9), sfxloader.get(0));
         loader.clear();
     }
     public void weaponsLoad()

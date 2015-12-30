@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 
 import java.util.ArrayList;
 
@@ -20,14 +21,16 @@ public class GameMenu {
     Rect rectLeft, rectRight, rectMenu, rectJump, rectOk, rectWeapons, rectResumeButton, rectQuitbutton;
     int healthRectX, healthRectY, healthToDraw;
     boolean showGun = false;
+    MediaPlayer shootfx;
     public boolean quitGame = false;
     ArrayList<Rect> healthRects = new ArrayList<>();
     boolean gamePaused = false;
     Paint paint;
 
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton, Bitmap quitButton) {
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton, Bitmap quitButton, MediaPlayer shoot) {
         paint = new Paint();
         paint.setColor(Color.RED);
+        this.shootfx = shoot;
         this.leftButton = leftButton;
         leftImgX = leftButton.getWidth();
         leftImgY = leftButton.getHeight();
@@ -148,6 +151,7 @@ public class GameMenu {
             } else if (rectJump.contains(x, y)) {
                 return 3;
             } else if (rectOk.contains(x, y)) {
+                shootfx.start();
                 return 4;
             } else if (rectMenu.contains(x, y)) {
                 return 5;

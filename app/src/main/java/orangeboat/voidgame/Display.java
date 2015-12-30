@@ -13,7 +13,8 @@ import android.content.Context;
 
         import orangeboat.voidgame.Entities.GameObjects;
         import orangeboat.voidgame.Input.ImageLoader;
-        import orangeboat.voidgame.Input.TouchEvents;
+import orangeboat.voidgame.Input.MusicLoader;
+import orangeboat.voidgame.Input.TouchEvents;
         import orangeboat.voidgame.States.Game.GamePanel;
         import orangeboat.voidgame.States.Title.MenuPanel;
         import orangeboat.voidgame.States.Game.MainThread;
@@ -23,6 +24,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
 {
     MediaPlayer j;
+    MediaPlayer gunshot;
     private MainThread secondthread;
     private MenuPanel menu;
     Resources resources = getResources();
@@ -33,7 +35,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     Bitmap gameOverScreen = BitmapFactory.decodeResource(getResources(), R.drawable.gameover);
     Bitmap retryButton =  BitmapFactory.decodeResource(getResources(), R.drawable.retry);
     GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
-    ImageLoader tempLoader = new ImageLoader(objects,resources);
+    ImageLoader tempLoader;
+    MusicLoader sfxLoader;
     Rect rectRetryButton;
     GamePanel gamePanel;
     boolean showMenu = true;
@@ -52,6 +55,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
         super(context);
         j = MediaPlayer.create(context, R.raw.voidost);
+        gunshot = MediaPlayer.create(context, R.raw.shoot);
+        sfxLoader = new MusicLoader(objects, context);
+        tempLoader = new ImageLoader(objects,resources);
 
         //voido
         j.start();

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 
 import java.util.ArrayList;
 
@@ -43,8 +44,6 @@ public class Player {
     Bitmap fullPlayerGunRightImage;
     Bitmap[] playerGunRightImage = new Bitmap[5];
     public Animation playerGunRight = new Animation();
-
-
     public Rect rectChar, rectHurtChar;
     Paint paint;
     Paint paintHurt;

@@ -45,7 +45,7 @@ public class GamePanel {
                 }
             }
             objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState());
-            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth);
+            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth,objects.player.notBlockedByPlatform);
 
             if (objects.weapons.showSlash)
                 objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);

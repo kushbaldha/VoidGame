@@ -15,7 +15,7 @@ public class Player {
     public boolean notBlockedByPlatform = true; //for now is always true
     public int phoneHeight, phoneWidth;
     int charX, charY, charImgX, charImgY;
-    int dy, max = 0;
+    int dy,dx, max = 0;
     public int health;
     Bitmap mainChar;
     int stupidPlat = 1; //      0  is in the air jumping    1 is on platform  2 is in the air not on platform
@@ -305,6 +305,7 @@ public class Player {
         charY = (int) (phoneHeight / 1.49);
         rectChar = new Rect(charX, charY, (charX + charImgX), (charY + charImgY));
         dy = (int) (phoneHeight * 0.017); // 0.017
+        dx = ((int) (phoneWidth * 0.01));
     }
 
     public void switchStates() {
@@ -325,7 +326,7 @@ public class Player {
         //implement horizontal restrictions to platforms
         for (int i = 0; i < hitbox.size(); i++) {
             Rect temp = hitbox.get(i);
-            if (temp.top <= (rectChar.bottom + dy) && temp.top >= (rectChar.bottom - dy) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
+            if (temp.top <= (rectChar.bottom) && (temp.top+2*dy) >= (rectChar.bottom) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right))
             {
                 //tangible on the top
 
@@ -355,7 +356,7 @@ public class Player {
                 }
             }
             // tangible on the bottom
-            if (temp.bottom <= (rectChar.top+dy) && temp.bottom >= (rectChar.top-dy) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right)) {
+            if (temp.bottom >= (rectChar.top) && (temp.bottom-dy) <= (rectChar.top) && (temp.left - charImgX - 20 <= rectChar.left && temp.right + charImgX + 20 >= rectChar.right)) {
                 if (jumpDown == false && stupidPlat == 0) {
                     startFalling();
                 }
@@ -363,6 +364,30 @@ public class Player {
         }
         if (stupidPlat == 0 && !moveJump)
             startFalling();
+        notBlockedByPlatform = checkSideHit(hitbox);
     }
-
+    public boolean checkSideHit(ArrayList<Rect> hitbox)
+    {
+        for(int i = 0; i<hitbox.size();i++)
+        {
+            if(rectChar.top<hitbox.get(i).bottom && rectChar.bottom >hitbox.get(i).top)
+            {
+                //facing left
+                if (lastMove) {
+                    if (rectChar.left >= hitbox.get(i).right - 2*dx && rectChar.left <= hitbox.get(i).right-dx) {
+                        charX = hitbox.get(i).right-dx;
+                        return false;
+                    }
+                }
+                //facing right
+                else {
+                    if (rectChar.right <= hitbox.get(i).left + 2*dx && rectChar.right >= hitbox.get(i).left+dx) {
+                        charX = hitbox.get(i).left - charImgX +dx;
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }

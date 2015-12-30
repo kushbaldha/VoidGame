@@ -54,18 +54,17 @@ public class EnemyPanel
         singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 200, 200);
         splatter = spray;
     }
-    public void update(int skyx, int levellength)
+    public void update(int skyx, int levellength, boolean notBlockedByPlatform)
     {
-        for(int i = 0; i < allLandies.size();i++)
-        {
-            if(allLandies.get(i) instanceof Landie){
-                ( (Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
-            }
-            else if(allLandies.get(i) instanceof Umbrack){
-                ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
-            }
-            else allLandies.get(i).update(moveLeft,moveRight,skyx,levellength);
+        if(notBlockedByPlatform) {
+            for (int i = 0; i < allLandies.size(); i++) {
+                if (allLandies.get(i) instanceof Landie) {
+                    ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
+                } else if (allLandies.get(i) instanceof Umbrack) {
+                    ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
+                } else allLandies.get(i).update(moveLeft, moveRight, skyx, levellength);
 
+            }
         }
        // if(score == somenumber)
         // spawn an enemy. create a landie object with passing animation in.

@@ -51,7 +51,7 @@ public class EnemyPanel
         this.fullTankImage = tank;
         singleTankImage = Bitmap.createBitmap(tank, 0, 0, 318, 240);
         this.fullFlippyImage = flippy;
-        singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 200, 200);
+        singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 210, 190);
         splatter = spray;
         this.splatterRev = sprayRev;
     }
@@ -102,8 +102,8 @@ public class EnemyPanel
         }
         tankAnimation.setFrames(tankImage);
         tankAnimation.setDelay(100);
-        width =200;
-        height =200;
+        width =210;
+        height =190;
         for (int i = 0; i < flippyImage.length; i++){
             flippyImage[i] = Bitmap.createBitmap(fullFlippyImage, i*width, 0, width, height);
         }

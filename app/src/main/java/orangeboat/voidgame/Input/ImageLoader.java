@@ -75,7 +75,7 @@ public class ImageLoader
         objects.weaponsLoad();
 
         //ENEMYPANEL LOAD
-        temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.landie)),1092,192,true);
+        temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.tempenemy)),942,192,true);
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.umbrackidle),1200,400,true);
         objects.imgLoad(temp);
@@ -83,7 +83,7 @@ public class ImageLoader
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.tank), 1590, 240, true);
         objects.imgLoad(temp);
-        temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.flippy), 1000, 200, true);
+        temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.flippy), 840, 190, true);
         objects.imgLoad(temp);
         temp =  BitmapFactory.decodeResource(resources, R.drawable.spray);
         objects.imgLoad(temp);

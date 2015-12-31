@@ -13,7 +13,8 @@ import orangeboat.voidgame.Animation.Animation;
 import orangeboat.voidgame.PhoneSpecs;
 
 public class Player {
-    public boolean notBlockedByPlatform = true; //for now is always true
+    public boolean hitBossWall= false;
+    public boolean notBlockedByPlatform = true;
     public int phoneHeight, phoneWidth;
     int charX, charY, charImgX, charImgY;
     int dy,dx, max = 0;
@@ -71,7 +72,10 @@ public class Player {
         this.health = health;
     }
 
-    public void update(boolean weapon) {
+    public void update(boolean weapon, int wall, int limit) {
+        if ( wall < limit){
+            hitBossWall = true;
+        }
         if (allMovement) {
             if (moveJump) {
                 if (jumpDown) {
@@ -104,18 +108,30 @@ public class Player {
                 } else {
                     if (moveLeft) {
                         playerLeft.update();
+                        if(wall < limit) {
+                            if(charX > 0) charX -= dx;
+                        }
                     }
                     if (moveRight) {
                         playerRight.update();
+                        if(wall < limit) {
+                            if(charX < phoneWidth-playerSwordRightImage[0].getWidth()) charX += dx;
+                        }
                     }
                 }
             }
             if (state) {
                 if (moveLeft) {
                     playerGunLeft.update();
+                    if(wall < limit) {
+                        if(charX > 0) charX -= dx;
+                    }
                 }
                 if (moveRight) {
                     playerGunRight.update();
+                    if(wall < limit) {
+                        if(charX < phoneWidth-playerSwordRightImage[0].getWidth()) charX += dx;
+                    }
                 }
             }
             // updates character hitbox

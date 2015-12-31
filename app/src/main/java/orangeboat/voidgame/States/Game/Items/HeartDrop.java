@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
  */
 public class HeartDrop extends Item
 {
-    public static final int id = 10;
+    public static final int id = 9;
     public HeartDrop(Bitmap img)
     {
      super(img,id);

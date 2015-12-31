@@ -51,6 +51,7 @@ public class Enemy
     public Bitmap splatter, splatterRev;
     int splatX,splatY;
     Boolean lastMove;
+    Boolean awake;
     Paint paint = new Paint();
     public Enemy(Bitmap img, Animation animation , int health){
         hit = false;
@@ -80,6 +81,8 @@ public class Enemy
             x += dx;
         }
         hitbox = new Rect(x, y, x + TW, y + TH);
+        awake = inFrame();
+
     }
     public int hit(int x, int y, Boolean lastMove)
     {
@@ -103,6 +106,12 @@ public class Enemy
             hit = false;
         }
         //canvas.drawRect(hitbox,paint);
+    }
+    public boolean inFrame()
+    {
+        if((hitbox.left >= 0 && hitbox.left<=(phoneWidth)) || ( hitbox.right >= 0 && hitbox.right<=phoneWidth))
+            return true;
+     return false;
     }
 
 }

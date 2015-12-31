@@ -25,11 +25,10 @@ public class Flippy extends Enemy {
         if(awake) {
             dFlippyX = (int)( (x- charX) / 20);
             dFlippyY = (int)( (y- charY) / 20);
-        }
-        x -= dFlippyX;
+
+        } x -= dFlippyX;
         y -= dFlippyY;
-        if(awake)
-        flippyAnimation.update();
+        if(awake) flippyAnimation.update();
     }
     public void load(int landieX, int landieY, int offset , Bitmap splatter, Bitmap splatterRev)
     {

@@ -24,22 +24,26 @@ public class Landie extends Enemy
         this.landieAnimation = landieAnimation;
         this.singleLandieImage = singleLandieImage;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
-    {
-        if(max == dx*30) {
-            this.enemyMoveLeft = !this.enemyMoveLeft;
-            max = 0;
-        }
-        if(enemyMoveLeft) {
-            x -= dx;
-            max+=dx;
-        }
-        else {
-            x += dx;
-            max+=dx;
-        }
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength) {
         super.update(moveLeft, moveRight, skyX, levelLength);
-        if(awake)
+        if (awake) {
+            /*if (max == dx * 30) {
+                this.enemyMoveLeft = !this.enemyMoveLeft;
+                max = 0;
+            }
+            if (enemyMoveLeft) {
+                x -= dx;
+                max += dx;
+            }
+            else {
+                x += dx;
+                max += dx;
+            }
+            */
+          //  if(moveRight){x -= dx;}
+          //  if(moveLeft){x+= dx;}
+
+        }
         landieAnimation.update();
     }
     public void load(int landieX, int landieY, int offset , Bitmap splatter, Bitmap splatterRev)

@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import orangeboat.voidgame.Animation.Animation;
-import orangeboat.voidgame.Entities.Enemy;
 
 /**
  * Created by Jay on 12/25/2015.
@@ -22,6 +21,7 @@ public class Tank extends Enemy{
     }
     public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
     {
+        if(awake)
         tankAnimation.update();
         super.update(moveLeft, moveRight, skyX, levelLength);
     }
@@ -30,6 +30,7 @@ public class Tank extends Enemy{
         super.load(landieX, landieY, offset, splatter, splatterRev);
     }
     public void draw(Canvas canvas){
+        if(awake)
         canvas.drawBitmap(tankAnimation.getImage(),x, y,null);
         super.draw(canvas);
     }

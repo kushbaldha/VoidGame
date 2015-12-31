@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import java.util.Random;
 
 import orangeboat.voidgame.Entities.GameObjects;
+import orangeboat.voidgame.PhoneSpecs;
 
 public class GamePanel {
     static PlatformMap map;
@@ -45,8 +46,8 @@ public class GamePanel {
                 }
             }
             objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState());
-            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth,objects.player.notBlockedByPlatform);
-
+            objects.itemPanel.update(objects.player.moveRight, objects.player.moveLeft, skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth,objects.player.notBlockedByPlatform);
+            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform);
             if (objects.weapons.showSlash)
                 objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
 
@@ -60,9 +61,20 @@ public class GamePanel {
                 objects.player.hit();
                 timer = 30;
             }
+            int itemDrop = objects.itemPanel.checkCollision(objects.player.rectChar);
+            switch(itemDrop)
+            {
+                case 10:
+                {
+                    if(objects.player.health<6)
+                        objects.player.health++;
+                }
+            }
             objects.gameMenu.update(objects.player.health);
             map.update(floorx);
             timer = objects.player.checkOnPlatform(map.inFrameHitboxes, map.inFrameSpikes, timer);
+
+
         }
     }
 
@@ -78,6 +90,7 @@ public class GamePanel {
         objects.weapons.draw(canvas);
         map.draw(canvas, floorx);
         objects.gameMenu.draw(canvas);
+        objects.itemPanel.draw(canvas);
     }
 
 

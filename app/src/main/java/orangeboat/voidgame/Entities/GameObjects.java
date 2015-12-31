@@ -15,6 +15,7 @@ import orangeboat.voidgame.States.Game.GameMenu;
 import orangeboat.voidgame.PhoneSpecs;
 import orangeboat.voidgame.R;
 import orangeboat.voidgame.R;
+import orangeboat.voidgame.States.Game.Items.ItemPanel;
 
 
 /**
@@ -28,6 +29,7 @@ public class GameObjects
     public Weapons weapons;
     public GameMenu gameMenu;
     public EnemyPanel enemyPanel;
+    public ItemPanel itemPanel;
     public Bitmap gameBackgroundFloor,gameBackgroundSky;
 
     public static Bitmap flat;
@@ -77,6 +79,11 @@ public class GameObjects
     public void enemyPanelLoad()
     {
         enemyPanel = new EnemyPanel(loader.get(0),loader.get(1),loader.get(2),loader.get(3),loader.get(4),loader.get(5),loader.get(6));
+        loader.clear();
+    }
+    public void itemPanelLoad()
+    {
+        itemPanel = new ItemPanel(loader.get(0));
         loader.clear();
     }
 }

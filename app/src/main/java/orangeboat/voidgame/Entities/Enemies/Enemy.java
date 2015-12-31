@@ -1,4 +1,4 @@
-package orangeboat.voidgame.Entities;
+package orangeboat.voidgame.Entities.Enemies;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

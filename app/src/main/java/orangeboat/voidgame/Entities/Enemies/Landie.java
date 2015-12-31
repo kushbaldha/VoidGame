@@ -1,10 +1,11 @@
-package orangeboat.voidgame.Entities;
+package orangeboat.voidgame.Entities.Enemies;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import orangeboat.voidgame.Animation.Animation;
+import orangeboat.voidgame.Entities.Enemies.Enemy;
 import orangeboat.voidgame.PhoneSpecs;
 
 /**

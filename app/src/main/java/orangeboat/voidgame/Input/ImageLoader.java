@@ -90,5 +90,10 @@ public class ImageLoader
         temp =  BitmapFactory.decodeResource(resources, R.drawable.sprayrev);
         objects.imgLoad(temp);
         objects.enemyPanelLoad();
+
+        //ITEMPANEL LOAD
+        temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.heart)), 64, 64, true);
+        objects.imgLoad(temp);
+        objects.itemPanelLoad();
     }
 }

@@ -1,4 +1,4 @@
-package orangeboat.voidgame.Entities;
+package orangeboat.voidgame.Entities.Enemies;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,7 +9,7 @@ import orangeboat.voidgame.Animation.Animation;
 /**
  * Created by Jay on 12/24/2015.
  */
-public class Flippy extends Enemy{
+public class Flippy extends Enemy {
     Animation flippyAnimation;
     Bitmap flippyImg;
     int dx;
@@ -21,6 +21,7 @@ public class Flippy extends Enemy{
     }
     public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
     {
+        if(awake)
         flippyAnimation.update();
         super.update(moveLeft, moveRight, skyX, levelLength);
     }
@@ -29,6 +30,7 @@ public class Flippy extends Enemy{
         super.load(landieX, landieY, offset, splatter, splatterRev);
     }
     public void draw(Canvas canvas){
+        if(awake)
         canvas.drawBitmap(flippyAnimation.getImage(),x, y,null);
         super.draw(canvas);
     }

@@ -7,6 +7,8 @@ import android.graphics.Rect;
 import java.util.ArrayList;
 
 import orangeboat.voidgame.Animation.Animation;
+import orangeboat.voidgame.Entities.Enemies.Enemy;
+import orangeboat.voidgame.Entities.Enemies.Landie;
 import orangeboat.voidgame.Entities.Enemies.Umbrack;
 
 /**

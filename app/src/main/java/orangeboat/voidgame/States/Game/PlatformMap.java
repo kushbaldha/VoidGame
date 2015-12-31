@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import orangeboat.voidgame.Entities.Enemies.Rotor;
 import orangeboat.voidgame.Entities.Enemies.Tank;
 import orangeboat.voidgame.Entities.Enemies.Umbrack;
-import orangeboat.voidgame.Entities.Enemy;
-import orangeboat.voidgame.Entities.Flippy;
+import orangeboat.voidgame.Entities.Enemies.Enemy;
+import orangeboat.voidgame.Entities.Enemies.Flippy;
 import orangeboat.voidgame.Entities.GameObjects;
-import orangeboat.voidgame.Entities.Landie;
+import orangeboat.voidgame.Entities.Enemies.Landie;
 import orangeboat.voidgame.Input.TextLoader;
 import orangeboat.voidgame.PhoneSpecs;
+import orangeboat.voidgame.States.Game.Items.HeartDrop;
+import orangeboat.voidgame.States.Game.Items.Item;
 
 
 /**
@@ -36,6 +38,7 @@ public class PlatformMap {
     public ArrayList<Enemy> allLandies = new ArrayList<>();
     public ArrayList<Rect> inFrameHitboxes = new ArrayList<>();
     public ArrayList<Boolean> inFrameSpikes = new ArrayList<>();
+    public ArrayList<Item> allItems = new ArrayList<>();
     Paint paint;
     /**
      * size of the map
@@ -83,10 +86,16 @@ public class PlatformMap {
                 if (getEnemy(x, y) != null) {
                     allLandies.add(getEnemy(x, y));
                 }
+                if(getItem(x,y)!= null)
+                {
+                    allItems.add(getItem(x,y));
+                }
             }
-            objects.enemyPanel.loadList(allLandies);
         }
+        objects.enemyPanel.loadList(allLandies);
+        objects.itemPanel.loadList(allItems);
         allLandies = null;
+        allItems = null;
     }
 
     public void update(int offset) {
@@ -164,7 +173,18 @@ public class PlatformMap {
         return null;
 
     }
-
+    public Item getItem(int x, int y)
+    {
+        if(layout[x][y] == HeartDrop.id)
+        {
+            HeartDrop temp = new HeartDrop(objects.itemPanel.heartDrop);
+            int itemX = (x * Platform.TW);
+            int itemY = (y * Platform.TH);
+            temp.load(itemX,itemY,offset);
+            return temp;
+        }
+        return null;
+    }
     public Enemy getEnemy(int x, int y) {
         if (layout[x][y] == Landie.id) {
             Landie tempLandie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);

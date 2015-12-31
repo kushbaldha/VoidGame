@@ -53,7 +53,7 @@ public class GameObjects
         player.load();
         gameMenu.load();
         enemyPanel.load();
-        weapons.load();
+        weapons.load(player.charX);
     }
 
     public void imgLoad(Bitmap image)

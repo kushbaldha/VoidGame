@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import orangeboat.voidgame.Animation.Animation;
 import orangeboat.voidgame.Entities.Enemies.Enemy;
+import orangeboat.voidgame.Entities.Enemies.Flippy;
 import orangeboat.voidgame.Entities.Enemies.Landie;
 import orangeboat.voidgame.Entities.Enemies.Umbrack;
 
@@ -57,7 +58,7 @@ public class EnemyPanel
         splatter = spray;
         this.splatterRev = sprayRev;
     }
-    public void update(int skyx, int levellength, boolean notBlockedByPlatform)
+    public void update(int skyx, int levellength, boolean notBlockedByPlatform, int charX, int charY)
     {
         if(notBlockedByPlatform) {
             for (int i = 0; i < allLandies.size(); i++) {
@@ -65,7 +66,11 @@ public class EnemyPanel
                     ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
                 } else if (allLandies.get(i) instanceof Umbrack) {
                     ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
-                } else allLandies.get(i).update(moveLeft, moveRight, skyx, levellength);
+                }
+                else if (allLandies.get(i) instanceof Flippy) {
+                    ((Flippy) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, charX, charY);
+                }
+                else allLandies.get(i).update(moveLeft, moveRight, skyx, levellength);
 
             }
         }

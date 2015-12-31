@@ -7,6 +7,7 @@ import java.util.Random;
 
 import orangeboat.voidgame.Entities.GameObjects;
 import orangeboat.voidgame.PhoneSpecs;
+import orangeboat.voidgame.States.Game.Items.HeartDrop;
 
 public class GamePanel {
     static PlatformMap map;
@@ -34,6 +35,8 @@ public class GamePanel {
     }
     public void update() {
         if(!gamePaused) {
+
+            //-28050 f, 13200 s
             objects.player.update(objects.weapons.getWeapon(), skyx+objects.gameBackgroundSky.getWidth(), 1+(-1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth));
             if (objects.player.notBlockedByPlatform && !objects.player.hitBossWall) {
                 if (objects.player.moveLeft && skyx < 0) {
@@ -45,9 +48,9 @@ public class GamePanel {
                     skyx -= dx / 2;
                 }
             }
-            objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState());
+            objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState(),objects.player.charX);
             objects.itemPanel.update(objects.player.moveRight, objects.player.moveLeft, skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth,objects.player.notBlockedByPlatform);
-            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform);
+            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform, objects.player.charX, objects.player.charY);
             if (objects.weapons.showSlash)
                 objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
 
@@ -64,7 +67,7 @@ public class GamePanel {
             int itemDrop = objects.itemPanel.checkCollision(objects.player.rectChar);
             switch(itemDrop)
             {
-                case 10:
+                case HeartDrop.id:
                 {
                     if(objects.player.health<6)
                         objects.player.health++;

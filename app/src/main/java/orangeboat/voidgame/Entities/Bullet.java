@@ -38,9 +38,9 @@ public class Bullet
         total +=dx;
         rectBullet = new Rect(bulletX,bulletY,(bulletX + bulletImgX),(bulletY + bulletImgY));
     }
-    public void load()
+    public void load(int charX)
     {
-        bulletX = bulletImgX + (PhoneSpecs.width/2);
+        bulletX = charX;
         bulletY = (PhoneSpecs.height/2);
         rectBullet = new Rect(bulletX,bulletY,(bulletX + bulletImgX),(bulletY + bulletImgY));
         dx = ((int) (PhoneSpecs.width * 0.05));

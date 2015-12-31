@@ -16,7 +16,7 @@ public class Player {
     public boolean hitBossWall= false;
     public boolean notBlockedByPlatform = true;
     public int phoneHeight, phoneWidth;
-    int charX, charY, charImgX, charImgY;
+    public int charX, charY, charImgX, charImgY;
     int dy,dx, max = 0;
     public int health;
     Bitmap mainChar;

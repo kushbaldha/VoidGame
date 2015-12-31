@@ -33,7 +33,6 @@ public class Weapons {
     Bitmap[] slashes2 = new Bitmap[4];
     Bitmap[] slashes3 = new Bitmap[4];
     Bitmap[] slashes4 = new Bitmap[4];
-    int updateBullet = 0;
     Bitmap fullShoot, fullShootRev;
     public ArrayList<Bullet> bullets = new ArrayList<>();
 
@@ -51,11 +50,11 @@ public class Weapons {
         paint.setColor(Color.GREEN);
     }
 
-    public void load() {
+    public void load(int charX) {
         phoneWidth = (PhoneSpecs.width);
         phoneHeight = (PhoneSpecs.height);
 
-        slashX = slashImgX + (phoneWidth / 2);
+        slashX = charX;
         slashY = (int) (phoneHeight / 1.49);
         rectSlash = new Rect(slashX, slashY, (slashX + slashImgX), (slashY + slashImgY));
         rectShoot = new Rect(shootX, shootY, (shootX + shootImgX), (shootY + shootImgY));
@@ -85,20 +84,18 @@ public class Weapons {
         slash4.setDelay(30);
     }
 
-    public void update(int charY, boolean lastMove, boolean state) {
+    public void update(int charY, boolean lastMove, boolean state, int charX) {
         if (state) //gun state
         {
             shootY = charY;
             if (showGun) {
                 gunWait++;
                 if (gunWait == 5) {
-                    shootBullet(lastMove);
+                    shootBullet(lastMove,charX);
                     gunWait = 0;
                 }
             }
-            for (int i = 0; i < bullets.size(); i++) {
-                bullets.get(i).update(charY);
-            }
+
 
             rectShoot = new Rect(shootX, shootY, (shootX + shootImgX), (shootY + shootImgY));
         }
@@ -106,9 +103,10 @@ public class Weapons {
         {
             slashY = charY;
             if (lastMove) {
-                slashX = slashImgX + (int) (phoneWidth / 2.5);
+                slashX = charX - slashImgX;
+
             } else {
-                slashX = slashImgX + (phoneWidth / 2);
+                slashX = charX + 152;
             }
             rectSlash = new Rect(slashX, slashY, (slashX + slashImgX), (slashY + slashImgY));
             switch(randomSlash) {
@@ -125,6 +123,9 @@ public class Weapons {
                     slash4.update();
             }
 
+        }
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).update(charY);
         }
         deleteBullet(-1);
         //slash2.update();
@@ -167,13 +168,13 @@ public class Weapons {
         return (showGun || showSlash); // returns if Gun or Slash animation is being shown
     }
 
-    public void shootBullet(boolean lastMove) {
+    public void shootBullet(boolean lastMove, int charX) {
         Bullet temp;
         if(lastMove)
             temp = new Bullet(fullShootRev,lastMove);
         else
             temp = new Bullet(fullShoot, lastMove);
-        temp.load();
+        temp.load(charX);
         bullets.add(temp);
     }
 

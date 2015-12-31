@@ -12,22 +12,29 @@ import orangeboat.voidgame.Animation.Animation;
 public class Flippy extends Enemy {
     Animation flippyAnimation;
     Bitmap flippyImg;
-    int dx;
+    int dFlippyX, dFlippyY;
     public static final int id = 4;
     public Flippy(Animation flippyAnimation, Bitmap flippyImg , int health){
         super(flippyImg,flippyAnimation,health);
         this.flippyAnimation = flippyAnimation;
         this.flippyImg = flippyImg;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY)
     {
+        super.update(moveLeft, moveRight, skyX, levelLength);
+        if(awake) {
+            dFlippyX = (int)( (x- charX) / 20);
+            dFlippyY = (int)( (y- charY) / 20);
+        }
+        x -= dFlippyX;
+        y -= dFlippyY;
         if(awake)
         flippyAnimation.update();
-        super.update(moveLeft, moveRight, skyX, levelLength);
     }
     public void load(int landieX, int landieY, int offset , Bitmap splatter, Bitmap splatterRev)
     {
         super.load(landieX, landieY, offset, splatter, splatterRev);
+
     }
     public void draw(Canvas canvas){
         if(awake)

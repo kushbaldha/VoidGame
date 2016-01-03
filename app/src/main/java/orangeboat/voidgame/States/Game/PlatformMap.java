@@ -178,7 +178,7 @@ public class PlatformMap {
         if(layout[x][y] == HeartDrop.id)
         {
             HeartDrop temp = new HeartDrop(objects.itemPanel.heartDrop);
-            int itemX = (x * Platform.TW);
+            int itemX = (x * Platform.TW)+Platform.TW/2;
             int itemY = (y * Platform.TH);
             temp.load(itemX,itemY,offset);
             return temp;
@@ -187,36 +187,36 @@ public class PlatformMap {
     }
     public Enemy getEnemy(int x, int y) {
         if (layout[x][y] == Landie.id) {
-            Landie tempLandie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 10);
-            int landieX = (x * Platform.TW);
+            Landie tempLandie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 5);
+            int landieX = (x * Platform.TW)+Platform.TW/2;
             int landieY = (y * Platform.TH);
             tempLandie.load(landieX, landieY, offset, objects.enemyPanel.splatter, objects.enemyPanel.splatterRev);
             return tempLandie;
         }
         else if (layout[x][y] == Umbrack.id) {
             Umbrack tempUmbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
-            int uX = (x * Platform.TW);
+            int uX = (x * Platform.TW)+Platform.TW/2;
             int uY = (y * Platform.TH);
             tempUmbrack.load(uX, uY, offset, objects.enemyPanel.splatter, objects.enemyPanel.splatterRev);
             return tempUmbrack;
         }
         else if (layout[x][y] == Rotor.id) {
             Rotor tempRotor = new Rotor(objects.enemyPanel.rotorAnimation, objects.enemyPanel.singleRotorImage, 22);
-            int rX = (x * Platform.TW);
+            int rX = (x * Platform.TW)+Platform.TW/2;
             int rY = (y * Platform.TH);
             tempRotor.load(rX, rY, offset, objects.enemyPanel.splatter, objects.enemyPanel.splatterRev);
             return tempRotor;
         }
         else if (layout[x][y] == Tank.id) {
             Tank tempTank = new Tank(objects.enemyPanel.tankAnimation, objects.enemyPanel.singleTankImage, 22);
-            int tX = (x * Platform.TW);
+            int tX = (x * Platform.TW)+Platform.TW/2;
             int tY = (y * Platform.TH);
             tempTank.load(tX, tY, offset, objects.enemyPanel.splatter, objects.enemyPanel.splatterRev);
             return tempTank;
         }
         else if (layout[x][y] == Flippy.id) {
             Flippy tempFlippy = new Flippy(objects.enemyPanel.flippyAnimation, objects.enemyPanel.singleFlippyImage, 22);
-            int fX = (x * Platform.TW);
+            int fX = (x * Platform.TW)+Platform.TW/2;
             int fY = (y * Platform.TH);
             tempFlippy.load(fX, fY, offset, objects.enemyPanel.splatter, objects.enemyPanel.splatterRev);
             return tempFlippy;

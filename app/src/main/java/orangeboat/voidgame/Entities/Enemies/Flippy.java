@@ -19,9 +19,9 @@ public class Flippy extends Enemy {
         this.flippyAnimation = flippyAnimation;
         this.flippyImg = flippyImg;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY)
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY, boolean hitWall)
     {
-        super.update(moveLeft, moveRight, skyX, levelLength);
+        super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
         if(awake) {
             dFlippyX = (int)( (x- charX) / 20);
             dFlippyY = (int)( (y- charY) / 20);

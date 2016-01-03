@@ -19,11 +19,11 @@ public class ItemPanel
     {
         this.heartDrop = heartDrop;
     }
-    public void update(boolean moveLeft,boolean moveRight , int skyx, int levellength, boolean notBlockedByPlatform)
+    public void update(boolean moveLeft,boolean moveRight , int skyx, int levellength, boolean notBlocked, boolean hitWall)
     {
         for(int i = 0; i< allItems.size();i++)
         {
-            allItems.get(i).update(moveLeft,moveRight,skyx,levellength,notBlockedByPlatform);
+            allItems.get(i).update(moveLeft,moveRight,skyx,levellength,notBlocked, hitWall);
         }
     }
     public void loadList(ArrayList<Item> allItems)

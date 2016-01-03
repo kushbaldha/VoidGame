@@ -47,10 +47,12 @@ public class GamePanel {
                     floorx -= dx;
                     skyx -= dx / 2;
                 }
+
             }
             objects.weapons.update(objects.player.getCharY(), objects.player.getLastMove(), objects.player.getState(),objects.player.charX);
-            objects.itemPanel.update(objects.player.moveRight, objects.player.moveLeft, skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth,objects.player.notBlockedByPlatform);
-            objects.enemyPanel.update(skyx, -1 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform, objects.player.charX, objects.player.charY);
+            objects.itemPanel.update(objects.player.moveRight, objects.player.moveLeft, skyx, -2 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform , objects.player.hitBossWall);
+
+            objects.enemyPanel.update(skyx, -2 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform, objects.player.charX, objects.player.charY, objects.player.hitBossWall);
             if (objects.weapons.showSlash)
                 objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
 

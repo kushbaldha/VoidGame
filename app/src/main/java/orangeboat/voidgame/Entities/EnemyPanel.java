@@ -58,19 +58,19 @@ public class EnemyPanel
         splatter = spray;
         this.splatterRev = sprayRev;
     }
-    public void update(int skyx, int levellength, boolean notBlockedByPlatform, int charX, int charY)
+    public void update(int skyx, int levellength, boolean notBlockedByPlatform, int charX, int charY, boolean hitWall)
     {
         if(notBlockedByPlatform) {
             for (int i = 0; i < allLandies.size(); i++) {
                 if (allLandies.get(i) instanceof Landie) {
-                    ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
+                    ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, charX, charY, hitWall);
                 } else if (allLandies.get(i) instanceof Umbrack) {
-                    ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength);
+                    ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength,charX, charY, hitWall);
                 }
                 else if (allLandies.get(i) instanceof Flippy) {
-                    ((Flippy) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, charX, charY);
+                    ((Flippy) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, charX, charY, hitWall);
                 }
-                else allLandies.get(i).update(moveLeft, moveRight, skyx, levellength);
+                else allLandies.get(i).update(moveLeft, moveRight, skyx, levellength, hitWall);
 
             }
         }

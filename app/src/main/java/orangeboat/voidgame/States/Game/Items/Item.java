@@ -30,12 +30,12 @@ public class Item
     public void load(int x, int y, int offset){
         phoneWidth=  (PhoneSpecs.width);
         dx = ((int) (phoneWidth * 0.01));
-        this.x = x+offset;
+        this.x = x+offset-TW;
         this.y = y;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength, boolean notBlockedByPlatform)
+    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength,boolean notBlocked, boolean hitwall)
     {
-        if(notBlockedByPlatform) {
+        if(!hitwall && notBlocked) {
             if (moveLeft && skyx > levellength) {
                 x -= dx;
             } else if (moveRight && skyx < 0) {

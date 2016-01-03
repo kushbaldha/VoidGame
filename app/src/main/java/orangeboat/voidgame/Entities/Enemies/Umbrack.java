@@ -20,11 +20,11 @@ public class Umbrack extends Enemy
         this.umbrackAnimation = umbrackAnimation;
         this.umbrackImg = umbrackImg;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength)
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY, boolean hitWall)
     {
         if(awake)
         umbrackAnimation.update();
-        super.update(moveLeft,moveRight,skyX,levelLength);
+        super.update(moveLeft,moveRight,skyX,levelLength, hitWall);
     }
     public void load(int landieX, int landieY, int offset , Bitmap splatter, Bitmap splatterRev)
     {

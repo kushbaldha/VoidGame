@@ -67,18 +67,20 @@ public class Enemy
         dx = ((int) (phoneWidth * 0.01));
         this.splatter = splatter;
         this.splatterRev = splatterRev;
-        this.x = x+offset;
+        this.x = x+offset-TW;
         this.y = y;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength)
+    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength, boolean hitWall)
     {
-        if(moveLeft && skyx > levellength)
-        {
-            x -= dx;
-        }
-        else if(moveRight && skyx < 0)
-        {
-            x += dx;
+        if(!hitWall){
+            if(moveLeft && skyx > levellength)
+            {
+                x -= dx;
+            }
+            else if(moveRight && skyx < 0)
+            {
+                x += dx;
+            }
         }
         hitbox = new Rect(x, y, x + TW, y + TH);
         awake = inFrame();

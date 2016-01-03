@@ -77,7 +77,7 @@ public class ImageLoader
         //ENEMYPANEL LOAD
         temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.tempenemy)),942,192,true);
         objects.imgLoad(temp);
-        temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.umbrackidle),1200,400,true);
+        temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.umbrackidle),1800,600,true);
         objects.imgLoad(temp);
         temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources,R.drawable.rotor),1664,128,true);
         objects.imgLoad(temp);

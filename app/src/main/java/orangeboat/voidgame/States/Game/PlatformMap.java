@@ -187,7 +187,7 @@ public class PlatformMap {
     }
     public Enemy getEnemy(int x, int y) {
         if (layout[x][y] == Landie.id) {
-            Landie tempLandie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 5);
+            Landie tempLandie = new Landie(objects.enemyPanel.landieAnimation, objects.enemyPanel.singleLandieImage, 2);
             int landieX = (x * Platform.TW)+Platform.TW/2;
             int landieY = (y * Platform.TH);
             tempLandie.load(landieX, landieY, offset, objects.enemyPanel.splatter, objects.enemyPanel.splatterRev);

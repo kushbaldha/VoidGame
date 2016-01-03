@@ -21,9 +21,9 @@ public class Tank extends Enemy{
     }
     public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY, boolean hitWall)
     {
+        super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
         if(awake)
         tankAnimation.update();
-        super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
     }
     public void load(int landieX, int landieY, int offset , Bitmap splatter, Bitmap splatterRev)
     {

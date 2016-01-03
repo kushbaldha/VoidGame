@@ -48,7 +48,7 @@ public class EnemyPanel
         singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
         allLandies = new ArrayList<>();
         this.fullUmbrackImage= umbrack;
-        singleUmbrackImage= Bitmap.createBitmap(umbrack, 0, 0, 300,400);
+        singleUmbrackImage= Bitmap.createBitmap(umbrack, 0, 0, 450,600);
         this.fullRotorImage = rotor;
         singleRotorImage = Bitmap.createBitmap(rotor, 0, 0, 128, 128);
         this.fullTankImage = tank;
@@ -88,13 +88,13 @@ public class EnemyPanel
         }
         landieAnimation.setFrames(landieImage);
         landieAnimation.setDelay(120);
-        width = 300;
-        height = 400;
+        width = 450;
+        height = 600;
         for (int i = 0; i < umbrackImage.length; i++){
             umbrackImage[i] = Bitmap.createBitmap(fullUmbrackImage, i*width, 0, width, height);
         }
         umbrackAnimation.setFrames(umbrackImage);
-        umbrackAnimation.setDelay(60);
+        umbrackAnimation.setDelay(90);
         width =128;
         height =128;
         for (int i = 0; i < rotorImage.length; i++){

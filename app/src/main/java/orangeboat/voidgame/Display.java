@@ -137,6 +137,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 gamePanel = new GamePanel(objects,resources);
                 gamePanel.load();
                 gamePanel.objects.player.health = 6;
+                gamePanel.objects.player.charX = PhoneSpecs.width/ 2;
+                gamePanel.objects.player.charY = (int) (PhoneSpecs.height / 1.49);
 
             }
         }
@@ -216,6 +218,11 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 showMenu = true;
                 showGame = false;
                 objects.gameMenu.quitGame = false;
+                gamePanel = new GamePanel(objects,resources);
+                gamePanel.load();
+                gamePanel.objects.player.health = 6;
+                gamePanel.objects.player.charX = PhoneSpecs.width/ 2;
+                gamePanel.objects.player.charY = (int) (PhoneSpecs.height / 1.49);
             }
     }
     //random comment

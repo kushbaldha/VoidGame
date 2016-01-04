@@ -194,7 +194,7 @@ public class PlatformMap {
             return tempLandie;
         }
         else if (layout[x][y] == Umbrack.id) {
-            Umbrack tempUmbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22);
+            Umbrack tempUmbrack = new Umbrack(objects.enemyPanel.umbrackAnimation, objects.enemyPanel.singleUmbrackImage, 22, objects.enemyPanel.rollAnimation);
             int uX = (x * Platform.TW)+Platform.TW/2;
             int uY = (y * Platform.TH);
             tempUmbrack.load(uX, uY, offset, objects.enemyPanel.splatter, objects.enemyPanel.splatterRev);

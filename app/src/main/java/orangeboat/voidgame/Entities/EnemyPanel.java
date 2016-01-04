@@ -40,9 +40,12 @@ public class EnemyPanel
     public Bitmap singleFlippyImage;
     Bitmap [] flippyImage = new Bitmap[4];
     public Animation flippyAnimation = new Animation();
+    public Bitmap fullRollUmbrackImage;
+    Bitmap [] rollUmbrackImage = new Bitmap[4];
+    public Animation rollAnimation = new Animation();
     boolean moveLeft = false, moveRight;
     public Bitmap splatter, splatterRev;
-    public EnemyPanel(Bitmap landie, Bitmap umbrack, Bitmap rotor, Bitmap tank, Bitmap flippy, Bitmap spray, Bitmap sprayRev)
+    public EnemyPanel(Bitmap landie, Bitmap umbrack, Bitmap rotor, Bitmap tank, Bitmap flippy, Bitmap spray, Bitmap sprayRev, Bitmap rollUmbrack)
     {
         this.fullLandieImage = landie;
         singleLandieImage = Bitmap.createBitmap(landie, 0, 0, 152, 192);
@@ -57,6 +60,7 @@ public class EnemyPanel
         singleFlippyImage = Bitmap.createBitmap(flippy, 0, 0, 210, 190);
         splatter = spray;
         this.splatterRev = sprayRev;
+        fullRollUmbrackImage = rollUmbrack;
     }
     public void update(int skyx, int levellength, boolean notBlockedByPlatform, int charX, int charY, boolean hitWall)
     {
@@ -95,6 +99,12 @@ public class EnemyPanel
         }
         umbrackAnimation.setFrames(umbrackImage);
         umbrackAnimation.setDelay(90);
+        for(int i = 0; i < rollUmbrackImage.length; i++)
+        {
+            rollUmbrackImage[i] = Bitmap.createBitmap(fullRollUmbrackImage, i*width, 0, width, height);
+        }
+        rollAnimation.setFrames(rollUmbrackImage);
+        rollAnimation.setDelay(90);
         width =128;
         height =128;
         for (int i = 0; i < rotorImage.length; i++){
@@ -116,7 +126,6 @@ public class EnemyPanel
         }
         flippyAnimation.setFrames(flippyImage);
         flippyAnimation.setDelay(100);
-
     }
     public void loadList(ArrayList<Enemy> landieArrayList)
     {

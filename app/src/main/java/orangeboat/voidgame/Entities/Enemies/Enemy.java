@@ -36,11 +36,11 @@ public class Enemy
      * health of enemy
      */
     public int health;
-    public static int TW,TH;
+    public  int TW,TH;
     /**
      * hitbox of enemy
      */
-    public  Rect hitbox;
+    public Rect hitbox;
     /**
      * The rate at which the screen scrolls
      */

@@ -86,7 +86,7 @@ public class Umbrack extends Enemy
     public void load(int landieX, int landieY, int offset , Bitmap splatter, Bitmap splatterRev)
     {
         super.load(landieX, landieY, offset, splatter, splatterRev);
-        x+=(int)(phoneWidth/2.1);
+        x+=phoneWidth/2;
         dx = (int) (phoneWidth * 0.05);
     }
     public void draw(Canvas canvas)

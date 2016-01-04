@@ -45,6 +45,7 @@ public class TouchEvents
         // FIRST TOUCH
         if (MotionEvent.ACTION_DOWN == action) {
            gamePanel.singleDownTouch(x,y,event.getPointerId(event.getActionIndex()));
+            System.out.println(x+ " is the x coordinate " + y + " is the y coordinate");
         }
         if(MotionEvent.ACTION_UP == action)
         {

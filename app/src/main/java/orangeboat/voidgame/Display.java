@@ -165,9 +165,11 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void draw(Canvas canvas) {
-            scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
-            scaleFactorY = getHeight() / (HEIGHT * 1.f);
+            //scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
+            //scaleFactorY = getHeight() / (HEIGHT * 1.f);
         if (canvas != null) {
+           // final int savedState = canvas.save();
+            //canvas.scale(scaleFactorX, scaleFactorY);
             // this is to load the phoneSpecs. We need to iterate once before allowing everything to start drawing.
             if (check)
             {
@@ -179,8 +181,6 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 rectRetryButton = new Rect((getWidth()/2-retryButton.getWidth()/2),(int)(getHeight()/1.5),getWidth()/2+retryButton.getWidth(),((int)(getHeight()/1.5)+retryButton.getHeight()));
             }
             else {
-                final int savedState = canvas.save();
-                canvas.scale(scaleFactorX, scaleFactorY);
                 // draws Menu is showMenu is true
                 if(showMenu) {
                     menu.draw(canvas);
@@ -196,8 +196,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                     canvas.drawBitmap(retryButton, (getWidth() / 2 - retryButton.getWidth() / 2), (int) (getHeight() / 1.5), null);
                     //canvas.drawRect(rectRetryButton,null);
                 }
-                canvas.restoreToCount(savedState);
             }
+            //canvas.restoreToCount(savedState);
+
         }
     }
     public void newThread() {

@@ -73,19 +73,19 @@ public class GameMenu {
         phoneWidth = (PhoneSpecs.width);
         phoneHeight = (PhoneSpecs.height);
         leftX = 0;
-        leftY = (int) (phoneHeight / 1.15);
+        leftY = phoneHeight-rightImgY;
         rectLeft = new Rect(leftX, leftY, (leftX + leftImgX), (leftY + leftImgY));
         rightX = 250;
-        rightY = (int) (phoneHeight / 1.15);
+        rightY = phoneHeight-rightImgY;
         rectRight = new Rect(rightX, rightY, (rightX + rightImgX), (rightY + rightImgY));
         menuX = 0;
         menuY = 0;
         rectMenu = new Rect(menuX, menuY, (menuX + menuImgX), (menuY + menuImgY));
         jumpX = phoneWidth - (int) (jumpImgX * 1.1);
-        jumpY = (int) (phoneHeight / 1.15);
+        jumpY = phoneHeight-rightImgY;
         rectJump = new Rect(jumpX, jumpY, (jumpX + jumpImgX), (jumpY + jumpImgY));
         okX = phoneWidth - (int) (2 * jumpImgX * 1.1);
-        okY = (int) (phoneHeight / 1.15);
+        okY = phoneHeight-rightImgY;
         rectOk = new Rect(okX, okY, (okX + okImgX), (okY + okImgY));
         swordX = phoneWidth - (int) (jumpImgX * 1.1);
         swordY = 0;
@@ -113,6 +113,7 @@ public class GameMenu {
         canvas.drawBitmap(leftButton, leftX, leftY, null);
         canvas.drawBitmap(rightButton, rightX, rightY, null);
         canvas.drawBitmap(jumpButton, jumpX, jumpY, null);
+        canvas.drawRect(rectJump,paint);
         canvas.drawBitmap(menuButton, menuX, menuY, null);
         canvas.drawBitmap(okButton, okX, okY, null);
         if (showGun)

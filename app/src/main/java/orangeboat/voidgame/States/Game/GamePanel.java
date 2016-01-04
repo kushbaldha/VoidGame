@@ -2,6 +2,8 @@ package orangeboat.voidgame.States.Game;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import java.util.Random;
 
@@ -21,9 +23,11 @@ public class GamePanel {
     int timer;
     boolean check = false;
     boolean gamePaused = false;
+    Paint paint = new Paint();
     Random rand = new Random();
 
     public GamePanel(GameObjects objects , Resources resources) {
+        paint.setColor(Color.RED);
         this.objects = objects;
         dx = ((int) (objects.player.phoneWidth * 0.01));
         map = new PlatformMap("lvls/text.txt", resources);

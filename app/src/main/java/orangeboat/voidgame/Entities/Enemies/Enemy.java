@@ -86,10 +86,11 @@ public class Enemy
         awake = inFrame();
 
     }
-    public int hit(int x, int y, Boolean lastMove)
+    public int hit(int x, int y, Boolean lastMove, int damage, Boolean state)
     {
         this.lastMove = lastMove;
-        health--;
+        health-=damage;
+        if(state)
         hit = true;
         splatX = x;
         splatY = y;

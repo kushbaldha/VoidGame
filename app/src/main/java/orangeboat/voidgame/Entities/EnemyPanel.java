@@ -135,14 +135,15 @@ public class EnemyPanel
     {
             for(int i = 0; i < allLandies.size();i++)
             {
-                boolean temp = (allLandies.get(i)).getHitbox().intersect(weaponHitbox);
+                boolean temp = (Rect.intersects(allLandies.get(i).hitbox,weaponHitbox));
                 if(temp)
                 {
-                    allLandies.get(i).hit = true;
-                    allLandies.remove(i);
-                    numEnemies--;
+                    int healthOfEnemy = allLandies.get(i).hit(0,0,false,3,false);
+                    if(healthOfEnemy <= 0)
+                    {allLandies.remove(i);
+                        System.out.println("Killed a bogey bullet");
+                    }
                     System.out.println("Killed a bogey");
-                    score++;
                     break;
                 }
             }
@@ -157,14 +158,13 @@ public class EnemyPanel
                     if (temp) {
                         int healthOfEnemy;
                         if(bulletList.get(p).lastMove)
-                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.right,rectTemp.top, bulletList.get(p).lastMove));
+                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.right,rectTemp.top, bulletList.get(p).lastMove, 1,true));
                         else
-                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.left,rectTemp.top,bulletList.get(p).lastMove));
+                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.left,rectTemp.top,bulletList.get(p).lastMove, 1,true));
                         if(healthOfEnemy == 0)
                         {allLandies.remove(i);
-                            numEnemies--;
                             System.out.println("Killed a bogey bullet");
-                            score++;}
+                            }
                         return p;
                     }
                 }

@@ -113,7 +113,6 @@ public class GameMenu {
         canvas.drawBitmap(leftButton, leftX, leftY, null);
         canvas.drawBitmap(rightButton, rightX, rightY, null);
         canvas.drawBitmap(jumpButton, jumpX, jumpY, null);
-        canvas.drawRect(rectJump,paint);
         canvas.drawBitmap(menuButton, menuX, menuY, null);
         canvas.drawBitmap(okButton, okX, okY, null);
         if (showGun)

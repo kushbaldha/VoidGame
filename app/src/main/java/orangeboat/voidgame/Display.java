@@ -165,11 +165,9 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void draw(Canvas canvas) {
-            //scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
-            //scaleFactorY = getHeight() / (HEIGHT * 1.f);
+
         if (canvas != null) {
-           // final int savedState = canvas.save();
-            //canvas.scale(scaleFactorX, scaleFactorY);
+
             // this is to load the phoneSpecs. We need to iterate once before allowing everything to start drawing.
             if (check)
             {
@@ -183,7 +181,13 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             else {
                 // draws Menu is showMenu is true
                 if(showMenu) {
+                    scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
+                    scaleFactorY = getHeight() / (HEIGHT * 1.f);
+                    final int savedState = canvas.save();
+                    canvas.scale(scaleFactorX, scaleFactorY);
                     menu.draw(canvas);
+                    canvas.restoreToCount(savedState);
+
                 }
                 // draw Game is showGame is true
                 if(showGame)
@@ -197,7 +201,6 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                     //canvas.drawRect(rectRetryButton,null);
                 }
             }
-            //canvas.restoreToCount(savedState);
 
         }
     }

@@ -15,7 +15,7 @@ public class Flippy extends Enemy {
     int dFlippyX, dFlippyY;
     public static final int id = 4;
     public Flippy(Animation flippyAnimation, Bitmap flippyImg , int health){
-        super(flippyImg,flippyAnimation,health);
+        super(flippyImg, flippyAnimation, health);
         this.flippyAnimation = flippyAnimation;
         this.flippyImg = flippyImg;
     }
@@ -23,10 +23,17 @@ public class Flippy extends Enemy {
     {
         super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
         if(awake) {
-            dFlippyX = (int)( (x- charX) / 20);
-            dFlippyY = (int)( (y- charY) / 20);
+            dFlippyX =  ((x - charX) / 30);
+            dFlippyY =  ((y - charY) / 30);
 
-        } x -= dFlippyX;
+        }
+        if (dFlippyX > 0) {
+            x -= dFlippyX;
+        }
+        else
+        {
+            x+= dFlippyX;
+        }
         y -= dFlippyY;
         if(awake) flippyAnimation.update();
     }

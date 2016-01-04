@@ -27,19 +27,19 @@ public class Landie extends Enemy
     public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY, boolean hitWall) {
         super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
         if (awake) {
-            /*if (max == dx * 30) {
+            if (max == dx * 5) {
                 this.enemyMoveLeft = !this.enemyMoveLeft;
                 max = 0;
             }
             if (enemyMoveLeft) {
-                x -= dx;
+                y -= dx;
                 max += dx;
             }
             else {
-                x += dx;
+                y += dx;
                 max += dx;
             }
-            */
+
           //  if(moveRight){x -= dx;}
           //  if(moveLeft){x+= dx;}
 

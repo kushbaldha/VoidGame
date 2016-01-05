@@ -11,7 +11,9 @@ import android.content.Context;
         import android.view.SurfaceHolder;
         import android.view.SurfaceView;
 
-        import orangeboat.voidgame.Entities.GameObjects;
+import java.io.IOException;
+
+import orangeboat.voidgame.Entities.GameObjects;
         import orangeboat.voidgame.Input.ImageLoader;
 import orangeboat.voidgame.Input.MusicLoader;
 import orangeboat.voidgame.Input.TouchEvents;
@@ -24,7 +26,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
 {
     MediaPlayer j;
-    MediaPlayer gunshot;
+    MediaPlayer gameoversfx;
     private MainThread secondthread;
     private MenuPanel menu;
     Resources resources = getResources();
@@ -54,8 +56,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public Display(Context context) {
 
         super(context);
-        j = MediaPlayer.create(context, R.raw.fight);
-        gunshot = MediaPlayer.create(context, R.raw.shoot);
+        j = MediaPlayer.create(context, R.raw.sad);
+        gameoversfx = MediaPlayer.create(context, R.raw.gameoversfx);
         sfxLoader = new MusicLoader(objects, context);
         tempLoader = new ImageLoader(objects,resources);
 
@@ -133,6 +135,10 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             int y = (int) event.getY();
             if(rectRetryButton.contains(x,y))
             {
+                gameoversfx.stop();
+                gameoversfx.prepareAsync();
+                j.start();
+
                 newGame = false;
                 gamePanel = new GamePanel(objects,resources);
                 gamePanel.load();
@@ -196,6 +202,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 }
                 if(newGame)
                 {
+                    j.pause();
+                    gameoversfx.start();
                     canvas.drawBitmap(gameOverScreen,0,0,null);
                     canvas.drawBitmap(retryButton, (getWidth() / 2 - retryButton.getWidth() / 2), (int) (getHeight() / 1.5), null);
                     //canvas.drawRect(rectRetryButton,null);

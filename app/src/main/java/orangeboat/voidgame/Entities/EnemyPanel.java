@@ -138,7 +138,7 @@ public class EnemyPanel
                 boolean temp = (Rect.intersects(allLandies.get(i).hitbox,weaponHitbox));
                 if(temp)
                 {
-                    int healthOfEnemy = allLandies.get(i).hit(0,0,false,3,false);
+                    int healthOfEnemy = allLandies.get(i).hit(0,0,false,6,false);
                     if(healthOfEnemy <= 0)
                     {allLandies.remove(i);
                         System.out.println("Killed a bogey bullet");
@@ -158,9 +158,9 @@ public class EnemyPanel
                     if (temp) {
                         int healthOfEnemy;
                         if(bulletList.get(p).lastMove)
-                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.right,rectTemp.top, bulletList.get(p).lastMove, 1,true));
+                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.right,rectTemp.top, bulletList.get(p).lastMove, 2,true));
                         else
-                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.left,rectTemp.top,bulletList.get(p).lastMove, 1,true));
+                            healthOfEnemy = (allLandies.get(i).hit(rectTemp.left,rectTemp.top,bulletList.get(p).lastMove, 2,true));
                         if(healthOfEnemy == 0)
                         {allLandies.remove(i);
                             System.out.println("Killed a bogey bullet");

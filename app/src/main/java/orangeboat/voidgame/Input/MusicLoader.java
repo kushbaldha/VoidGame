@@ -22,10 +22,12 @@ public class MusicLoader {
     }
     public void start(){
         temp = MediaPlayer.create(context, R.raw.shoot);
+        temp.setVolume(.2f,.2f);
         objects.sfxLoad(temp);
         temp = MediaPlayer.create(context, R.raw.swordsfx);
         objects.sfxLoad(temp);
         temp = MediaPlayer.create(context, R.raw.jumpsfx);
+        temp.setVolume(.3f,.3f);
         objects.sfxLoad(temp);
         temp = null;
     }

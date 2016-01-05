@@ -120,8 +120,6 @@ public class GamePanel {
             if(objects.player.getState()) {
                 objects.weapons.setShowGun(true);
             }//actual gun animation
-            else
-                objects.weapons.setShowSlash(true); // actual slash animation
         }
     }
     public void singleDownTouch(int x, int y, int pointerNumber)
@@ -168,7 +166,6 @@ public class GamePanel {
         if(weapon == pointerNumber)
         {
             objects.weapons.setShowGun(false); // gun animation
-            objects.weapons.setShowSlash(false); // slash animation
         }
     }
     public int getMoving()

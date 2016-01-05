@@ -150,6 +150,7 @@ public class Weapons {
                     canvas.drawBitmap(slash4.getImage(), slashX, slashY, null);
                     break;
             }
+            showSlash = false;
         }
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw(canvas);

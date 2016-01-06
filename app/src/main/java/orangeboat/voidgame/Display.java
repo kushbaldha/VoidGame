@@ -83,7 +83,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        menu = new MenuPanel(20,1900,1200,BitmapFactory.decodeResource(getResources(), R.drawable.titleanimation), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
+        menu = new MenuPanel(20,BitmapFactory.decodeResource(getResources(), R.drawable.titleanimationscaleddown40), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
         Thread.State state = secondthread.getState();
         if(state == Thread.State.TERMINATED) {
             newThread();
@@ -179,7 +179,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             {
                 phone.setHeight(getHeight());
                 phone.setWidth(getWidth());
-                menu.load();
+                menu.load(getWidth(), getHeight());
                 check = false;
                 objects.load();
                 rectRetryButton = new Rect((getWidth()/2-retryButton.getWidth()/2),(int)(getHeight()/1.5),getWidth()/2+retryButton.getWidth(),((int)(getHeight()/1.5)+retryButton.getHeight()));
@@ -187,13 +187,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             else {
                 // draws Menu is showMenu is true
                 if(showMenu) {
-                    scaleFactorX = getWidth() / (WIDTH * 1.f);//make sure they are floats
-                    scaleFactorY = getHeight() / (HEIGHT * 1.f);
-                    final int savedState = canvas.save();
-                    canvas.scale(scaleFactorX, scaleFactorY);
                     menu.draw(canvas);
-                    canvas.restoreToCount(savedState);
-
                 }
                 // draw Game is showGame is true
                 if(showGame)
@@ -225,8 +219,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public void checkQuit()
     {
             if(objects.gameMenu.quitGame == true) {
-                menu = new MenuPanel(0,1900,1200,BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
-                menu.load();
+                menu = new MenuPanel(0,BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
+                menu.load(getWidth(),getHeight());
                 showMenu = true;
                 showGame = false;
                 objects.gameMenu.quitGame = false;

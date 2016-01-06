@@ -46,7 +46,9 @@ public class MainThread extends Thread
                 synchronized (surfaceHolder) // called 30 times a second that will make it flow.
             {
                 this.display.update(); // update game once
+
                 this.display.draw(canvas); // draw game once
+
             }
             }catch(Exception e){
             }

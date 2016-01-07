@@ -23,8 +23,8 @@ import orangeboat.voidgame.Input.TouchEvents;
         import orangeboat.voidgame.States.Game.MainThread;
 
 public class Display extends SurfaceView implements SurfaceHolder.Callback
-
 {
+    //Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), metrics.widthPixels*BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getWidth() / WIDTH, metrics.heightPixels* BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getHeight() / HEIGHT, false);
     MediaPlayer j;
     MediaPlayer gameoversfx;
     private MainThread secondthread;
@@ -47,25 +47,24 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     boolean newGame = false;
     float scaleFactorX;
     float scaleFactorY;
-    public static final int WIDTH = 1900;
-    public static final int HEIGHT = 1200;
+    public static final int WIDTH = 1920;
+    public static final int HEIGHT = 1080;
     boolean check = true;
     public PhoneSpecs phone = new PhoneSpecs();
     SurfaceHolder contextHolder;
     TouchEvents touch;
 
     public Display(Context context, DisplayMetrics m) {
-
         super(context);
         this.metrics = m;
         j = MediaPlayer.create(context, R.raw.sad);
         gameoversfx = MediaPlayer.create(context, R.raw.gameoversfx);
-        spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), metrics.widthPixels * 500 / 1900, metrics.heightPixels * 50 / 1200, false);
-        flat = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.flat), metrics.widthPixels*500/1900, metrics.heightPixels*50/1200, false);
-        gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
-        gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
-        gameOverScreen = BitmapFactory.decodeResource(getResources(), R.drawable.gameover);
-        retryButton =  BitmapFactory.decodeResource(getResources(), R.drawable.retry);
+        spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), metrics.widthPixels * 500 / WIDTH, metrics.heightPixels * 50 / HEIGHT, false);
+        flat = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.flat), metrics.widthPixels*500/WIDTH, metrics.heightPixels*50/HEIGHT, false);
+        gameBackgroundFloor = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor), metrics.widthPixels * BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor).getWidth() / WIDTH, metrics.heightPixels * BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor).getHeight() / HEIGHT, false);
+        gameBackgroundSky = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back), metrics.widthPixels*BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back).getWidth() / WIDTH, metrics.heightPixels* BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back).getHeight() / HEIGHT, false);
+        gameOverScreen =Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.gameover), metrics.widthPixels * BitmapFactory.decodeResource(getResources(), R.drawable.gameover).getWidth() / WIDTH, metrics.heightPixels * BitmapFactory.decodeResource(getResources(), R.drawable.gameover).getHeight() / HEIGHT, false);
+        retryButton =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.retry), metrics.widthPixels * BitmapFactory.decodeResource(getResources(), R.drawable.retry).getWidth() / WIDTH, metrics.heightPixels * BitmapFactory.decodeResource(getResources(), R.drawable.retry).getHeight() / HEIGHT, false);
         objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
         sfxLoader = new MusicLoader(objects, context);
         tempLoader = new ImageLoader(objects,resources);
@@ -228,7 +227,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public void checkQuit()
     {
             if(objects.gameMenu.quitGame == true) {
-                menu = new MenuPanel(0,Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), metrics.widthPixels*BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getWidth() / 1900, metrics.heightPixels* BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getHeight() / 1200, false), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
+                menu = new MenuPanel(0,Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), metrics.widthPixels*BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getWidth() / WIDTH, metrics.heightPixels* BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getHeight() / HEIGHT, false),
+                        Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1), metrics.widthPixels * BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1).getWidth() / WIDTH, metrics.heightPixels * BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1).getHeight() / HEIGHT, false));
                 menu.load(getWidth(),getHeight());
                 showMenu = true;
                 showGame = false;

@@ -7,7 +7,8 @@ import android.content.Context;
         import android.graphics.Canvas;
         import android.graphics.Rect;
         import android.media.MediaPlayer;
-        import android.view.MotionEvent;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
         import android.view.SurfaceHolder;
         import android.view.SurfaceView;
 
@@ -21,7 +22,6 @@ import orangeboat.voidgame.Input.TouchEvents;
         import orangeboat.voidgame.States.Title.MenuPanel;
         import orangeboat.voidgame.States.Game.MainThread;
 
-
 public class Display extends SurfaceView implements SurfaceHolder.Callback
 
 {
@@ -29,14 +29,15 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     MediaPlayer gameoversfx;
     private MainThread secondthread;
     private MenuPanel menu;
+    DisplayMetrics metrics;
     Resources resources = getResources();
-    Bitmap flat =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.flat), 500, 50, false);
-    Bitmap spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), 500, 50, false);
-    Bitmap gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
-    Bitmap gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
-    Bitmap gameOverScreen = BitmapFactory.decodeResource(getResources(), R.drawable.gameover);
-    Bitmap retryButton =  BitmapFactory.decodeResource(getResources(), R.drawable.retry);
-    GameObjects objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
+    Bitmap flat;
+    Bitmap spike;
+    Bitmap gameBackgroundFloor;
+    Bitmap gameBackgroundSky;
+    Bitmap gameOverScreen;
+    Bitmap retryButton;
+    GameObjects objects;
     ImageLoader tempLoader;
     MusicLoader sfxLoader;
     Rect rectRetryButton;
@@ -48,16 +49,24 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     float scaleFactorY;
     public static final int WIDTH = 1900;
     public static final int HEIGHT = 1200;
-    public PhoneSpecs phone = new PhoneSpecs();
     boolean check = true;
+    public PhoneSpecs phone = new PhoneSpecs();
     SurfaceHolder contextHolder;
     TouchEvents touch;
 
-    public Display(Context context) {
+    public Display(Context context, DisplayMetrics m) {
 
         super(context);
+        this.metrics = m;
         j = MediaPlayer.create(context, R.raw.sad);
         gameoversfx = MediaPlayer.create(context, R.raw.gameoversfx);
+        spike =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.spike), metrics.widthPixels * 500 / 1900, metrics.heightPixels * 50 / 1200, false);
+        flat = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.flat), metrics.widthPixels*500/1900, metrics.heightPixels*50/1200, false);
+        gameBackgroundFloor = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1floor);
+        gameBackgroundSky = BitmapFactory.decodeResource(getResources(), R.drawable.newyork1back);
+        gameOverScreen = BitmapFactory.decodeResource(getResources(), R.drawable.gameover);
+        retryButton =  BitmapFactory.decodeResource(getResources(), R.drawable.retry);
+        objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
         sfxLoader = new MusicLoader(objects, context);
         tempLoader = new ImageLoader(objects,resources);
 
@@ -219,7 +228,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     public void checkQuit()
     {
             if(objects.gameMenu.quitGame == true) {
-                menu = new MenuPanel(0,BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
+                menu = new MenuPanel(0,Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen), metrics.widthPixels*BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getWidth() / 1900, metrics.heightPixels* BitmapFactory.decodeResource(getResources(), R.drawable.titlescreen).getHeight() / 1200, false), BitmapFactory.decodeResource(getResources(), R.drawable.playbutton1));
                 menu.load(getWidth(),getHeight());
                 showMenu = true;
                 showGame = false;

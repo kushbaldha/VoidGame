@@ -11,7 +11,6 @@ public class PhoneSpecs
     public static int height,width;
     public PhoneSpecs()
     {
-
     }
     public void setHeight(int height)
     {

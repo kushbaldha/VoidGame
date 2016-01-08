@@ -70,9 +70,9 @@ public class Enemy
         this.x = x+offset-TW;
         this.y = y;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength, boolean hitWall)
+    public void update(boolean moveLeft, boolean moveRight, int skyx, int levellength, boolean hitWall, boolean notBlockedByPlatform)
     {
-        if(!hitWall){
+        if(!hitWall && notBlockedByPlatform){
             if(moveLeft && skyx > levellength)
             {
                 x -= dx;

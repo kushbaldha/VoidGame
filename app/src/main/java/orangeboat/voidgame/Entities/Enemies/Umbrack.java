@@ -36,9 +36,9 @@ public class Umbrack extends Enemy
         this.umbrackImg = umbrackImg;
         this.rollAnimation = umRollAnimation;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY, boolean hitWall)
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, boolean hitWall, boolean notBlockedByPlatform)
     {
-        super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
+        super.update(moveLeft, moveRight, skyX, levelLength, hitWall, notBlockedByPlatform);
         if(awake)
         {
             if(attack == -1)

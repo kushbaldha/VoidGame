@@ -64,19 +64,17 @@ public class EnemyPanel
     }
     public void update(int skyx, int levellength, boolean notBlockedByPlatform, int charX, int charY, boolean hitWall)
     {
-        if(notBlockedByPlatform) {
             for (int i = 0; i < allLandies.size(); i++) {
                 if (allLandies.get(i) instanceof Landie) {
-                    ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, charX, charY, hitWall);
+                    ((Landie) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, hitWall, notBlockedByPlatform);
                 } else if (allLandies.get(i) instanceof Umbrack) {
-                    ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength,charX, charY, hitWall);
+                    ((Umbrack) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, hitWall, notBlockedByPlatform);
                 }
                 else if (allLandies.get(i) instanceof Flippy) {
-                    ((Flippy) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, charX, charY, hitWall);
+                    ((Flippy) allLandies.get(i)).update(moveLeft, moveRight, skyx, levellength, charX, charY, hitWall, notBlockedByPlatform);
                 }
-                else allLandies.get(i).update(moveLeft, moveRight, skyx, levellength, hitWall);
+                else allLandies.get(i).update(moveLeft, moveRight, skyx, levellength, hitWall,notBlockedByPlatform);
 
-            }
         }
        // if(score == somenumber)
         // spawn an enemy. create a landie object with passing animation in.

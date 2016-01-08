@@ -24,8 +24,8 @@ public class Landie extends Enemy
         this.landieAnimation = landieAnimation;
         this.singleLandieImage = singleLandieImage;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY, boolean hitWall) {
-        super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, boolean hitWall, boolean notBlockedByPlatform) {
+        super.update(moveLeft, moveRight, skyX, levelLength, hitWall, notBlockedByPlatform);
         if (awake) {
             if (max == dx * 5) {
                 this.enemyMoveLeft = !this.enemyMoveLeft;

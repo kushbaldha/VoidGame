@@ -19,9 +19,9 @@ public class Tank extends Enemy{
         this.tankAnimation = tankAnimation;
         this.tankImg = tankImg;
     }
-    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, int charX, int charY, boolean hitWall)
+    public void update(boolean moveLeft, boolean moveRight, int skyX, int levelLength, boolean hitWall, boolean notBlockedByPlatform)
     {
-        super.update(moveLeft, moveRight, skyX, levelLength, hitWall);
+        super.update(moveLeft, moveRight, skyX, levelLength, hitWall,notBlockedByPlatform);
         if(awake)
         tankAnimation.update();
     }

@@ -92,8 +92,8 @@ public class GamePanel {
             check = true;
         canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
         canvas.drawBitmap(objects.gameBackgroundSky, skyx+objects.gameBackgroundSky.getWidth(), 0, null);
-        canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
-        canvas.drawBitmap(objects.gameBackgroundFloor, floorx+objects.gameBackgroundFloor.getWidth(), 840, null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840*objects.player.phoneHeight/1200, null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, floorx+objects.gameBackgroundFloor.getWidth(), 840*objects.player.phoneHeight/1200, null);
         objects.player.draw(canvas);
         objects.enemyPanel.draw(canvas);
         objects.weapons.draw(canvas);

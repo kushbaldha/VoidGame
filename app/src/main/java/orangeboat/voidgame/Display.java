@@ -47,8 +47,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     boolean newGame = false;
     float scaleFactorX;
     float scaleFactorY;
-    public static final int WIDTH = 1920;
-    public static final int HEIGHT = 1080;
+    public static final int WIDTH = 1900;
+    public static final int HEIGHT = 1200;
     boolean check = true;
     public PhoneSpecs phone = new PhoneSpecs();
     SurfaceHolder contextHolder;
@@ -67,7 +67,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         retryButton =  Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.retry), metrics.widthPixels * BitmapFactory.decodeResource(getResources(), R.drawable.retry).getWidth() / WIDTH, metrics.heightPixels * BitmapFactory.decodeResource(getResources(), R.drawable.retry).getHeight() / HEIGHT, false);
         objects = new GameObjects (gameBackgroundFloor,gameBackgroundSky,flat, spike);
         sfxLoader = new MusicLoader(objects, context);
-        tempLoader = new ImageLoader(objects,resources);
+        tempLoader = new ImageLoader(objects,resources, metrics);
 
         //voido
         j.start();

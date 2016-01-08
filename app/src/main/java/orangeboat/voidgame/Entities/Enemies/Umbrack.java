@@ -43,11 +43,11 @@ public class Umbrack extends Enemy
         {
             if(attack == -1)
             timer--;
-            if(loading)
+            if(loading) // on it's way up after rolling forward and back
             {
               y-=dy;
               max+=dy;
-                if(max == (dy*8))
+                if(max == (dy*12))
                 {
                     loading = false;
                     max = 0;
@@ -65,7 +65,8 @@ public class Umbrack extends Enemy
                 {
                     rolling  = true;
                     if(!startRolling) {
-                        if (rollBack) {
+                        if (rollBack) // on it's way back
+                         {
                             max -= dx;
                             x += dx;
                             if (max == 0) {
@@ -75,11 +76,14 @@ public class Umbrack extends Enemy
                                 timer = 90;
                                 rolling = false;
                                 rollingAnimationUpdate = 0;
+                                rollAnimation.setPlayedOnce(false);
                             }
-                        } else {
+                        } else // goes forward
+                        {
+                            // on it's way down. Rolling animation goes and the umbrack lowers
                             max += dx;
                             x -= dx;
-                            if (max == (dx * 40))
+                            if (max == (dx * 40)) // if it reaches this. then start rolling back
                                 rollBack = true;
                         }
                         rollingAnimationUpdate++;
@@ -88,7 +92,7 @@ public class Umbrack extends Enemy
                             rollingAnimationUpdate = 0;
                         }
                     }
-                    else
+                    else // if it's not loading aka going up, or moving forward and back do this.
                     {
                         rollingAnimationUpdate++;
                         y+=dy;
@@ -101,6 +105,7 @@ public class Umbrack extends Enemy
                         {
                             startRolling = false;
                             rollingAnimationUpdate = 0;
+                            rollAnimation.setPlayedOnce(false);
                         }
                     }
                 }

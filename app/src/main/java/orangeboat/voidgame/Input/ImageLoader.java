@@ -31,7 +31,8 @@ public class ImageLoader
     {
         //PLAYER LOAd
         temp = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(resources, R.drawable.walking)), 630, 192, true); // charAnimationRight
-        temp = (Bitmap.createBitmap(temp, 0, 0, 120, 192)); // MAIN CHAR21 width 31 height. Scale factor is 6
+        temp = (Bitmap.createBitmap(temp, 0, 0, 120, 192));
+        // MAIN CHAR21 width 31 height. Scale factor is 6
         //temp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.walking), 6* metrics.widthPixels * BitmapFactory.decodeResource(resources, R.drawable.walking).getWidth() / WIDTH, 6* metrics.heightPixels * BitmapFactory.decodeResource(resources, R.drawable.walking).getHeight() / HEIGHT, false);
         //temp = (Bitmap.createBitmap(temp, 0, 0, 6* metrics.widthPixels * BitmapFactory.decodeResource(resources, R.drawable.walking).getWidth() / (WIDTH*5), 6* metrics.heightPixels * BitmapFactory.decodeResource(resources, R.drawable.walking).getHeight() / HEIGHT)); // MAIN CHAR21 width 31 height. Scale factor is 6
         objects.imgLoad(temp);

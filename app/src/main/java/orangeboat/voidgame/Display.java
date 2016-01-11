@@ -72,6 +72,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
         //voido
         j.start();
         tempLoader = null;
+        sfxLoader = null;
 
         //add callback to surfaceholders to intercepts events like fingerpresses
         getHolder().addCallback(this);
@@ -120,7 +121,8 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             }
             retry = false;
         }
-
+        j.release();
+        gameoversfx.release();
     }
 
     public void update() {
@@ -185,9 +187,10 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
             // this is to load the phoneSpecs. We need to iterate once before allowing everything to start drawing.
             if (check)
             {
-                phone.setHeight(getHeight());
-                phone.setWidth(getWidth());
-                menu.load(getWidth(), getHeight());
+                phone.setHeight(metrics.heightPixels);
+                phone.setWidth(metrics.widthPixels);
+                //menu.load(getWidth(), getHeight());
+                menu.load(metrics.widthPixels, metrics.heightPixels);
                 check = false;
                 objects.load();
                 rectRetryButton = new Rect((getWidth()/2-retryButton.getWidth()/2),(int)(getHeight()/1.5),getWidth()/2+retryButton.getWidth(),((int)(getHeight()/1.5)+retryButton.getHeight()));

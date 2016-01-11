@@ -43,8 +43,9 @@ public class MenuPanel
     }
     public void load(int w, int h)
     {
+        y= (int) (PhoneSpecs.height/1.5);
         x= (int) (PhoneSpecs.width/3.3);
-        y= (int) (PhoneSpecs.height/1.3);
+
         rectPlay = new Rect(x,y, (x + playX), (y + playY));
         height = h;
         width = w;

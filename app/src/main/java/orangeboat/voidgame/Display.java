@@ -50,7 +50,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
     boolean check = true;
     SurfaceHolder contextHolder;
     TouchEvents touch;
-
+    Tilt t = new Tilt();
     public Display(Context context) {
 
         super(context);
@@ -192,6 +192,7 @@ public class Display extends SurfaceView implements SurfaceHolder.Callback
                 // draw Game is showGame is true
                 if(showGame)
                 {
+                    t.draw(canvas);
                     gamePanel.draw(canvas);
                 }
                 if(newGame)

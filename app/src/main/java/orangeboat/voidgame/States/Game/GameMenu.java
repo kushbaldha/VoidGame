@@ -25,9 +25,11 @@ public class GameMenu {
     public boolean quitGame = false;
     ArrayList<Rect> healthRects = new ArrayList<>();
     boolean gamePaused = false;
+    Bitmap win;
+    boolean gameWon = false;
     Paint paint;
 
-    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton, Bitmap quitButton, MediaPlayer shoot, MediaPlayer slash, MediaPlayer jump) {
+    public GameMenu(Bitmap leftButton, Bitmap rightButton, Bitmap menuButton, Bitmap jumpButton, Bitmap okButton, Bitmap swordButton, Bitmap gunButton, Bitmap healthBar, Bitmap resumeButton, Bitmap quitButton, MediaPlayer shoot, MediaPlayer slash, MediaPlayer jump,Bitmap win) {
         paint = new Paint();
         paint.setColor(Color.RED);
         this.swordfx = slash;
@@ -63,6 +65,7 @@ public class GameMenu {
         this.quitButton = quitButton;
         quitImgX = quitButton.getWidth();
         quitImgY = quitButton.getHeight();
+        this.win = win;
     }
 
     public void update(int health) {
@@ -110,22 +113,26 @@ public class GameMenu {
 
     public void draw(Canvas canvas) {
 
-        canvas.drawBitmap(leftButton, leftX, leftY, null);
-        canvas.drawBitmap(rightButton, rightX, rightY, null);
-        canvas.drawBitmap(jumpButton, jumpX, jumpY, null);
-        canvas.drawBitmap(menuButton, menuX, menuY, null);
-        canvas.drawBitmap(okButton, okX, okY, null);
-        if (showGun)
-            canvas.drawBitmap(swordButton, swordX, swordY, null);
-        else
-            canvas.drawBitmap(gunButton, swordX, swordY, null);
-        canvas.drawBitmap(healthBar, healthBarX, healthBarY, null);
-        for (int i = 0; i < healthToDraw; i++) {
-            canvas.drawRect(healthRects.get(i), paint);
-        }
-        if (gamePaused) {
-            canvas.drawBitmap(quitButton,quitX,quitY,null);
-            canvas.drawBitmap(resumeButton, resumeX, resumeY, null);
+        if(gameWon)
+            canvas.drawBitmap(win,0,0,null);
+            else {
+            canvas.drawBitmap(leftButton, leftX, leftY, null);
+            canvas.drawBitmap(rightButton, rightX, rightY, null);
+            canvas.drawBitmap(jumpButton, jumpX, jumpY, null);
+            canvas.drawBitmap(menuButton, menuX, menuY, null);
+            canvas.drawBitmap(okButton, okX, okY, null);
+            if (showGun)
+                canvas.drawBitmap(swordButton, swordX, swordY, null);
+            else
+                canvas.drawBitmap(gunButton, swordX, swordY, null);
+            canvas.drawBitmap(healthBar, healthBarX, healthBarY, null);
+            for (int i = 0; i < healthToDraw; i++) {
+                canvas.drawRect(healthRects.get(i), paint);
+            }
+            if (gamePaused) {
+                canvas.drawBitmap(quitButton, quitX, quitY, null);
+                canvas.drawBitmap(resumeButton, resumeX, resumeY, null);
+            }
         }
     }
 

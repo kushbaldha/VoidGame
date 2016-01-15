@@ -129,7 +129,7 @@ public class EnemyPanel
     {
         allLandies = landieArrayList;
     }
-    public void killEnemySword(Rect weaponHitbox)
+    public boolean killEnemySword(Rect weaponHitbox)
     {
             for(int i = 0; i < allLandies.size();i++)
             {
@@ -138,13 +138,21 @@ public class EnemyPanel
                 {
                     int healthOfEnemy = allLandies.get(i).hit(0,0,false,6,false);
                     if(healthOfEnemy <= 0)
-                    {allLandies.remove(i);
+                    {
+                        if(allLandies.get(i) instanceof Umbrack)
+                        {
+                            allLandies.remove(i);
+                            System.out.println("Killed a bogey bullet");
+                            return true;
+                        }
+                        allLandies.remove(i);
                         System.out.println("Killed a bogey bullet");
                     }
                     System.out.println("Killed a bogey");
                     break;
                 }
             }
+        return false;
     }
     public int killEnemyBullet( ArrayList<Bullet> bulletList)
     {
@@ -159,10 +167,15 @@ public class EnemyPanel
                             healthOfEnemy = (allLandies.get(i).hit(rectTemp.right,rectTemp.top, bulletList.get(p).lastMove, 2,true));
                         else
                             healthOfEnemy = (allLandies.get(i).hit(rectTemp.left,rectTemp.top,bulletList.get(p).lastMove, 2,true));
-                        if(healthOfEnemy == 0)
-                        {allLandies.remove(i);
-                            System.out.println("Killed a bogey bullet");
+                        if(healthOfEnemy == 0) {
+                            if (allLandies.get(i) instanceof Umbrack) {
+                                allLandies.remove(i);
+                                System.out.println("Killed a bogey bullet");
+                                return 999;
                             }
+                            allLandies.remove(i);
+                            System.out.println("Killed a bogey bullet");
+                        }
                         return p;
                     }
                 }

@@ -57,10 +57,14 @@ public class GamePanel {
             objects.itemPanel.update(objects.player.moveRight, objects.player.moveLeft, skyx, -2 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform , objects.player.hitBossWall);
 
             objects.enemyPanel.update(skyx, -2 * (objects.gameBackgroundSky.getWidth()) + objects.player.phoneWidth, objects.player.notBlockedByPlatform, objects.player.charX, objects.player.charY, objects.player.hitBossWall);
-            if (objects.weapons.showSlash)
-                objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
-
+            if (objects.weapons.showSlash) {
+                boolean checkWin = objects.enemyPanel.killEnemySword(objects.weapons.rectSlash);
+                if(checkWin)
+                    objects.gameMenu.gameWon = true;
+            }
             int num = objects.enemyPanel.killEnemyBullet(objects.weapons.bullets);
+            if(num == 999)
+                objects.gameMenu.gameWon = true;
             if (num >= 0)
                 objects.weapons.deleteBullet(num);
             if (timer > 0) {
@@ -92,8 +96,8 @@ public class GamePanel {
             check = true;
         canvas.drawBitmap(objects.gameBackgroundSky, skyx, 0, null);
         canvas.drawBitmap(objects.gameBackgroundSky, skyx+objects.gameBackgroundSky.getWidth(), 0, null);
-        canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840*objects.player.phoneHeight/1200, null);
-        canvas.drawBitmap(objects.gameBackgroundFloor, floorx+objects.gameBackgroundFloor.getWidth(), 840*objects.player.phoneHeight/1200, null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, floorx, 840, null);
+        canvas.drawBitmap(objects.gameBackgroundFloor, floorx+objects.gameBackgroundFloor.getWidth(), 840, null);
         objects.player.draw(canvas);
         objects.enemyPanel.draw(canvas);
         objects.weapons.draw(canvas);
@@ -182,4 +186,5 @@ public class GamePanel {
         objects.gameMenu.gamePaused = b;
     }
 }
+
 

@@ -17,20 +17,26 @@ public class MenuPanel
     // images for background and play button
     public Rect rectPlay;
     int numFrames;
-    boolean loadAnimation;
     private int x,y,playX,playY,height,width;
     Paint paint = new Paint();
     //hitbox for the play button
     private Bitmap spritesheet;
     private Animation animation = new Animation();
-    public MenuPanel(int numFrames, Bitmap res, Bitmap res2)
+    public MenuPanel(int numFrames, int w , int h, Bitmap res, Bitmap res2)
     {
         this.numFrames = numFrames;
         if(numFrames == 0)
             spritesheet = res;
         else {
+            Bitmap[] image = new Bitmap[numFrames];
             spritesheet = res;
-            loadAnimation = true;
+            height = h;
+            width = w;
+            for (int i = 0; i < image.length; i++) {
+                image[i] = Bitmap.createBitmap(spritesheet, i * width, 0, width, height);
+            }
+            animation.setFrames(image);
+            animation.setDelay(95);
         }
         play = res2;
         playX = res2.getWidth();
@@ -38,27 +44,14 @@ public class MenuPanel
     }
     public void update()
     {
-        if(numFrames!=0 && rectPlay!=null)
-        animation.update();
+        if(numFrames!=0)
+            animation.update();
     }
-    public void load(int w, int h)
+    public void load()
     {
-        y= (int) (PhoneSpecs.height/1.5);
         x= (int) (PhoneSpecs.width/3.3);
-
+        y= (int) (PhoneSpecs.height/1.3);
         rectPlay = new Rect(x,y, (x + playX), (y + playY));
-        height = h;
-        width = w;
-        if(loadAnimation)
-        {
-            Bitmap[] image = new Bitmap[numFrames];
-            for (int i = 0; i < image.length; i++) {
-                Bitmap bitmap = Bitmap.createBitmap(spritesheet, i * 1140, 0, 1140, 720);
-                image[i] = Bitmap.createScaledBitmap(bitmap,w,h,false);
-            }
-            animation.setFrames(image);
-            animation.setDelay(95);
-        }
     }
     public void draw(Canvas canvas){
 
@@ -66,7 +59,7 @@ public class MenuPanel
         if(numFrames==0)
             canvas.drawBitmap(spritesheet,0,0,null);
         else
-        canvas.drawBitmap(animation.getImage(), 0, 0, null);
+            canvas.drawBitmap(animation.getImage(), 0, 0, null);
         canvas.drawBitmap(play,x,y,null);
         canvas.drawRect(rectPlay, paint);
     }
@@ -81,6 +74,7 @@ public class MenuPanel
         spritesheet = null;
 
     }
-    }
+}
+
 
 
